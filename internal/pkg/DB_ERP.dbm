@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="0,0" last-zoom="0.6" max-obj-count="26"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<role name="redmine"
+ login="true"
+ password="********">
+</role>
+
+<database name="mgrevent" encoding="UTF8" lc-collate="en_US.UTF-8" lc-ctype="en_US.UTF-8" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="events" layers="0" rect-visible="true" fill-color="#91317e">
+	<role name="postgres"/>
+</schema>
+
+<schema name="idm" layers="0" rect-visible="true" fill-color="#3df5ff">
+	<role name="postgres"/>
+</schema>
+
+<schema name="cmdb" layers="0" rect-visible="true" fill-color="#07fa72">
+	<role name="postgres"/>
+</schema>
+
+<schema name="metrics" layers="0" rect-visible="true" fill-color="#a2fd13">
+	<role name="postgres"/>
+</schema>
+
+<table name="events" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="100" y="100"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="title">
+		<type name="text" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="source" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="created" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="update" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="key">
+		<type name="text" length="0"/>
+	</column>
+	<column name="key_close">
+		<type name="text" length="0"/>
+	</column>
+	<column name="assigned">
+		<type name="text" length="0" dimension="1"/>
+	</column>
+	<column name="severity" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_runner">
+		<type name="text" length="0"/>
+	</column>
+	<column name="relation_ci">
+		<type name="text" length="0" dimension="1"/>
+	</column>
+	<constraint name="events_pkey" type="pk-constr" table="events.events">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="history" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="520" y="0"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="id_event" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="from" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="to" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="attr" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="history_pkey" type="pk-constr" table="events.history">
+		<columns names="id_event" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="severity" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="820" y="0"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="severity_pkey" type="pk-constr" table="events.severity">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="status" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="1100" y="20"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="status_pkey" type="pk-constr" table="events.status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="runner" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="1340" y="200"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="source" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="flags" not-null="true">
+		<type name="text" length="0" dimension="1"/>
+	</column>
+	<column name="cmd" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="runner_pkey" type="pk-constr" table="events.runner">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="users" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="2960" y="20"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="login" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="firstname">
+		<type name="text" length="0"/>
+	</column>
+	<column name="lastname">
+		<type name="text" length="0"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="bytea" length="0" dimension="1"/>
+	</column>
+	<column name="profile" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="source">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="users_pkey" type="pk-constr" table="idm.users">
+		<columns names="id,login" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="groups" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="2440" y="240"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="groups_pkey" type="pk-constr" table="idm.groups">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="profile" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="3480" y="300"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="access" not-null="true">
+		<type name="json" length="0"/>
+	</column>
+	<constraint name="profile_pkey" type="pk-constr" table="idm.profile">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="profile_groups" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="3060" y="620"/>
+	<column name="profile_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="idm_groups_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+</table>
+
+<table name="vault" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="3600" y="640"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="connetion_string" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="config" not-null="true">
+		<type name="json" length="0"/>
+	</column>
+	<constraint name="vault_pkey" type="pk-constr" table="idm.vault">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="groups" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="140" y="660"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="groups_pkey" type="pk-constr" table="events.groups">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="groups_events" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="480" y="660"/>
+	<column name="groups_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="events_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+</table>
+
+<table name="runner_events" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="960" y="640"/>
+	<column name="runner_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="events_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+</table>
+
+<table name="session" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="2140" y="880"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="config">
+		<type name="json" length="0"/>
+	</column>
+	<column name="created" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="duration">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="session_pkey" type="pk-constr" table="idm.session">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="session_users" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="2960" y="920"/>
+	<column name="session_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="users_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+</table>
+
+<table name="configuration" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="cmdb"/>
+	<role name="postgres"/>
+	<position x="340" y="1240"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="config" not-null="true">
+		<type name="json" length="0"/>
+	</column>
+	<column name="ci_type" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="ci_name">
+		<type name="text" length="0"/>
+	</column>
+	<column name="ciid" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="configuration_pkey" type="pk-constr" table="cmdb.configuration">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="configuration_history" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="cmdb"/>
+	<role name="postgres"/>
+	<position x="900" y="1280"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="from">
+		<type name="json" length="0"/>
+	</column>
+	<column name="to">
+		<type name="json" length="0"/>
+	</column>
+	<column name="update">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="configuration_history_pkey" type="pk-constr" table="cmdb.configuration_history">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="configuration_configuration_history" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="cmdb"/>
+	<role name="postgres"/>
+	<position x="660" y="840"/>
+	<column name="configuration_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="configuration_history_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+</table>
+
+<table name="objects" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="cmdb"/>
+	<role name="postgres"/>
+	<comment> <![CDATA[Базовый класс для создание таблиц. Связи
+]]> </comment>
+	<position x="1380" y="940"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="text" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="update">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="createb_by">
+		<type name="text" length="0"/>
+	</column>
+	<column name="type">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="objects_pkey" type="pk-constr" table="cmdb.objects">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="links" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="cmdb"/>
+	<role name="postgres"/>
+	<position x="1680" y="1000"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="from_arrow" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="to_arrow" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="from_ci" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="to_ci" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="links_pkey" type="pk-constr" table="cmdb.links">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="metrics" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="metrics"/>
+	<role name="postgres"/>
+	<position x="2260" y="1240"/>
+	<column name="name" not-null="true">
+		<type name="text" length="0" dimension="1"/>
+	</column>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="relation" not-null="true">
+		<type name="cid" length="0"/>
+	</column>
+	<column name="ci_type" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="source ">
+		<type name="json" length="0"/>
+	</column>
+	<constraint name="metrics_pkey" type="pk-constr" table="metrics.metrics">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="groups_events" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="2400" y="680"/>
+	<column name="groups_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="events_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+</table>
+
+<constraint name="events_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="events.history" table="events.events">
+	<columns names="id" ref-type="src-columns"/>
+	<columns names="id_event" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="profile_groups_profile_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idm.profile" table="idm.profile_groups">
+	<columns names="profile_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="profile_groups_idm_groups_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idm.groups" table="idm.profile_groups">
+	<columns names="idm_groups_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="groups_events_groups_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="events.groups" table="events.groups_events">
+	<columns names="groups_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="groups_events_events_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="events.events" table="events.groups_events">
+	<columns names="events_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="runner_events_runner_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="events.runner" table="events.runner_events">
+	<columns names="runner_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="runner_events_events_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="events.events" table="events.runner_events">
+	<columns names="events_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="session_users_session_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idm.session" table="idm.session_users">
+	<columns names="session_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="configuration_configuration_history_configuration_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="cmdb.configuration" table="cmdb.configuration_configuration_history">
+	<columns names="configuration_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="configuration_configuration_histo_configuration_history_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="cmdb.configuration_history" table="cmdb.configuration_configuration_history">
+	<columns names="configuration_history_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="groups_events_groups_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idm.groups" table="idm.groups_events">
+	<columns names="groups_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="groups_events_events_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="events.events" table="idm.groups_events">
+	<columns names="events_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_events_history" type="relfk" layers="0"
+	 custom-color="#19dd94"
+	 src-table="events.events"
+	 dst-table="events.history" reference-fk="events_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_profile_groups_profile" type="relfk" layers="0"
+	 custom-color="#9b23a7"
+	 src-table="idm.profile_groups"
+	 dst-table="idm.profile" reference-fk="profile_groups_profile_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_profile_groups_groups" type="relfk" layers="0"
+	 custom-color="#fb6c2c"
+	 src-table="idm.profile_groups"
+	 dst-table="idm.groups" reference-fk="profile_groups_idm_groups_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_groups_events_groups" type="relfk" layers="0"
+	 custom-color="#cf22cd"
+	 src-table="events.groups_events"
+	 dst-table="events.groups" reference-fk="groups_events_groups_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_groups_events_events" type="relfk" layers="0"
+	 custom-color="#d4788b"
+	 src-table="events.groups_events"
+	 dst-table="events.events" reference-fk="groups_events_events_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_runner_events_runner" type="relfk" layers="0"
+	 custom-color="#b3cd21"
+	 src-table="events.runner_events"
+	 dst-table="events.runner" reference-fk="runner_events_runner_id_fkey"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_runner_events_events" type="relfk" layers="0"
+	 custom-color="#4261da"
+	 src-table="events.runner_events"
+	 dst-table="events.events" reference-fk="runner_events_events_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_session_users_session" type="relfk" layers="0"
+	 custom-color="#1984f9"
+	 src-table="idm.session_users"
+	 dst-table="idm.session" reference-fk="session_users_session_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_configuration_configuration_history_configuration" type="relfk" layers="0"
+	 custom-color="#00befa"
+	 src-table="cmdb.configuration_configuration_history"
+	 dst-table="cmdb.configuration" reference-fk="configuration_configuration_history_configuration_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_configuration_configuration_history_configuration_history" type="relfk" layers="0"
+	 custom-color="#d91534"
+	 src-table="cmdb.configuration_configuration_history"
+	 dst-table="cmdb.configuration_history" reference-fk="configuration_configuration_histo_configuration_history_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_groups_events_groups1" type="relfk" layers="0"
+	 custom-color="#50095b"
+	 src-table="idm.groups_events"
+	 dst-table="idm.groups" reference-fk="groups_events_groups_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_groups_events_events1" type="relfk" layers="0"
+	 custom-color="#97d83e"
+	 src-table="idm.groups_events"
+	 dst-table="events.events" reference-fk="groups_events_events_id_fkey"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="136.086" y="17.1366"/>
+	</label>
+</relationship>
+
+<permission>
+	<object name="public" type="schema"/>
+	<roles names="postgres"/>
+	<privileges create="true" usage="true"/>
+</permission>
+<permission>
+	<object name="public" type="schema"/>
+	<privileges create="true" usage="true"/>
+</permission>
+<permission>
+	<object name="mgrevent" type="database"/>
+	<privileges connect="true" temporary="true"/>
+</permission>
+<permission>
+	<object name="mgrevent" type="database"/>
+	<roles names="postgres"/>
+	<privileges create="true" connect="true" temporary="true"/>
+</permission>
+</dbmodel>
