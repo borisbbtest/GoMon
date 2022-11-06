@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="109,0" last-zoom="0.8" max-obj-count="9"
+<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="1319,3" last-zoom="1.15" max-obj-count="9"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -39,7 +39,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </schema>
 
-<table name="events" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+<table name="events" layers="0" collapse-mode="2" max-obj-count="16" z-value="0">
 	<schema name="events"/>
 	<role name="postgres"/>
 	<position x="480" y="180"/>
@@ -82,6 +82,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="relation_ci">
 		<type name="text" length="0" dimension="1"/>
 	</column>
+	<column name="created_by" not-null="true">
+		<type name="text" length="0"/>
+	</column>
 	<constraint name="events_pkey" type="pk-constr" table="events.events">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
@@ -123,10 +126,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="users" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+<table name="users" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="idm"/>
 	<role name="postgres"/>
-	<position x="1720" y="180"/>
+	<position x="1700" y="180"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -148,6 +151,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="source">
 		<type name="text" length="0"/>
 	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamptz" length="0"/>
+	</column>
 	<constraint name="users_pkey" type="pk-constr" table="idm.users">
 		<columns names="id,login" ref-type="src-columns"/>
 	</constraint>
@@ -156,7 +162,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="session" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="idm"/>
 	<role name="postgres"/>
-	<position x="1340" y="180"/>
+	<position x="1320" y="180"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -209,7 +215,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="links" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="cmdb"/>
 	<role name="postgres"/>
-	<position x="820" y="640"/>
+	<position x="800" y="640"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -239,7 +245,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="item_metrics" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="metrics"/>
 	<role name="postgres"/>
-	<position x="1100" y="660"/>
+	<position x="1080" y="640"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>

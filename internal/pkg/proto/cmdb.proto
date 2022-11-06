@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package cmdbgrpc;
+
+option go_package = "/cmdb";
+
+service cmdb {
+  rpc PushObject(PushObjectRequest) returns (PushObjectResponce) {}
+  rpc GetObject(GetObjectRequest) returns (GetObjectResponce) {}
+  rpc PushBatchObject(PushBatchObjectsRequest) returns (PushBatchObjectsResponce) {}
+  rpc GetBatchObject(GetBatchObjectsRequest) returns (GetBatchObjectsResponce) {}
+
+  rpc PushLink(PushLinkRequest) returns (PushLinkResponce) {}
+  rpc GetLinks(GetLinkRequest) returns (GetLinkResponce) {}
+  rpc PushBatchLinks(PushBatchLinksRequest) returns (PushBatchLinksResponce) {}
+  rpc GetBatchLinks(GetBatchLinksRequest) returns (GetBatchLinksResponce) {}
+}
+
+message metric {
+  string name = 1;
+  bytes value = 2;
+  int32 localtime = 3;
+  string source_from_systems = 4;
+  string relation_ci = 5;
+}
+
+message PushObjectRequest { metric item = 2; }
+
+message PushObjectResponce { string code = 1; }
+
+message GetObjectRequest { string id = 1; }
+
+message GetObjectResponce {
+  string code = 1;
+  metric item = 2;
+}
+
+message PushBatchObjectsRequest { repeated metric item = 2; }
+
+message PushBatchObjectsResponce { string code = 1; }
+
+message GetBatchObjectsRequest { repeated metric item = 1; }
+
+message GetBatchObjectsResponce {
+  string code = 1;
+  repeated metric item = 2;
+}
+
+message PushLinkRequest { metric item = 2; }
+
+message PushLinkResponce { string code = 1; }
+
+message GetLinkRequest { string id = 1; }
+
+message GetLinkResponce {
+  string code = 1;
+  metric item = 2;
+}
+
+message PushBatchLinksRequest { repeated metric item = 2; }
+
+message PushBatchLinksResponce { string code = 1; }
+
+message GetBatchLinksRequest { repeated metric item = 1; }
+
+message GetBatchLinksResponce {
+  string code = 1;
+  repeated metric item = 2;
+}
