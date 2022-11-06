@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="1319,3" last-zoom="1.15" max-obj-count="9"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<role name="redmine"
+ login="true"
+ password="********">
+</role>
+
+<database name="mgrevent" encoding="UTF8" lc-collate="en_US.UTF-8" lc-ctype="en_US.UTF-8" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="events" layers="0" rect-visible="true" fill-color="#91317e">
+	<role name="postgres"/>
+</schema>
+
+<schema name="idm" layers="0" rect-visible="true" fill-color="#3df5ff">
+	<role name="postgres"/>
+</schema>
+
+<schema name="cmdb" layers="0" rect-visible="true" fill-color="#07fa72">
+	<role name="postgres"/>
+</schema>
+
+<schema name="metrics" layers="0" rect-visible="true" fill-color="#a2fd13">
+	<role name="postgres"/>
+</schema>
+
+<table name="events" layers="0" collapse-mode="2" max-obj-count="16" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="480" y="180"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="title">
+		<type name="text" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="source" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="created" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="update" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="key">
+		<type name="text" length="0"/>
+	</column>
+	<column name="key_close">
+		<type name="text" length="0"/>
+	</column>
+	<column name="assigned">
+		<type name="text" length="0" dimension="1"/>
+	</column>
+	<column name="severity" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_runner">
+		<type name="text" length="0"/>
+	</column>
+	<column name="relation_ci">
+		<type name="text" length="0" dimension="1"/>
+	</column>
+	<column name="created_by" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="events_pkey" type="pk-constr" table="events.events">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="severity" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="760" y="180"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="severity_pkey" type="pk-constr" table="events.severity">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="status" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="events"/>
+	<role name="postgres"/>
+	<position x="1060" y="180"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="status_pkey" type="pk-constr" table="events.status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="users" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="1700" y="180"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="login" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="firstname">
+		<type name="text" length="0"/>
+	</column>
+	<column name="lastname">
+		<type name="text" length="0"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="bytea" length="0" dimension="1"/>
+	</column>
+	<column name="profile" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="source">
+		<type name="text" length="0"/>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<constraint name="users_pkey" type="pk-constr" table="idm.users">
+		<columns names="id,login" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="session" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="idm"/>
+	<role name="postgres"/>
+	<position x="1320" y="180"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="config">
+		<type name="json" length="0"/>
+	</column>
+	<column name="created" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="duration">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="session_pkey" type="pk-constr" table="idm.session">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="objects" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="cmdb"/>
+	<role name="postgres"/>
+	<comment> <![CDATA[Базовый класс для создание таблиц. Связи
+]]> </comment>
+	<position x="480" y="640"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="text" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="update">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="createb_by">
+		<type name="text" length="0"/>
+	</column>
+	<column name="type">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="objects_pkey" type="pk-constr" table="cmdb.objects">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="links" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="cmdb"/>
+	<role name="postgres"/>
+	<position x="800" y="640"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="from_arrow" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="to_arrow" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="from_ci" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="to_ci" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<constraint name="links_pkey" type="pk-constr" table="cmdb.links">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="item_metrics" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="metrics"/>
+	<role name="postgres"/>
+	<position x="1080" y="640"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="value" not-null="true">
+		<type name="bit" length="0"/>
+	</column>
+	<column name="loadtime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="source_from_systems" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="related_ci" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="source_time" not-null="true">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<constraint name="item_metrics_pk" type="pk-constr" table="metrics.item_metrics">
+		<columns names="id,source_time" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<permission>
+	<object name="public" type="schema"/>
+	<roles names="postgres"/>
+	<privileges create="true" usage="true"/>
+</permission>
+<permission>
+	<object name="public" type="schema"/>
+	<privileges create="true" usage="true"/>
+</permission>
+<permission>
+	<object name="mgrevent" type="database"/>
+	<privileges connect="true" temporary="true"/>
+</permission>
+<permission>
+	<object name="mgrevent" type="database"/>
+	<roles names="postgres"/>
+	<privileges create="true" connect="true" temporary="true"/>
+</permission>
+</dbmodel>
