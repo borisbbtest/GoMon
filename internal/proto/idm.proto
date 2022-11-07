@@ -1,24 +1,24 @@
 syntax = "proto3";
-
+import "google/protobuf/timestamp.proto";
 package idmgrpc;
 
 option go_package = "/idm";
 
 service events {
-  rpc GetSession(GetSessionRequest) returns (GetSessionResponce) {}
+  rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {}
   rpc CreationSession(CreationSessionRequest)
-      returns (CreationSessionResponce) {}
+      returns (CreationSessionResponse) {}
   rpc DeletionSession(DeletionSessionRequest)
-      returns (DeletionSessionResponce) {}
-  rpc GetAllSession(GetAllSessionRequest) returns (GetAllSessionResponce) {}
+      returns (DeletionSessionResponse) {}
+  rpc GetAllSession(GetAllSessionRequest) returns (GetAllSessionResponse) {}
 
-  rpc CreationUser(CreationUserRequest) returns (CreationUserResponce) {}
-  rpc DeletionUser(DeletionUserRequest) returns (DeletionUserResponce) {}
-  rpc GetUser(GetUserRequest) returns (GetUserResponce) {}
-  rpc GetListUserAll(GetListUserAllRequest) returns (GetListUserAllResponce) {}
+  rpc CreationUser(CreationUserRequest) returns (CreationUserResponse) {}
+  rpc DeletionUser(DeletionUserRequest) returns (DeletionUserResponse) {}
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+  rpc GetListUserAll(GetListUserAllRequest) returns (GetListUserAllResponse) {}
 
-  rpc Authorization(AuthorizationRequest) returns (AuthorizationResponce);
-  rpc Registration(RegistrationRequest) returns (RegistrationResponce);
+  rpc Authorization(AuthorizationRequest) returns (AuthorizationResponse);
+  rpc Registration(RegistrationRequest) returns (RegistrationResponse);
 }
 
 message user {
@@ -35,13 +35,13 @@ message session {
   string id = 1;
   string cofig = 2;
   string login = 3;
-  int32 duration = 4;
-  int32 created = 5;
+  google.protobuf.Timestamp duration = 4;
+  google.protobuf.Timestamp  created = 5;
   string code = 6;
 }
 
 message RegistrationRequest { user person = 1; }
-message RegistrationResponce {
+message RegistrationResponse {
   session ss = 1;
   user persone = 2;
   string code = 3;
@@ -51,19 +51,19 @@ message AuthorizationRequest {
   string login = 1;
   string password = 2;
 }
-message AuthorizationResponce {
+message AuthorizationResponse {
   session ss = 1;
   string code = 2;
 }
 
 message GetListUserAllRequest { repeated user persons = 1; }
-message GetListUserAllResponce {
+message GetListUserAllResponse {
   string code = 1;
   repeated user persons = 2;
 }
 
 message GetUserRequest { user person = 1; }
-message GetUserResponce {
+message GetUserResponse {
   string code = 1;
   user person = 2;
 }
@@ -72,13 +72,13 @@ message DeletionUserRequest {
   string login = 1;
   string ids = 2;
 }
-message DeletionUserResponce { string code = 1; }
+message DeletionUserResponse { string code = 1; }
 
 message CreationUserRequest { user persone = 1; }
-message CreationUserResponce { string code = 1; }
+message CreationUserResponse { string code = 1; }
 
 message GetAllSessionRequest { repeated user person = 1; }
-message GetAllSessionResponce {
+message GetAllSessionResponse {
   string code = 1;
   repeated session ss = 2;
 }
@@ -88,18 +88,18 @@ message DeletionSessionRequest {
   string id = 2;
 }
 
-message DeletionSessionResponce { string code = 1; }
+message DeletionSessionResponse { string code = 1; }
 
 message GetSessionRequest {
   string login = 1;
   string id = 2;
 }
 
-message GetSessionResponce {
+message GetSessionResponse {
   string code = 1;
   session ss = 2;
 }
 
 message CreationSessionRequest { user person = 1; }
 
-message CreationSessionResponce { string code = 1; }
+message CreationSessionResponse { string code = 1; }
