@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package eventsgrpc;
+
+option go_package = "/events";
+
+enum Status {
+  Open = 0;
+  Closed= 1;
+  Assigned = 2;
+  Reopen = 3;
+}
+
+enum Severity {
+  Critical = 0;
+  Warning= 1;
+  Normal = 2;
+}
+
+service events {
+  rpc Push(PushRequest) returns (PushResponse) {}
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc PushBatch(PushBatchRequest) returns (PushBatchResponse) {}
+  rpc GetBatch(GetBatchRequest) returns (GetBatchResponse) {}
+}
+
+message event {
+  string title = 1;
+  string description = 2;
+  string source = 3;
+  Status status = 4;
+  google.protobuf.Timestamp created = 5;
+  google.protobuf.Timestamp update = 6;
+  string key = 7;
+  string key_close = 8;
+  string assigned = 9;
+  string auto_runner = 10;
+  Severity severity = 11;
+  string relarion_ci = 12;
+  string created_by = 13;
+  int32 count =14;
+}
+
+message PushRequest {
+  string user = 1;
+  event ev = 2;
+}
+
+message PushResponse { string code = 1; }
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  string code = 1;
+  event ev = 2;
+}
+
+message PushBatchRequest {
+  string user = 1;
+  repeated event ev = 2;
+}
+
+message PushBatchResponse {
+  string code = 1;
+}
+
+message GetBatchRequest {
+ repeated  event ev = 1;
+}
+
+message GetBatchResponse {
+  string code = 1;
+  repeated event ev = 2;
+}
+
