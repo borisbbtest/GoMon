@@ -49,8 +49,8 @@ go/ServiceEvents.pb.go: events.proto
 	protoc $$PROTO_PATH --go_opt=paths=source_relative   --go-grpc_out=. --go_out=./events events.proto
 
 go/ServiceIdm.pb.go: idm.proto
-	mkdir -p ./idm # make directory for go package
-	protoc $$PROTO_PATH --go_opt=paths=source_relative   --go-grpc_out=. --go_out=./idm idm.proto
+	mkdir -p ../idm/proto/idm # make directory for go package
+	protoc $$PROTO_PATH --go_opt=paths=source_relative   --go-grpc_out=../idm/proto/ --go_out=../idm/proto/idm idm.proto
 
 go/ServiceMetrics.pb.go: metrics.proto
 	mkdir -p ./metrics # make directory for go package

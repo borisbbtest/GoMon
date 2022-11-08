@@ -1,8 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/borisbbtest/GoMon/internal/idm/app"
 
 func main() {
-	fmt.Printf("hello world")
-
+	app.BuildApp()
 }

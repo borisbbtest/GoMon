@@ -26,14 +26,14 @@ message user {
   string firstname = 2;
   string lastname = 3;
   string password = 4;
-  int32 created_at = 5;
-  int32 profile = 6;
-  string source = 7;
+  google.protobuf.Timestamp created_at = 5;
+  string source = 6;
+  string id = 7;
 }
 
 message session {
   string id = 1;
-  string cofig = 2;
+  string config = 2;
   string login = 3;
   google.protobuf.Timestamp duration = 4;
   google.protobuf.Timestamp  created = 5;
@@ -70,7 +70,6 @@ message GetUserResponse {
 
 message DeletionUserRequest {
   string login = 1;
-  string ids = 2;
 }
 message DeletionUserResponse { string code = 1; }
 
@@ -87,14 +86,12 @@ message DeletionSessionRequest {
   string login = 1;
   string id = 2;
 }
-
 message DeletionSessionResponse { string code = 1; }
 
 message GetSessionRequest {
   string login = 1;
   string id = 2;
 }
-
 message GetSessionResponse {
   string code = 1;
   session ss = 2;

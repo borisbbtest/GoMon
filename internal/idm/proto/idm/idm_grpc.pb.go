@@ -22,16 +22,16 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EventsClient interface {
-	GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponce, error)
-	CreationSession(ctx context.Context, in *CreationSessionRequest, opts ...grpc.CallOption) (*CreationSessionResponce, error)
-	DeletionSession(ctx context.Context, in *DeletionSessionRequest, opts ...grpc.CallOption) (*DeletionSessionResponce, error)
-	GetAllSession(ctx context.Context, in *GetAllSessionRequest, opts ...grpc.CallOption) (*GetAllSessionResponce, error)
-	CreationUser(ctx context.Context, in *CreationUserRequest, opts ...grpc.CallOption) (*CreationUserResponce, error)
-	DeletionUser(ctx context.Context, in *DeletionUserRequest, opts ...grpc.CallOption) (*DeletionUserResponce, error)
-	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponce, error)
-	GetListUserAll(ctx context.Context, in *GetListUserAllRequest, opts ...grpc.CallOption) (*GetListUserAllResponce, error)
-	Authorization(ctx context.Context, in *AuthorizationRequest, opts ...grpc.CallOption) (*AuthorizationResponce, error)
-	Registration(ctx context.Context, in *RegistrationRequest, opts ...grpc.CallOption) (*RegistrationResponce, error)
+	GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponse, error)
+	CreationSession(ctx context.Context, in *CreationSessionRequest, opts ...grpc.CallOption) (*CreationSessionResponse, error)
+	DeletionSession(ctx context.Context, in *DeletionSessionRequest, opts ...grpc.CallOption) (*DeletionSessionResponse, error)
+	GetAllSession(ctx context.Context, in *GetAllSessionRequest, opts ...grpc.CallOption) (*GetAllSessionResponse, error)
+	CreationUser(ctx context.Context, in *CreationUserRequest, opts ...grpc.CallOption) (*CreationUserResponse, error)
+	DeletionUser(ctx context.Context, in *DeletionUserRequest, opts ...grpc.CallOption) (*DeletionUserResponse, error)
+	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
+	GetListUserAll(ctx context.Context, in *GetListUserAllRequest, opts ...grpc.CallOption) (*GetListUserAllResponse, error)
+	Authorization(ctx context.Context, in *AuthorizationRequest, opts ...grpc.CallOption) (*AuthorizationResponse, error)
+	Registration(ctx context.Context, in *RegistrationRequest, opts ...grpc.CallOption) (*RegistrationResponse, error)
 }
 
 type eventsClient struct {
@@ -42,8 +42,8 @@ func NewEventsClient(cc grpc.ClientConnInterface) EventsClient {
 	return &eventsClient{cc}
 }
 
-func (c *eventsClient) GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponce, error) {
-	out := new(GetSessionResponce)
+func (c *eventsClient) GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponse, error) {
+	out := new(GetSessionResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetSession", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -51,8 +51,8 @@ func (c *eventsClient) GetSession(ctx context.Context, in *GetSessionRequest, op
 	return out, nil
 }
 
-func (c *eventsClient) CreationSession(ctx context.Context, in *CreationSessionRequest, opts ...grpc.CallOption) (*CreationSessionResponce, error) {
-	out := new(CreationSessionResponce)
+func (c *eventsClient) CreationSession(ctx context.Context, in *CreationSessionRequest, opts ...grpc.CallOption) (*CreationSessionResponse, error) {
+	out := new(CreationSessionResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/CreationSession", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (c *eventsClient) CreationSession(ctx context.Context, in *CreationSessionR
 	return out, nil
 }
 
-func (c *eventsClient) DeletionSession(ctx context.Context, in *DeletionSessionRequest, opts ...grpc.CallOption) (*DeletionSessionResponce, error) {
-	out := new(DeletionSessionResponce)
+func (c *eventsClient) DeletionSession(ctx context.Context, in *DeletionSessionRequest, opts ...grpc.CallOption) (*DeletionSessionResponse, error) {
+	out := new(DeletionSessionResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/DeletionSession", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -69,8 +69,8 @@ func (c *eventsClient) DeletionSession(ctx context.Context, in *DeletionSessionR
 	return out, nil
 }
 
-func (c *eventsClient) GetAllSession(ctx context.Context, in *GetAllSessionRequest, opts ...grpc.CallOption) (*GetAllSessionResponce, error) {
-	out := new(GetAllSessionResponce)
+func (c *eventsClient) GetAllSession(ctx context.Context, in *GetAllSessionRequest, opts ...grpc.CallOption) (*GetAllSessionResponse, error) {
+	out := new(GetAllSessionResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetAllSession", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,8 +78,8 @@ func (c *eventsClient) GetAllSession(ctx context.Context, in *GetAllSessionReque
 	return out, nil
 }
 
-func (c *eventsClient) CreationUser(ctx context.Context, in *CreationUserRequest, opts ...grpc.CallOption) (*CreationUserResponce, error) {
-	out := new(CreationUserResponce)
+func (c *eventsClient) CreationUser(ctx context.Context, in *CreationUserRequest, opts ...grpc.CallOption) (*CreationUserResponse, error) {
+	out := new(CreationUserResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/CreationUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -87,8 +87,8 @@ func (c *eventsClient) CreationUser(ctx context.Context, in *CreationUserRequest
 	return out, nil
 }
 
-func (c *eventsClient) DeletionUser(ctx context.Context, in *DeletionUserRequest, opts ...grpc.CallOption) (*DeletionUserResponce, error) {
-	out := new(DeletionUserResponce)
+func (c *eventsClient) DeletionUser(ctx context.Context, in *DeletionUserRequest, opts ...grpc.CallOption) (*DeletionUserResponse, error) {
+	out := new(DeletionUserResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/DeletionUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (c *eventsClient) DeletionUser(ctx context.Context, in *DeletionUserRequest
 	return out, nil
 }
 
-func (c *eventsClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponce, error) {
-	out := new(GetUserResponce)
+func (c *eventsClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
+	out := new(GetUserResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -105,8 +105,8 @@ func (c *eventsClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...
 	return out, nil
 }
 
-func (c *eventsClient) GetListUserAll(ctx context.Context, in *GetListUserAllRequest, opts ...grpc.CallOption) (*GetListUserAllResponce, error) {
-	out := new(GetListUserAllResponce)
+func (c *eventsClient) GetListUserAll(ctx context.Context, in *GetListUserAllRequest, opts ...grpc.CallOption) (*GetListUserAllResponse, error) {
+	out := new(GetListUserAllResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetListUserAll", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -114,8 +114,8 @@ func (c *eventsClient) GetListUserAll(ctx context.Context, in *GetListUserAllReq
 	return out, nil
 }
 
-func (c *eventsClient) Authorization(ctx context.Context, in *AuthorizationRequest, opts ...grpc.CallOption) (*AuthorizationResponce, error) {
-	out := new(AuthorizationResponce)
+func (c *eventsClient) Authorization(ctx context.Context, in *AuthorizationRequest, opts ...grpc.CallOption) (*AuthorizationResponse, error) {
+	out := new(AuthorizationResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/Authorization", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -123,8 +123,8 @@ func (c *eventsClient) Authorization(ctx context.Context, in *AuthorizationReque
 	return out, nil
 }
 
-func (c *eventsClient) Registration(ctx context.Context, in *RegistrationRequest, opts ...grpc.CallOption) (*RegistrationResponce, error) {
-	out := new(RegistrationResponce)
+func (c *eventsClient) Registration(ctx context.Context, in *RegistrationRequest, opts ...grpc.CallOption) (*RegistrationResponse, error) {
+	out := new(RegistrationResponse)
 	err := c.cc.Invoke(ctx, "/idmgrpc.events/Registration", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -136,16 +136,16 @@ func (c *eventsClient) Registration(ctx context.Context, in *RegistrationRequest
 // All implementations must embed UnimplementedEventsServer
 // for forward compatibility
 type EventsServer interface {
-	GetSession(context.Context, *GetSessionRequest) (*GetSessionResponce, error)
-	CreationSession(context.Context, *CreationSessionRequest) (*CreationSessionResponce, error)
-	DeletionSession(context.Context, *DeletionSessionRequest) (*DeletionSessionResponce, error)
-	GetAllSession(context.Context, *GetAllSessionRequest) (*GetAllSessionResponce, error)
-	CreationUser(context.Context, *CreationUserRequest) (*CreationUserResponce, error)
-	DeletionUser(context.Context, *DeletionUserRequest) (*DeletionUserResponce, error)
-	GetUser(context.Context, *GetUserRequest) (*GetUserResponce, error)
-	GetListUserAll(context.Context, *GetListUserAllRequest) (*GetListUserAllResponce, error)
-	Authorization(context.Context, *AuthorizationRequest) (*AuthorizationResponce, error)
-	Registration(context.Context, *RegistrationRequest) (*RegistrationResponce, error)
+	GetSession(context.Context, *GetSessionRequest) (*GetSessionResponse, error)
+	CreationSession(context.Context, *CreationSessionRequest) (*CreationSessionResponse, error)
+	DeletionSession(context.Context, *DeletionSessionRequest) (*DeletionSessionResponse, error)
+	GetAllSession(context.Context, *GetAllSessionRequest) (*GetAllSessionResponse, error)
+	CreationUser(context.Context, *CreationUserRequest) (*CreationUserResponse, error)
+	DeletionUser(context.Context, *DeletionUserRequest) (*DeletionUserResponse, error)
+	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
+	GetListUserAll(context.Context, *GetListUserAllRequest) (*GetListUserAllResponse, error)
+	Authorization(context.Context, *AuthorizationRequest) (*AuthorizationResponse, error)
+	Registration(context.Context, *RegistrationRequest) (*RegistrationResponse, error)
 	mustEmbedUnimplementedEventsServer()
 }
 
@@ -153,34 +153,34 @@ type EventsServer interface {
 type UnimplementedEventsServer struct {
 }
 
-func (UnimplementedEventsServer) GetSession(context.Context, *GetSessionRequest) (*GetSessionResponce, error) {
+func (UnimplementedEventsServer) GetSession(context.Context, *GetSessionRequest) (*GetSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
 }
-func (UnimplementedEventsServer) CreationSession(context.Context, *CreationSessionRequest) (*CreationSessionResponce, error) {
+func (UnimplementedEventsServer) CreationSession(context.Context, *CreationSessionRequest) (*CreationSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreationSession not implemented")
 }
-func (UnimplementedEventsServer) DeletionSession(context.Context, *DeletionSessionRequest) (*DeletionSessionResponce, error) {
+func (UnimplementedEventsServer) DeletionSession(context.Context, *DeletionSessionRequest) (*DeletionSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletionSession not implemented")
 }
-func (UnimplementedEventsServer) GetAllSession(context.Context, *GetAllSessionRequest) (*GetAllSessionResponce, error) {
+func (UnimplementedEventsServer) GetAllSession(context.Context, *GetAllSessionRequest) (*GetAllSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllSession not implemented")
 }
-func (UnimplementedEventsServer) CreationUser(context.Context, *CreationUserRequest) (*CreationUserResponce, error) {
+func (UnimplementedEventsServer) CreationUser(context.Context, *CreationUserRequest) (*CreationUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreationUser not implemented")
 }
-func (UnimplementedEventsServer) DeletionUser(context.Context, *DeletionUserRequest) (*DeletionUserResponce, error) {
+func (UnimplementedEventsServer) DeletionUser(context.Context, *DeletionUserRequest) (*DeletionUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletionUser not implemented")
 }
-func (UnimplementedEventsServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponce, error) {
+func (UnimplementedEventsServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
-func (UnimplementedEventsServer) GetListUserAll(context.Context, *GetListUserAllRequest) (*GetListUserAllResponce, error) {
+func (UnimplementedEventsServer) GetListUserAll(context.Context, *GetListUserAllRequest) (*GetListUserAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetListUserAll not implemented")
 }
-func (UnimplementedEventsServer) Authorization(context.Context, *AuthorizationRequest) (*AuthorizationResponce, error) {
+func (UnimplementedEventsServer) Authorization(context.Context, *AuthorizationRequest) (*AuthorizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authorization not implemented")
 }
-func (UnimplementedEventsServer) Registration(context.Context, *RegistrationRequest) (*RegistrationResponce, error) {
+func (UnimplementedEventsServer) Registration(context.Context, *RegistrationRequest) (*RegistrationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Registration not implemented")
 }
 func (UnimplementedEventsServer) mustEmbedUnimplementedEventsServer() {}
