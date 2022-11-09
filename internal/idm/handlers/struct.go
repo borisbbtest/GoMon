@@ -1,4 +1,4 @@
-package app
+package handlers
 
 import (
 	"github.com/borisbbtest/GoMon/internal/idm/models"

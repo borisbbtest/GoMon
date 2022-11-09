@@ -4,7 +4,7 @@ package idmgrpc;
 
 option go_package = "/idm";
 
-service events {
+service idm {
   rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {}
   rpc CreationSession(CreationSessionRequest)
       returns (CreationSessionResponse) {}

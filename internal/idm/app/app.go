@@ -11,8 +11,12 @@ import (
 	"github.com/rs/zerolog"
 	"google.golang.org/grpc"
 
+	grpczerolog "github.com/grpc-ecosystem/go-grpc-middleware/providers/zerolog/v2"
+	"github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/logging"
+
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
 	"github.com/borisbbtest/GoMon/internal/idm/database"
+	"github.com/borisbbtest/GoMon/internal/idm/handlers"
 	"github.com/borisbbtest/GoMon/internal/idm/models"
 	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
 	"github.com/borisbbtest/GoMon/internal/idm/service"
@@ -47,14 +51,14 @@ func BuildApp() {
 		Cfg:  cfg,
 		Repo: repo,
 	}
-	grpcwrapper := GRPC{
+	grpcwrapper := handlers.GRPC{
 		App: cfgwrapper,
 	}
 	listen, err := net.Listen("tcp", grpcwrapper.App.Cfg.ServerAddressGRPC)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed initialize gRPC listener")
 	}
-	srv := grpc.NewServer()
+	srv := grpc.NewServer(grpc.ChainUnaryInterceptor(logging.UnaryServerInterceptor(grpczerolog.InterceptorLogger(log))))
 	pb.RegisterEventsServer(srv, &grpcwrapper)
 	go func() {
 		if err := srv.Serve(listen); err != nil && err != grpc.ErrServerStopped {
