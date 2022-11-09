@@ -6,6 +6,6 @@ import (
 )
 
 type GRPC struct {
-	pb.UnimplementedEventsServer
+	pb.UnimplementedIdmServer
 	App *models.ConfigWrapper
 }

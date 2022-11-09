@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// EventsClient is the client API for Events service.
+// IdmClient is the client API for Idm service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EventsClient interface {
+type IdmClient interface {
 	GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponse, error)
 	CreationSession(ctx context.Context, in *CreationSessionRequest, opts ...grpc.CallOption) (*CreationSessionResponse, error)
 	DeletionSession(ctx context.Context, in *DeletionSessionRequest, opts ...grpc.CallOption) (*DeletionSessionResponse, error)
@@ -34,108 +34,108 @@ type EventsClient interface {
 	Registration(ctx context.Context, in *RegistrationRequest, opts ...grpc.CallOption) (*RegistrationResponse, error)
 }
 
-type eventsClient struct {
+type idmClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewEventsClient(cc grpc.ClientConnInterface) EventsClient {
-	return &eventsClient{cc}
+func NewIdmClient(cc grpc.ClientConnInterface) IdmClient {
+	return &idmClient{cc}
 }
 
-func (c *eventsClient) GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponse, error) {
+func (c *idmClient) GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponse, error) {
 	out := new(GetSessionResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/GetSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) CreationSession(ctx context.Context, in *CreationSessionRequest, opts ...grpc.CallOption) (*CreationSessionResponse, error) {
+func (c *idmClient) CreationSession(ctx context.Context, in *CreationSessionRequest, opts ...grpc.CallOption) (*CreationSessionResponse, error) {
 	out := new(CreationSessionResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/CreationSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/CreationSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) DeletionSession(ctx context.Context, in *DeletionSessionRequest, opts ...grpc.CallOption) (*DeletionSessionResponse, error) {
+func (c *idmClient) DeletionSession(ctx context.Context, in *DeletionSessionRequest, opts ...grpc.CallOption) (*DeletionSessionResponse, error) {
 	out := new(DeletionSessionResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/DeletionSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/DeletionSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) GetAllSession(ctx context.Context, in *GetAllSessionRequest, opts ...grpc.CallOption) (*GetAllSessionResponse, error) {
+func (c *idmClient) GetAllSession(ctx context.Context, in *GetAllSessionRequest, opts ...grpc.CallOption) (*GetAllSessionResponse, error) {
 	out := new(GetAllSessionResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetAllSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/GetAllSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) CreationUser(ctx context.Context, in *CreationUserRequest, opts ...grpc.CallOption) (*CreationUserResponse, error) {
+func (c *idmClient) CreationUser(ctx context.Context, in *CreationUserRequest, opts ...grpc.CallOption) (*CreationUserResponse, error) {
 	out := new(CreationUserResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/CreationUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/CreationUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) DeletionUser(ctx context.Context, in *DeletionUserRequest, opts ...grpc.CallOption) (*DeletionUserResponse, error) {
+func (c *idmClient) DeletionUser(ctx context.Context, in *DeletionUserRequest, opts ...grpc.CallOption) (*DeletionUserResponse, error) {
 	out := new(DeletionUserResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/DeletionUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/DeletionUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
+func (c *idmClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	out := new(GetUserResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/GetUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) GetListUserAll(ctx context.Context, in *GetListUserAllRequest, opts ...grpc.CallOption) (*GetListUserAllResponse, error) {
+func (c *idmClient) GetListUserAll(ctx context.Context, in *GetListUserAllRequest, opts ...grpc.CallOption) (*GetListUserAllResponse, error) {
 	out := new(GetListUserAllResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/GetListUserAll", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/GetListUserAll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) Authorization(ctx context.Context, in *AuthorizationRequest, opts ...grpc.CallOption) (*AuthorizationResponse, error) {
+func (c *idmClient) Authorization(ctx context.Context, in *AuthorizationRequest, opts ...grpc.CallOption) (*AuthorizationResponse, error) {
 	out := new(AuthorizationResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/Authorization", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/Authorization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventsClient) Registration(ctx context.Context, in *RegistrationRequest, opts ...grpc.CallOption) (*RegistrationResponse, error) {
+func (c *idmClient) Registration(ctx context.Context, in *RegistrationRequest, opts ...grpc.CallOption) (*RegistrationResponse, error) {
 	out := new(RegistrationResponse)
-	err := c.cc.Invoke(ctx, "/idmgrpc.events/Registration", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/idmgrpc.idm/Registration", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// EventsServer is the server API for Events service.
-// All implementations must embed UnimplementedEventsServer
+// IdmServer is the server API for Idm service.
+// All implementations must embed UnimplementedIdmServer
 // for forward compatibility
-type EventsServer interface {
+type IdmServer interface {
 	GetSession(context.Context, *GetSessionRequest) (*GetSessionResponse, error)
 	CreationSession(context.Context, *CreationSessionRequest) (*CreationSessionResponse, error)
 	DeletionSession(context.Context, *DeletionSessionRequest) (*DeletionSessionResponse, error)
@@ -146,282 +146,282 @@ type EventsServer interface {
 	GetListUserAll(context.Context, *GetListUserAllRequest) (*GetListUserAllResponse, error)
 	Authorization(context.Context, *AuthorizationRequest) (*AuthorizationResponse, error)
 	Registration(context.Context, *RegistrationRequest) (*RegistrationResponse, error)
-	mustEmbedUnimplementedEventsServer()
+	mustEmbedUnimplementedIdmServer()
 }
 
-// UnimplementedEventsServer must be embedded to have forward compatible implementations.
-type UnimplementedEventsServer struct {
+// UnimplementedIdmServer must be embedded to have forward compatible implementations.
+type UnimplementedIdmServer struct {
 }
 
-func (UnimplementedEventsServer) GetSession(context.Context, *GetSessionRequest) (*GetSessionResponse, error) {
+func (UnimplementedIdmServer) GetSession(context.Context, *GetSessionRequest) (*GetSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
 }
-func (UnimplementedEventsServer) CreationSession(context.Context, *CreationSessionRequest) (*CreationSessionResponse, error) {
+func (UnimplementedIdmServer) CreationSession(context.Context, *CreationSessionRequest) (*CreationSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreationSession not implemented")
 }
-func (UnimplementedEventsServer) DeletionSession(context.Context, *DeletionSessionRequest) (*DeletionSessionResponse, error) {
+func (UnimplementedIdmServer) DeletionSession(context.Context, *DeletionSessionRequest) (*DeletionSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletionSession not implemented")
 }
-func (UnimplementedEventsServer) GetAllSession(context.Context, *GetAllSessionRequest) (*GetAllSessionResponse, error) {
+func (UnimplementedIdmServer) GetAllSession(context.Context, *GetAllSessionRequest) (*GetAllSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllSession not implemented")
 }
-func (UnimplementedEventsServer) CreationUser(context.Context, *CreationUserRequest) (*CreationUserResponse, error) {
+func (UnimplementedIdmServer) CreationUser(context.Context, *CreationUserRequest) (*CreationUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreationUser not implemented")
 }
-func (UnimplementedEventsServer) DeletionUser(context.Context, *DeletionUserRequest) (*DeletionUserResponse, error) {
+func (UnimplementedIdmServer) DeletionUser(context.Context, *DeletionUserRequest) (*DeletionUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletionUser not implemented")
 }
-func (UnimplementedEventsServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
+func (UnimplementedIdmServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
-func (UnimplementedEventsServer) GetListUserAll(context.Context, *GetListUserAllRequest) (*GetListUserAllResponse, error) {
+func (UnimplementedIdmServer) GetListUserAll(context.Context, *GetListUserAllRequest) (*GetListUserAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetListUserAll not implemented")
 }
-func (UnimplementedEventsServer) Authorization(context.Context, *AuthorizationRequest) (*AuthorizationResponse, error) {
+func (UnimplementedIdmServer) Authorization(context.Context, *AuthorizationRequest) (*AuthorizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authorization not implemented")
 }
-func (UnimplementedEventsServer) Registration(context.Context, *RegistrationRequest) (*RegistrationResponse, error) {
+func (UnimplementedIdmServer) Registration(context.Context, *RegistrationRequest) (*RegistrationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Registration not implemented")
 }
-func (UnimplementedEventsServer) mustEmbedUnimplementedEventsServer() {}
+func (UnimplementedIdmServer) mustEmbedUnimplementedIdmServer() {}
 
-// UnsafeEventsServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to EventsServer will
+// UnsafeIdmServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to IdmServer will
 // result in compilation errors.
-type UnsafeEventsServer interface {
-	mustEmbedUnimplementedEventsServer()
+type UnsafeIdmServer interface {
+	mustEmbedUnimplementedIdmServer()
 }
 
-func RegisterEventsServer(s grpc.ServiceRegistrar, srv EventsServer) {
-	s.RegisterService(&Events_ServiceDesc, srv)
+func RegisterIdmServer(s grpc.ServiceRegistrar, srv IdmServer) {
+	s.RegisterService(&Idm_ServiceDesc, srv)
 }
 
-func _Events_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).GetSession(ctx, in)
+		return srv.(IdmServer).GetSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/GetSession",
+		FullMethod: "/idmgrpc.idm/GetSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).GetSession(ctx, req.(*GetSessionRequest))
+		return srv.(IdmServer).GetSession(ctx, req.(*GetSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_CreationSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_CreationSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreationSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).CreationSession(ctx, in)
+		return srv.(IdmServer).CreationSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/CreationSession",
+		FullMethod: "/idmgrpc.idm/CreationSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).CreationSession(ctx, req.(*CreationSessionRequest))
+		return srv.(IdmServer).CreationSession(ctx, req.(*CreationSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_DeletionSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_DeletionSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeletionSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).DeletionSession(ctx, in)
+		return srv.(IdmServer).DeletionSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/DeletionSession",
+		FullMethod: "/idmgrpc.idm/DeletionSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).DeletionSession(ctx, req.(*DeletionSessionRequest))
+		return srv.(IdmServer).DeletionSession(ctx, req.(*DeletionSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_GetAllSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_GetAllSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetAllSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).GetAllSession(ctx, in)
+		return srv.(IdmServer).GetAllSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/GetAllSession",
+		FullMethod: "/idmgrpc.idm/GetAllSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).GetAllSession(ctx, req.(*GetAllSessionRequest))
+		return srv.(IdmServer).GetAllSession(ctx, req.(*GetAllSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_CreationUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_CreationUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreationUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).CreationUser(ctx, in)
+		return srv.(IdmServer).CreationUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/CreationUser",
+		FullMethod: "/idmgrpc.idm/CreationUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).CreationUser(ctx, req.(*CreationUserRequest))
+		return srv.(IdmServer).CreationUser(ctx, req.(*CreationUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_DeletionUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_DeletionUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeletionUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).DeletionUser(ctx, in)
+		return srv.(IdmServer).DeletionUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/DeletionUser",
+		FullMethod: "/idmgrpc.idm/DeletionUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).DeletionUser(ctx, req.(*DeletionUserRequest))
+		return srv.(IdmServer).DeletionUser(ctx, req.(*DeletionUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).GetUser(ctx, in)
+		return srv.(IdmServer).GetUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/GetUser",
+		FullMethod: "/idmgrpc.idm/GetUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).GetUser(ctx, req.(*GetUserRequest))
+		return srv.(IdmServer).GetUser(ctx, req.(*GetUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_GetListUserAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_GetListUserAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetListUserAllRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).GetListUserAll(ctx, in)
+		return srv.(IdmServer).GetListUserAll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/GetListUserAll",
+		FullMethod: "/idmgrpc.idm/GetListUserAll",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).GetListUserAll(ctx, req.(*GetListUserAllRequest))
+		return srv.(IdmServer).GetListUserAll(ctx, req.(*GetListUserAllRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_Authorization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_Authorization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthorizationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).Authorization(ctx, in)
+		return srv.(IdmServer).Authorization(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/Authorization",
+		FullMethod: "/idmgrpc.idm/Authorization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).Authorization(ctx, req.(*AuthorizationRequest))
+		return srv.(IdmServer).Authorization(ctx, req.(*AuthorizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Events_Registration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Idm_Registration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegistrationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventsServer).Registration(ctx, in)
+		return srv.(IdmServer).Registration(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/idmgrpc.events/Registration",
+		FullMethod: "/idmgrpc.idm/Registration",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).Registration(ctx, req.(*RegistrationRequest))
+		return srv.(IdmServer).Registration(ctx, req.(*RegistrationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Events_ServiceDesc is the grpc.ServiceDesc for Events service.
+// Idm_ServiceDesc is the grpc.ServiceDesc for Idm service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Events_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "idmgrpc.events",
-	HandlerType: (*EventsServer)(nil),
+var Idm_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "idmgrpc.idm",
+	HandlerType: (*IdmServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetSession",
-			Handler:    _Events_GetSession_Handler,
+			Handler:    _Idm_GetSession_Handler,
 		},
 		{
 			MethodName: "CreationSession",
-			Handler:    _Events_CreationSession_Handler,
+			Handler:    _Idm_CreationSession_Handler,
 		},
 		{
 			MethodName: "DeletionSession",
-			Handler:    _Events_DeletionSession_Handler,
+			Handler:    _Idm_DeletionSession_Handler,
 		},
 		{
 			MethodName: "GetAllSession",
-			Handler:    _Events_GetAllSession_Handler,
+			Handler:    _Idm_GetAllSession_Handler,
 		},
 		{
 			MethodName: "CreationUser",
-			Handler:    _Events_CreationUser_Handler,
+			Handler:    _Idm_CreationUser_Handler,
 		},
 		{
 			MethodName: "DeletionUser",
-			Handler:    _Events_DeletionUser_Handler,
+			Handler:    _Idm_DeletionUser_Handler,
 		},
 		{
 			MethodName: "GetUser",
-			Handler:    _Events_GetUser_Handler,
+			Handler:    _Idm_GetUser_Handler,
 		},
 		{
 			MethodName: "GetListUserAll",
-			Handler:    _Events_GetListUserAll_Handler,
+			Handler:    _Idm_GetListUserAll_Handler,
 		},
 		{
 			MethodName: "Authorization",
-			Handler:    _Events_Authorization_Handler,
+			Handler:    _Idm_Authorization_Handler,
 		},
 		{
 			MethodName: "Registration",
-			Handler:    _Events_Registration_Handler,
+			Handler:    _Idm_Registration_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

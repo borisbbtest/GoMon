@@ -59,7 +59,7 @@ func BuildApp() {
 		log.Fatal().Err(err).Msg("failed initialize gRPC listener")
 	}
 	srv := grpc.NewServer(grpc.ChainUnaryInterceptor(logging.UnaryServerInterceptor(grpczerolog.InterceptorLogger(log))))
-	pb.RegisterEventsServer(srv, &grpcwrapper)
+	pb.RegisterIdmServer(srv, &grpcwrapper)
 	go func() {
 		if err := srv.Serve(listen); err != nil && err != grpc.ErrServerStopped {
 			log.Fatal().Err(err).Msg("failed initialize server")
