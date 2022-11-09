@@ -6,7 +6,7 @@ import (
 	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
 )
 
-func (w *AppWrapper) RegisterUser(ctx context.Context, user *pb.User) (*pb.Session, error) {
+func (w *ConfigWrapper) RegisterUser(ctx context.Context, user *pb.User) (*pb.Session, error) {
 	err := w.CreateUser(ctx, user)
 	if err != nil {
 		log.Error().Err(err).Msg("failed create user in db")

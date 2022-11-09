@@ -9,6 +9,7 @@ import (
 
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
 	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	"github.com/borisbbtest/GoMon/internal/idm/service"
 )
 
 //go:embed migrations/insert/*.sql
@@ -28,7 +29,7 @@ func (r *IdmRepo) CreateUser(ctx context.Context, cfg *configs.AppConfig, user *
 	if err != nil {
 		pgerr := err.(*pgconn.PgError)
 		if pgerr.Code == "23505" {
-			return ErrUserExists
+			return service.ErrUserExists
 		}
 		return err
 	}

@@ -4,7 +4,7 @@ import (
 	"context"
 )
 
-func (w *AppWrapper) DeleteSession(ctx context.Context, login string, id string) error {
+func (w *ConfigWrapper) DeleteSession(ctx context.Context, login string, id string) error {
 	err := w.Repo.DeleteSession(ctx, w.Cfg, login, id)
 	if err != nil {
 		log.Error().Err(err).Msg("failed delete session")

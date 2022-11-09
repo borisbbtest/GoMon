@@ -23,3 +23,7 @@ func NewIdmRepo(ctx context.Context, cfg *configs.AppConfig) (*IdmRepo, error) {
 	repo := &IdmRepo{dbpool}
 	return repo, nil
 }
+
+func (r *IdmRepo) Close() {
+	r.Pool.Close()
+}

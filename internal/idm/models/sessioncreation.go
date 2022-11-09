@@ -9,13 +9,13 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func (w *AppWrapper) CreateSession(ctx context.Context, user *pb.User) (*pb.Session, error) {
+func (w *ConfigWrapper) CreateSession(ctx context.Context, user *pb.User) (*pb.Session, error) {
 	SessionId := uuid.New().String()
 	session := &pb.Session{
 		Id:       SessionId,
 		Login:    user.Login,
 		Created:  timestamppb.Now(),
-		Duration: timestamppb.New(time.Now().Add(10 * time.Minute)),
+		Duration: timestamppb.New(time.Now().Add(w.Cfg.SessionTimeExpired)),
 	}
 	err := w.Repo.CreateSession(ctx, w.Cfg, session)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
 	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	"github.com/borisbbtest/GoMon/internal/idm/service"
 	"github.com/jackc/pgx/v4"
 )
 
@@ -24,7 +25,7 @@ func (r *IdmRepo) GetUser(ctx context.Context, cfg *configs.AppConfig, login str
 	err = row.Scan(&user.Id, &user.Login, &user.Firstname, &user.Lastname, &user.Password, &user.Source, &user.CreatedAt)
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, ErrEmptySQLResult
+			return nil, service.ErrEmptySQLResult
 		}
 		log.Error().Err(err).Msg("failed get user")
 		return nil, err
@@ -74,7 +75,7 @@ func (r *IdmRepo) GetSession(ctx context.Context, cfg *configs.AppConfig, login 
 	err = row.Scan(&session.Id, &session.Login, &session.Config, &session.Created, &session.Duration)
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, ErrEmptySQLResult
+			return nil, service.ErrEmptySQLResult
 		}
 		log.Error().Err(err).Msg("failed get session")
 		return nil, err

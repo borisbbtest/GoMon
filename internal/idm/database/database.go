@@ -18,6 +18,7 @@ type Storager interface {
 	DeleteUser(context.Context, *configs.AppConfig, string) error
 	GetUser(context.Context, *configs.AppConfig, string) (*pb.User, error)
 	GetAllUsers(context.Context, *configs.AppConfig) ([]*pb.User, error)
+	Close()
 }
 
 func NewDBStorage(ctx context.Context, cfg *configs.AppConfig) (Storager, error) {

@@ -2,10 +2,14 @@ package app
 
 import (
 	"context"
-	"fmt"
+	"net"
+	"os"
+	"os/signal"
+	"sync"
+	"syscall"
 
 	"github.com/rs/zerolog"
-	"google.golang.org/protobuf/types/known/timestamppb"
+	"google.golang.org/grpc"
 
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
 	"github.com/borisbbtest/GoMon/internal/idm/database"
@@ -14,58 +18,62 @@ import (
 	"github.com/borisbbtest/GoMon/internal/idm/service"
 )
 
-var log = zerolog.New(service.LogConfig()).With().Timestamp().Caller().Logger()
+var (
+	buildVersion string = "N/A"
+	buildDate    string = "N/A"
+	buildCommit  string = "N/A"
+	log                 = zerolog.New(service.LogConfig()).With().Timestamp().Caller().Logger()
+)
 
 func BuildApp() {
+	log.Info().Msg("idm started")
+	log.Info().Msg("Build version: " + buildVersion)
+	log.Info().Msg("Build date: " + buildDate)
+	log.Info().Msg("Build commit: " + buildCommit)
 	cfg := configs.LoadAppConfig()
+	log.Info().Dict("cfg", zerolog.Dict().
+		Str("DBDSN", cfg.DBDSN).
+		Str("ServerAddressGRPC", cfg.ServerAddressGRPC).
+		Dur("SessionTimeExpired", cfg.SessionTimeExpired).
+		Bool("ReInit", cfg.ReInit),
+	).Msg("Server config")
 	ctx := context.Background()
-	fmt.Println(cfg)
 	repo, err := database.NewDBStorage(ctx, cfg)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal().Err(err).Msg("failed initialize db connection")
 		return
 	}
-	srv := models.AppWrapper{
+	cfgwrapper := &models.ConfigWrapper{
 		Cfg:  cfg,
 		Repo: repo,
 	}
-	user := &pb.User{
-		Login:     "test2",
-		Lastname:  "Porubov",
-		Password:  "password",
-		CreatedAt: timestamppb.Now(),
-		Source:    "manual",
+	grpcwrapper := GRPC{
+		App: cfgwrapper,
 	}
-	ss, err := srv.RegisterUser(ctx, user)
+	listen, err := net.Listen("tcp", grpcwrapper.App.Cfg.ServerAddressGRPC)
 	if err != nil {
-		log.Error().Err(err).Msg("failed register user")
-		return
+		log.Fatal().Err(err).Msg("failed initialize gRPC listener")
 	}
-	log.Info().Msg(fmt.Sprint(ss))
-	ss, err = srv.AuthorizeUser(ctx, user.Login, user.Password)
-	if err != nil {
-		log.Error().Err(err).Msg("failed authorize user")
-		return
-	}
-	log.Info().Msg(fmt.Sprint(ss))
-	user1 := &pb.User{
-		Login: "test2",
-	}
-	userpb, err := srv.GetUser(ctx, user1)
-	if err != nil {
-		log.Error().Err(err).Msg("get all users")
-	}
-	fmt.Println(userpb)
-
-	users, err := srv.GetAllUsers(ctx)
-	if err != nil {
-		log.Error().Err(err).Msg("get all users")
-	}
-	fmt.Println(users)
-	sessions, err := srv.GetAllSessions(ctx)
-	if err != nil {
-		log.Error().Err(err).Msg("get all sessions")
-	}
-	fmt.Println(sessions)
-
+	srv := grpc.NewServer()
+	pb.RegisterEventsServer(srv, &grpcwrapper)
+	go func() {
+		if err := srv.Serve(listen); err != nil && err != grpc.ErrServerStopped {
+			log.Fatal().Err(err).Msg("failed initialize server")
+		}
+	}()
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, syscall.SIGTERM, syscall.SIGINT, syscall.SIGQUIT)
+	<-sigChan
+	wg := &sync.WaitGroup{}
+	defer func() {
+		grpcwrapper.App.Repo.Close()
+	}()
+	wg.Add(1)
+	go func() {
+		srv.GracefulStop()
+		log.Info().Msg("grpc stopped")
+		wg.Done()
+	}()
+	wg.Wait()
+	log.Info().Msg("idm stopped")
 }

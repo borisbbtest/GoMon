@@ -2,10 +2,25 @@ package configs
 
 import (
 	"flag"
+	"os"
 	"strconv"
+	"time"
 
 	"github.com/caarlos0/env"
+	"gopkg.in/yaml.v3"
 )
+
+func (cfg *AppConfig) yamlRead(file string) {
+	yfile, err := os.ReadFile(file)
+	if err != nil {
+		log.Error().Err(err).Msg("file open trouble")
+	} else {
+		err = yaml.Unmarshal(yfile, &cfg)
+		if err != nil {
+			log.Error().Err(err).Msg("parse yaml err")
+		}
+	}
+}
 
 func (cfg *AppConfig) envRead() {
 	err := env.Parse(cfg)
@@ -34,6 +49,16 @@ func (cfg *AppConfig) flagsRead() {
 				return err
 			}
 			cfg.ReInit = value
+		}
+		return nil
+	})
+	flag.Func("t", "time duration for session live, example: -t \"100s\"", func(flagValue string) error {
+		if flagValue != "" {
+			interval, err := time.ParseDuration(flagValue)
+			if err != nil {
+				return err
+			}
+			cfg.SessionTimeExpired = interval
 		}
 		return nil
 	})

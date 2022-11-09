@@ -6,7 +6,7 @@ import (
 	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
 )
 
-func (w *AppWrapper) GetUser(ctx context.Context, user *pb.User) (*pb.User, error) {
+func (w *ConfigWrapper) GetUser(ctx context.Context, user *pb.User) (*pb.User, error) {
 	user, err := w.Repo.GetUser(ctx, w.Cfg, user.Login)
 	if err != nil {
 		log.Error().Err(err).Msg("failed get user")
@@ -15,7 +15,7 @@ func (w *AppWrapper) GetUser(ctx context.Context, user *pb.User) (*pb.User, erro
 	return user, nil
 }
 
-func (w *AppWrapper) GetAllUsers(ctx context.Context) ([]*pb.User, error) {
+func (w *ConfigWrapper) GetAllUsers(ctx context.Context) ([]*pb.User, error) {
 	users, err := w.Repo.GetAllUsers(ctx, w.Cfg)
 	if err != nil {
 		log.Error().Err(err).Msg("failed get list users")
