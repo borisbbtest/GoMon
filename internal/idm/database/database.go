@@ -5,7 +5,7 @@ import (
 
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
 	"github.com/borisbbtest/GoMon/internal/idm/database/postgres"
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
 type Storager interface {

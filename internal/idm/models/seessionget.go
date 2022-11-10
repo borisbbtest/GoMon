@@ -3,7 +3,7 @@ package models
 import (
 	"context"
 
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
 func (w *ConfigWrapper) GetSession(ctx context.Context, login string, id string) (*pb.Session, error) {

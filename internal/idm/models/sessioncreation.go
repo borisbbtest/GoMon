@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )

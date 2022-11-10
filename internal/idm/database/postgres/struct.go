@@ -3,7 +3,7 @@ package postgres
 import (
 	"fmt"
 
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 	"github.com/jackc/pgx/pgtype"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )

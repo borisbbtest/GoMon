@@ -8,8 +8,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
 	"github.com/borisbbtest/GoMon/internal/idm/service"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
 //go:embed migrations/insert/*.sql

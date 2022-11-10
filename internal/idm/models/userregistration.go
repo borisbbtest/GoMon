@@ -3,7 +3,7 @@ package models
 import (
 	"context"
 
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
 func (w *ConfigWrapper) RegisterUser(ctx context.Context, user *pb.User) (*pb.Session, error) {

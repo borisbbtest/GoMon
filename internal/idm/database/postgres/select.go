@@ -6,8 +6,8 @@ import (
 	"errors"
 
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
 	"github.com/borisbbtest/GoMon/internal/idm/service"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 	"github.com/jackc/pgx/v4"
 )
 

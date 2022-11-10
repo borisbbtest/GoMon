@@ -18,8 +18,8 @@ import (
 	"github.com/borisbbtest/GoMon/internal/idm/database"
 	"github.com/borisbbtest/GoMon/internal/idm/handlers"
 	"github.com/borisbbtest/GoMon/internal/idm/models"
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
 	"github.com/borisbbtest/GoMon/internal/idm/service"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
 var (

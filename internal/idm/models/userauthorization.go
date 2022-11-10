@@ -5,8 +5,8 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
 	"github.com/borisbbtest/GoMon/internal/idm/service"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
 func (w *ConfigWrapper) AuthorizeUser(ctx context.Context, login string, password string) (*pb.Session, error) {

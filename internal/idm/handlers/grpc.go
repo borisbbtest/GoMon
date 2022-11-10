@@ -5,7 +5,7 @@ import (
 
 	"google.golang.org/grpc/status"
 
-	pb "github.com/borisbbtest/GoMon/internal/idm/proto/idm"
+	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
 func (grpc *GRPC) GetSession(ctx context.Context, in *pb.GetSessionRequest) (*pb.GetSessionResponse, error) {
