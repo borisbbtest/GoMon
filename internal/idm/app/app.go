@@ -1,3 +1,4 @@
+// Package app собирает приложение. Считывает конфиг, инициализирует сторадж, поднимает gRPC сервер. Останавливает по получению сигнала от ОС
 package app
 
 import (
@@ -29,12 +30,16 @@ var (
 	log                 = zerolog.New(service.LogConfig()).With().Timestamp().Caller().Logger()
 )
 
+// BuildApp - основная функция работы приложения.
 func BuildApp() {
 	log.Info().Msg("idm started")
 	log.Info().Msg("Build version: " + buildVersion)
 	log.Info().Msg("Build date: " + buildDate)
 	log.Info().Msg("Build commit: " + buildCommit)
-	cfg := configs.LoadAppConfig()
+	cfg, err := configs.LoadAppConfig("./config/idm.yaml")
+	if err != nil {
+		log.Fatal().Err(err).Msg("fail read env")
+	}
 	log.Info().Dict("cfg", zerolog.Dict().
 		Str("DBDSN", cfg.DBDSN).
 		Str("ServerAddressGRPC", cfg.ServerAddressGRPC).

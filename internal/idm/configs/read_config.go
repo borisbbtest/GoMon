@@ -10,26 +10,34 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func (cfg *AppConfig) yamlRead(file string) {
+// YamlRead - функция считывания конфига из файла yaml
+func (cfg *AppConfig) YamlRead(file string) error {
 	yfile, err := os.ReadFile(file)
 	if err != nil {
 		log.Error().Err(err).Msg("file open trouble")
+		return err
 	} else {
 		err = yaml.Unmarshal(yfile, &cfg)
 		if err != nil {
 			log.Error().Err(err).Msg("parse yaml err")
+			return err
 		}
 	}
+	return nil
 }
 
-func (cfg *AppConfig) envRead() {
+// EnvRead - функция считывания конфига из переменных окружения
+func (cfg *AppConfig) EnvRead() error {
 	err := env.Parse(cfg)
 	if err != nil {
 		log.Error().Err(err).Msg("problem with environment read")
+		return err
 	}
+	return nil
 }
 
-func (cfg *AppConfig) flagsRead() {
+// FlagsRead - функция считывания конфига из флагов запуска
+func (cfg *AppConfig) FlagsRead() {
 	flag.Func("d", "key for database DSN, example: -d \"postgres://pi:toor@192.168.1.69:5432/yandex\"", func(flagValue string) error {
 		if flagValue != "" {
 			cfg.DBDSN = flagValue

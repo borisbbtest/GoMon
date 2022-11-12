@@ -6,6 +6,7 @@ import (
 	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
+// RegisterUser - функция регистрации нового пользователя: создает нового пользователя и сессию для него в хранилище
 func (w *ConfigWrapper) RegisterUser(ctx context.Context, user *pb.User) (*pb.Session, error) {
 	err := w.CreateUser(ctx, user)
 	if err != nil {

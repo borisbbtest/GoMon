@@ -11,9 +11,12 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
+// Файлы SQL для вставки записей в таблицы хранятся в директории migrations/select/
+//
 //go:embed migrations/select/*.sql
 var SQLSelect embed.FS
 
+// GetUser - функция, которая возвращает пользователя в структуре protobuf c указанным Login
 func (r *IdmRepo) GetUser(ctx context.Context, cfg *configs.AppConfig, login string) (*pb.User, error) {
 	sqlBytes, err := SQLSelect.ReadFile("migrations/select/SQLSelectUser.sql")
 	if err != nil {
@@ -34,6 +37,7 @@ func (r *IdmRepo) GetUser(ctx context.Context, cfg *configs.AppConfig, login str
 	return result, nil
 }
 
+// GetAllUsers - функция, которая возвращает всех пользователей в структуре protobuf
 func (r *IdmRepo) GetAllUsers(ctx context.Context, cfg *configs.AppConfig) ([]*pb.User, error) {
 	var list []*pb.User
 	sqlBytes, err := SQLSelect.ReadFile("migrations/select/SQLSelectAllUsers.sql")
@@ -64,6 +68,7 @@ func (r *IdmRepo) GetAllUsers(ctx context.Context, cfg *configs.AppConfig) ([]*p
 	return list, nil
 }
 
+// GetSession - функция, которая возвращает сессию в структуре protobuf c указанными Login и SessionId
 func (r *IdmRepo) GetSession(ctx context.Context, cfg *configs.AppConfig, login string, id string) (*pb.Session, error) {
 	sqlBytes, err := SQLSelect.ReadFile("migrations/select/SQLSelectSession.sql")
 	if err != nil {
@@ -84,6 +89,7 @@ func (r *IdmRepo) GetSession(ctx context.Context, cfg *configs.AppConfig, login 
 	return result, nil
 }
 
+// GetAllSessions - функция, которая возвращает все сессии в структуре protobuf
 func (r *IdmRepo) GetAllSessions(ctx context.Context, cfg *configs.AppConfig) ([]*pb.Session, error) {
 	var list []*pb.Session
 	sqlBytes, err := SQLSelect.ReadFile("migrations/select/SQLSelectAllSessions.sql")

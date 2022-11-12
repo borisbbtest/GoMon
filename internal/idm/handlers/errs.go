@@ -8,6 +8,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/idm/service"
 )
 
+// ErrCodesMapping - функция маппинга ошибок приложения на кастомные статусы сервиса и gRPC Codes
 func ErrCodesMapping(err error) (string, codes.Code) {
 	switch {
 	case errors.Is(err, service.ErrWrongPassword):

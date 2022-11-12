@@ -9,6 +9,7 @@ import (
 	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
+// AuthorizeUser - функция авторизации: получает данные пользователя из хранилища, сравнивает пароль и в слуачае корректного пароля создает для пользователя сессию
 func (w *ConfigWrapper) AuthorizeUser(ctx context.Context, login string, password string) (*pb.Session, error) {
 	user, err := w.GetUser(ctx, &pb.User{Login: login})
 	if err != nil {

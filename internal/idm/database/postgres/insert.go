@@ -12,9 +12,12 @@ import (
 	pb "github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
+// Файлы SQL для вставки записей в таблицы хранятся в директории migrations/insert/
+//
 //go:embed migrations/insert/*.sql
 var SQLInsert embed.FS
 
+// CreateUser - функция создает пользователя, полученного по gRPC
 func (r *IdmRepo) CreateUser(ctx context.Context, cfg *configs.AppConfig, user *pb.User) error {
 	sqlBytes, err := SQLInsert.ReadFile("migrations/insert/SQLInsertNewUser.sql")
 	if err != nil {
@@ -36,6 +39,7 @@ func (r *IdmRepo) CreateUser(ctx context.Context, cfg *configs.AppConfig, user *
 	return nil
 }
 
+// CreateSession - функция создает сессию, полученную по gRPC
 func (r *IdmRepo) CreateSession(ctx context.Context, cfg *configs.AppConfig, session *pb.Session) error {
 	sqlBytes, err := SQLInsert.ReadFile("migrations/insert/SQLInsertSession.sql")
 	if err != nil {

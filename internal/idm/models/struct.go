@@ -1,3 +1,4 @@
+// Package models описывает бизнес логику приложения по работе с пользователями
 package models
 
 import (
@@ -10,6 +11,7 @@ import (
 
 var log = zerolog.New(service.LogConfig()).With().Timestamp().Caller().Logger()
 
+// ConfigWrapper - структура конфигурации приложения
 type ConfigWrapper struct {
 	Cfg  *configs.AppConfig
 	Repo database.Storager

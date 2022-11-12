@@ -9,6 +9,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
+// CreateSession - функция создания сессии в хранилище
 func (w *ConfigWrapper) CreateSession(ctx context.Context, user *pb.User) (*pb.Session, error) {
 	SessionId := uuid.New().String()
 	session := &pb.Session{

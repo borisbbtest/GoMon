@@ -1,3 +1,4 @@
+// Package service содержит в себе служебные инструменты для внутренней работы приложения
 package service
 
 import (
@@ -9,6 +10,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
+// LogConfig - функция конфигурации логгера zerolog
 func LogConfig() zerolog.ConsoleWriter {
 	output := zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339}
 	output.FormatLevel = func(i interface{}) string {
