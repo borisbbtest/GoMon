@@ -3,6 +3,7 @@ package postgres
 import (
 	"context"
 	"embed"
+	"time"
 
 	"github.com/jackc/pgconn"
 	"golang.org/x/crypto/bcrypt"
@@ -28,7 +29,7 @@ func (r *IdmRepo) CreateUser(ctx context.Context, cfg *configs.AppConfig, user *
 	if err != nil {
 		return err
 	}
-	_, err = r.Pool.Exec(ctx, sqlQuery, user.Login, user.Firstname, user.Lastname, string(hashedPassword), user.Source, user.CreatedAt.AsTime())
+	_, err = r.Pool.Exec(ctx, sqlQuery, user.Login, user.Firstname, user.Lastname, string(hashedPassword), user.Source, time.Now())
 	if err != nil {
 		pgerr := err.(*pgconn.PgError)
 		if pgerr.Code == "23505" {
