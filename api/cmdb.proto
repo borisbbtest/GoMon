@@ -10,73 +10,41 @@ option go_package = "/cmdb";
 service cmdb {
   rpc PushObject(PushObjectRequest) returns (PushObjectResponse) {}
   rpc GetObject(GetObjectRequest) returns (GetObjectResponse) {}
+  rpc DeleteObject(DeleteObjectRequest) returns (DeleteObjectResponse) {}
   rpc PushBatchObject(PushBatchObjectsRequest) returns (PushBatchObjectsResponse) {}
   rpc GetBatchObject(GetBatchObjectsRequest) returns (GetBatchObjectsResponse) {}
-
-  rpc PushLink(PushLinkRequest) returns (PushLinkResponse) {}
-  rpc GetLinks(GetLinkRequest) returns (GetLinkResponse) {}
-  rpc PushBatchLinks(PushBatchLinksRequest) returns (PushBatchLinksResponse) {}
-  rpc GetBatchLinks(GetBatchLinksRequest) returns (GetBatchLinksResponse) {}
+  rpc DeleteBatchObject(GetBatchObjectsRequest) returns (GetBatchObjectsResponse) {}
 }
 
 message ci {
   string name = 1;
   string description = 2;
   google.protobuf.Timestamp  update = 3;
-  google.protobuf.Timestamp  creeated = 4;
+  google.protobuf.Timestamp  created = 4;
   string created_by = 5;
   string type = 6;
 }
 
-message link {
-  string name = 1;
-  string type = 2;
-  bool from_arrow = 3;
-  bool to_arrow = 4;
-  string from_ci = 5;
-  string to_ci = 6;
-}
-
 message PushObjectRequest { ci item = 1; }
-
 message PushObjectResponse { string code = 1; }
 
-message GetObjectRequest { string id = 1; }
-
+message GetObjectRequest { string name = 1; }
 message GetObjectResponse {
   string code = 1;
   ci item = 2;
 }
 
-message PushBatchObjectsRequest { repeated ci item = 2; }
+message DeleteObjectRequest { string name = 1; }
+message DeleteObjectResponse { string code = 1; }
 
+message PushBatchObjectsRequest { repeated ci item = 2; }
 message PushBatchObjectsResponse { string code = 1; }
 
-message GetBatchObjectsRequest { repeated ci item = 1; }
-
+message GetBatchObjectsRequest { repeated string item = 1; }
 message GetBatchObjectsResponse {
   string code = 1;
   repeated ci item = 2;
 }
 
-message PushLinkRequest { link item = 2; }
-
-message PushLinkResponse { string code = 1; }
-
-message GetLinkRequest { string id = 1; }
-
-message GetLinkResponse {
-  string code = 1;
-  link item = 2;
-}
-
-message PushBatchLinksRequest { repeated link item = 2; }
-
-message PushBatchLinksResponse { string code = 1; }
-
-message GetBatchLinksRequest { repeated link item = 1; }
-
-message GetBatchLinksResponse {
-  string code = 1;
-  repeated link item = 2;
-}
+message DeleteBatchObjectsRequest { repeated string item = 1; }
+message DeleteBatchObjectsResponse { string code = 1; }

@@ -40,8 +40,8 @@ clean_idm:
 
 
 go/ServiceCmdb.pb.go: cmdb.proto
-	mkdir -p ./cmdb # make directory for go package
-	protoc $$PROTO_PATH --go_opt=paths=source_relative   --go-grpc_out=. --go_out=./cmdb cmdb.proto
+	mkdir -p ../internal/models/cmdb # make directory for go package
+	protoc $$PROTO_PATH --go_opt=paths=source_relative   --go-grpc_out=../internal/models/ --go_out=../internal/models/cmdb cmdb.proto
 
 
 go/ServiceEvents.pb.go: events.proto
