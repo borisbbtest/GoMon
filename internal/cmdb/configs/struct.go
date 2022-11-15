@@ -9,7 +9,7 @@ import (
 
 var log = zerolog.New(service.LogConfig()).With().Timestamp().Caller().Logger()
 
-// AppConfig - структура, описывающая параметры работы модуля idm
+// AppConfig - структура, описывающая параметры работы модуля cmdb
 type AppConfig struct {
 	DBDSN             string `yaml:"DBDSN" env:"DATABASE_DSN"`             // URL для подключения к Postgres
 	ServerAddressGRPC string `yaml:"ServerAddressGRPC" env:"ADDRESS_GRPC"` // Адрес, по которому будут доступны endpoints

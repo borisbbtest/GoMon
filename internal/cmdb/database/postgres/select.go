@@ -16,7 +16,7 @@ import (
 //go:embed migrations/select/*.sql
 var SQLSelect embed.FS
 
-// GetUser - функция, которая возвращает пользователя в структуре protobuf c указанным Login
+// GetUser - функция, которая возвращает КЕ в структуре protobuf c указанным Login
 func (r *CmdbRepo) GetObject(ctx context.Context, cfg *configs.AppConfig, name string) (*pb.Ci, error) {
 	sqlBytes, err := SQLSelect.ReadFile("migrations/select/SQLSelectCi.sql")
 	if err != nil {

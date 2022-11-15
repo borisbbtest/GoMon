@@ -9,12 +9,12 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type IdmConfigSuite struct {
+type CmdbConfigSuite struct {
 	suite.Suite
 	config *configs.AppConfig
 }
 
-func (suite *IdmConfigSuite) SetupSuite() {
+func (suite *CmdbConfigSuite) SetupSuite() {
 	err := os.Setenv("DATABASE_DSN", "dbtest")
 	if err != nil {
 		log.Fatal(err)
@@ -31,11 +31,11 @@ func (suite *IdmConfigSuite) SetupSuite() {
 	os.Args = append(os.Args[:1], flags...)
 }
 
-func (suite *IdmConfigSuite) SetupTest() {
+func (suite *CmdbConfigSuite) SetupTest() {
 	suite.config = &configs.AppConfig{}
 }
 
-func (suite *IdmConfigSuite) TestYamlReadCorrect() {
+func (suite *CmdbConfigSuite) TestYamlReadCorrect() {
 	err := suite.config.YamlRead("test_data/idm1.yaml")
 	suite.NoError(err)
 	suite.Equal("127.0.0.1:8080", suite.config.ServerAddressGRPC)
@@ -43,12 +43,12 @@ func (suite *IdmConfigSuite) TestYamlReadCorrect() {
 	suite.Equal(false, suite.config.ReInit)
 }
 
-func (suite *IdmConfigSuite) TestYamlReadWrongBool() {
+func (suite *CmdbConfigSuite) TestYamlReadWrongBool() {
 	err := suite.config.YamlRead("test_data/idm3.yaml")
 	suite.Error(err)
 }
 
-func (suite *IdmConfigSuite) TestEnvReadCorrect() {
+func (suite *CmdbConfigSuite) TestEnvReadCorrect() {
 	err := suite.config.EnvRead()
 	suite.NoError(err)
 	suite.Equal("rpctest", suite.config.ServerAddressGRPC)
@@ -56,7 +56,7 @@ func (suite *IdmConfigSuite) TestEnvReadCorrect() {
 	suite.Equal(false, suite.config.ReInit)
 }
 
-func (suite *IdmConfigSuite) TestEnvReadWrongDuration() {
+func (suite *CmdbConfigSuite) TestEnvReadWrongDuration() {
 	err := os.Setenv("SESSION_TIME", "300")
 	if err != nil {
 		log.Fatal(err)
@@ -65,7 +65,7 @@ func (suite *IdmConfigSuite) TestEnvReadWrongDuration() {
 	suite.Error(err)
 }
 
-func (suite *IdmConfigSuite) TestEnvReadWrongBool() {
+func (suite *CmdbConfigSuite) TestEnvReadWrongBool() {
 	err := os.Setenv("REINIT", "test")
 	if err != nil {
 		log.Fatal(err)
@@ -74,7 +74,7 @@ func (suite *IdmConfigSuite) TestEnvReadWrongBool() {
 	suite.Error(err)
 }
 
-func (suite *IdmConfigSuite) TestLoadAppConfig() {
+func (suite *CmdbConfigSuite) TestLoadAppConfig() {
 	err := os.Setenv("DATABASE_DSN", "common")
 	if err != nil {
 		log.Fatal(err)
@@ -93,5 +93,5 @@ func (suite *IdmConfigSuite) TestLoadAppConfig() {
 }
 
 func TestReadConfigIdm(t *testing.T) {
-	suite.Run(t, new(IdmConfigSuite))
+	suite.Run(t, new(CmdbConfigSuite))
 }

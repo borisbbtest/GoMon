@@ -12,7 +12,7 @@ import (
 //go:embed migrations/delete/*.sql
 var SQLDelete embed.FS
 
-// DeleteUser - функция, удаляющая пользователя из БД на основании Login
+// DeleteUser - функция, удаляющая КЕ из БД на основании Login
 func (r *CmdbRepo) DeleteObject(ctx context.Context, cfg *configs.AppConfig, name string) error {
 	sqlBytes, err := SQLDelete.ReadFile("migrations/delete/SQLDeleteCi.sql")
 	if err != nil {
