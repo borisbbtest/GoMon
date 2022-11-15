@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/borisbbtest/GoMon/internal/cmdb/configs"
+	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -15,6 +16,7 @@ type CmdbConfigSuite struct {
 }
 
 func (suite *CmdbConfigSuite) SetupSuite() {
+	zerolog.SetGlobalLevel(zerolog.Disabled)
 	err := os.Setenv("DATABASE_DSN", "dbtest")
 	if err != nil {
 		log.Fatal(err)

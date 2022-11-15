@@ -28,6 +28,7 @@ func (w *ConfigWrapper) GetBatchObjects(ctx context.Context, cis []string) ([]*p
 		if err != nil {
 			log.Error().Err(err).Msg("failed get ci")
 			errflag = true
+			continue
 		}
 		result = append(result, user)
 	}
