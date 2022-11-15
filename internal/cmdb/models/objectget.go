@@ -9,12 +9,12 @@ import (
 
 // GetObject - функция получения КЕ из хранилища
 func (w *ConfigWrapper) GetObject(ctx context.Context, ci string) (*pb.Ci, error) {
-	user, err := w.Repo.GetObject(ctx, w.Cfg, ci)
+	cires, err := w.Repo.GetObject(ctx, w.Cfg, ci)
 	if err != nil {
 		log.Error().Err(err).Msg("failed get ci")
 		return nil, err
 	}
-	return user, nil
+	return cires, nil
 }
 
 // GetBatchObjects - функция получения КЕ из хранилища.
@@ -24,13 +24,13 @@ func (w *ConfigWrapper) GetBatchObjects(ctx context.Context, cis []string) ([]*p
 	errflag := false
 	var result []*pb.Ci
 	for _, ci := range cis {
-		user, err := w.Repo.GetObject(ctx, w.Cfg, ci)
+		cires, err := w.Repo.GetObject(ctx, w.Cfg, ci)
 		if err != nil {
-			log.Error().Err(err).Msg("failed get ci")
+			log.Info().Err(err).Msg("failed get ci")
 			errflag = true
 			continue
 		}
-		result = append(result, user)
+		result = append(result, cires)
 	}
 	if errflag {
 		return result, service.ErrSelectObjects

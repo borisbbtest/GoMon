@@ -53,9 +53,9 @@ func (grpc *GRPC) PushBatchObject(ctx context.Context, in *pb.PushBatchObjectsRe
 	var resp pb.PushBatchObjectsResponse
 	err := grpc.App.CreateBatchObjects(ctx, in.Item)
 	if err != nil {
-		code, gcode := ErrCodesMapping(err)
+		code, _ := ErrCodesMapping(err)
 		resp.Code = code
-		return &resp, status.Error(gcode, err.Error())
+		return &resp, nil
 	}
 	resp.Code = "OK"
 	return &resp, nil
@@ -66,10 +66,10 @@ func (grpc *GRPC) GetBatchObject(ctx context.Context, in *pb.GetBatchObjectsRequ
 	var resp pb.GetBatchObjectsResponse
 	cis, err := grpc.App.GetBatchObjects(ctx, in.Item)
 	if err != nil {
-		code, gcode := ErrCodesMapping(err)
-		resp.Code = code
+		code, _ := ErrCodesMapping(err)
 		resp.Item = cis
-		return &resp, status.Error(gcode, err.Error())
+		resp.Code = code
+		return &resp, nil
 	}
 	resp.Item = cis
 	resp.Code = "OK"
@@ -81,9 +81,9 @@ func (grpc *GRPC) DeleteBatchObject(ctx context.Context, in *pb.GetBatchObjectsR
 	var resp pb.GetBatchObjectsResponse
 	err := grpc.App.DeleteBatchObject(ctx, in.Item)
 	if err != nil {
-		code, gcode := ErrCodesMapping(err)
+		code, _ := ErrCodesMapping(err)
 		resp.Code = code
-		return &resp, status.Error(gcode, err.Error())
+		return &resp, nil
 	}
 	resp.Code = "OK"
 	return &resp, nil
