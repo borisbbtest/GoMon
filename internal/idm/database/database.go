@@ -11,16 +11,21 @@ import (
 
 // Storager - интерфейс, описывающий работу с хранилищем idm.
 type Storager interface {
-	CreateTables(context.Context, *configs.AppConfig) error                              // создает таблицы при старте
+	CreateTables(context.Context, *configs.AppConfig) error // создает таблицы при старте
+
 	CreateSession(context.Context, *configs.AppConfig, *pb.Session) error                // создание новой сессиии
 	DeleteSession(context.Context, *configs.AppConfig, string, string) error             // удаление сессии
 	GetSession(context.Context, *configs.AppConfig, string, string) (*pb.Session, error) // получение существующей сессии
 	GetAllSessions(context.Context, *configs.AppConfig) ([]*pb.Session, error)           // получение списка всех сессий
-	CreateUser(context.Context, *configs.AppConfig, *pb.User) error                      // создание нового пользователя
-	DeleteUser(context.Context, *configs.AppConfig, string) error                        // удаление пользователя
-	GetUser(context.Context, *configs.AppConfig, string) (*pb.User, error)               // получение существующего пользователя
-	GetAllUsers(context.Context, *configs.AppConfig) ([]*pb.User, error)                 // получение списка всех сессий
-	Close()                                                                              // остановка работы с репозиторием
+
+	CreateUser(context.Context, *configs.AppConfig, *pb.User) error        // создание нового пользователя
+	DeleteUser(context.Context, *configs.AppConfig, string) error          // удаление пользователя
+	GetUser(context.Context, *configs.AppConfig, string) (*pb.User, error) // получение существующего пользователя
+	GetAllUsers(context.Context, *configs.AppConfig) ([]*pb.User, error)   // получение списка всех сессий
+
+	ClearExpiredSessions(context.Context, *configs.AppConfig) error // удаление сессий с истекшим сроком expired
+
+	Close() // остановка работы с репозиторием
 }
 
 // NewDBStorage - создает хранилище на основе параметров сервера.

@@ -36,6 +36,20 @@ func (m *MockStorager) EXPECT() *MockStoragerMockRecorder {
 	return m.recorder
 }
 
+// ClearExpiredSessions mocks base method.
+func (m *MockStorager) ClearExpiredSessions(arg0 context.Context, arg1 *configs.AppConfig) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ClearExpiredSessions", arg0, arg1)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// ClearExpiredSessions indicates an expected call of ClearExpiredSessions.
+func (mr *MockStoragerMockRecorder) ClearExpiredSessions(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ClearExpiredSessions", reflect.TypeOf((*MockStorager)(nil).ClearExpiredSessions), arg0, arg1)
+}
+
 // Close mocks base method.
 func (m *MockStorager) Close() {
 	m.ctrl.T.Helper()
