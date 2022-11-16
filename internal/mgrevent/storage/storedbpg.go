@@ -1,10 +1,9 @@
 package storage
 
 import (
-	"context"
-
-	"github.com/borisbbtest/GoMon/internal/metrics/utils"
+	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/database/postgres"
+	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 )
 
 type StoreDBinPostgreSQL struct {
@@ -12,10 +11,10 @@ type StoreDBinPostgreSQL struct {
 	connStr string
 }
 
-func NewPostgreSQLStorage(connStr string) (res *StoreDBinPostgreSQL, err error) {
+func NewPostgreSQLStorage(connStr *configs.MainConfig) (res *StoreDBinPostgreSQL, err error) {
 	res = &StoreDBinPostgreSQL{}
-	res.connStr = connStr
-	res.pgp.Start(connStr)
+	res.connStr = connStr.DatabaseURI
+	res.pgp.Start(connStr.DatabaseURI)
 	conn, err := res.pgp.NewConn()
 	if err != nil {
 		utils.Log.Error().Msgf("selectOrdersHandler - c: ", err)
@@ -78,7 +77,7 @@ func NewPostgreSQLStorage(connStr string) (res *StoreDBinPostgreSQL, err error) 
 
 			`
 
-	if _, err := conn.PostgresPool.Exec(context.Background(), query); err != nil {
+	if _, err := conn.PostgresPool.Exec(connStr.Ctx, query); err != nil {
 		return nil, err
 	}
 	return

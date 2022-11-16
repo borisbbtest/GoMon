@@ -1,13 +1,13 @@
 package app
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
 
 	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
+	"github.com/borisbbtest/GoMon/internal/mgrevent/models"
 	servergrpc "github.com/borisbbtest/GoMon/internal/mgrevent/server"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/storage"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
@@ -16,7 +16,6 @@ import (
 type ServiceEvents struct {
 	ServerConf *configs.MainConfig
 	Storage    storage.Storage
-	ctx        context.Context
 }
 
 var buildVersion = "N/A"
@@ -29,13 +28,14 @@ func printIntro() {
 	utils.Log.Debug().Msgf("Build commit: ", buildCommit)
 }
 
+var x models.Event
+
 func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	res = &ServiceEvents{}
-	res.Storage, err = storage.NewPostgreSQLStorage(cfg.DatabaseURI)
+	res.Storage, err = storage.NewPostgreSQLStorage(cfg)
 	if err != nil {
 		utils.Log.Debug().Err(err)
 	}
-	res.ctx = context.Background()
 	res.ServerConf = cfg
 	return
 }

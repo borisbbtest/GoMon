@@ -1,2 +1,2 @@
 RUN_ADDRESS_RPC:  "localhost:50051"
-DATABASE_URI: "postgres://postgres:boris123@localhost:5432/praktikum?sslmode=disable"
+DATABASE_URI: "postgres://postgres:boris123@localhost:5432/mgevent?sslmode=disable"

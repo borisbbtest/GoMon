@@ -1,6 +1,7 @@
 package configs
 
 import (
+	"context"
 	goflag "flag"
 	"io/ioutil"
 
@@ -14,6 +15,7 @@ import (
 type MainConfig struct {
 	DatabaseURI string `yaml:"DATABASE_URI" env:"DATABASE_URI"`
 	RunAddress  string `yaml:"RUN_ADDRESS_RPC" env:"RUN_ADDRESS_RPC"`
+	Ctx         context.Context
 }
 type ServerConfig interface {
 	GetConfig() (config *MainConfig, err error)
@@ -22,6 +24,8 @@ type ServerConfig interface {
 func GetConfig() (config *MainConfig, err error) {
 	config = &MainConfig{}
 	var configFileName string
+
+	config.Ctx = context.Background()
 
 	utils.Log.Info().Msgf("context", "system_loyalty")
 	flag.StringVarP(&config.DatabaseURI, "database_uri", "d", config.DatabaseURI, "Base URL")
