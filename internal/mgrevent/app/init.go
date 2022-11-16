@@ -8,11 +8,15 @@ import (
 	"syscall"
 
 	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
+	servergrpc "github.com/borisbbtest/GoMon/internal/mgrevent/server"
+	"github.com/borisbbtest/GoMon/internal/mgrevent/storage"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
-	"github.com/rs/zerolog/log"
 )
 
 type ServiceEvents struct {
+	ServerConf *configs.MainConfig
+	Storage    storage.Storage
+	ctx        context.Context
 }
 
 var buildVersion = "N/A"
@@ -27,47 +31,46 @@ func printIntro() {
 
 func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	res = &ServiceEvents{}
-	return res, nil
+	res.Storage, err = storage.NewPostgreSQLStorage(cfg.DatabaseURI)
+	if err != nil {
+		utils.Log.Debug().Err(err)
+	}
+	res.ctx = context.Background()
+	res.ServerConf = cfg
+	return
 }
 
 func (hook *ServiceEvents) Start() (err error) {
 	utils.Log.Debug().Msg("Start Application events managers")
 
-	// через этот канал сообщим основному потоку, что соединения закрыты
+	go servergrpc.NewRPC(hook.ServerConf, hook.Storage).Start()
+	// -------
 	idleConnsClosed := make(chan struct{})
-	// канал для перенаправления прерываний
-	// поскольку нужно отловить всего одно прерывание,
-	// ёмкости 1 для канала будет достаточно
 	sigint := make(chan os.Signal, 1)
-	// регистрируем перенаправление прерываний
 	signal.Notify(sigint, syscall.SIGTERM, syscall.SIGINT, syscall.SIGQUIT)
-	// запускаем горутину обработки пойманных прерываний
 	go func() {
-		// читаем из канала прерываний
-		// поскольку нужно прочитать только одно прерывание,
-		// можно обойтись без цикла
 		for {
 			s := <-sigint
 			switch s {
 			case syscall.SIGINT:
-				if err := server.Shutdown(context.Background()); err != nil {
-					// ошибки закрытия Listener
-					log.Printf("HTTP server Shutdown SIGINT:  %v", err)
-				}
+				// if err := server.Shutdown(context.Background()); err != nil {
+				// 	// ошибки закрытия Listener
+				// 	log.Printf("HTTP server Shutdown SIGINT:  %v", err)
+				// }
 				utils.Log.Debug().Msg("bz -SIGINT")
 				close(idleConnsClosed)
 			case syscall.SIGTERM:
-				if err := server.Shutdown(context.Background()); err != nil {
-					// ошибки закрытия Listener
-					log.Printf("HTTP server Shutdown SIGTERM: %v", err)
-				}
+				// if err := server.Shutdown(context.Background()); err != nil {
+				// 	// ошибки закрытия Listener
+				// 	log.Printf("HTTP server Shutdown SIGTERM: %v", err)
+				// }
 				utils.Log.Debug().Msg("bz - SIGTERM")
 				close(idleConnsClosed)
 			case syscall.SIGQUIT:
-				if err := server.Shutdown(context.Background()); err != nil {
-					// ошибки закрытия Listener
-					log.Printf("HTTP server Shutdown SIGQUIT: %v", err)
-				}
+				// if err := server.Shutdown(context.Background()); err != nil {
+				// 	// ошибки закрытия Listener
+				// 	log.Printf("HTTP server Shutdown SIGQUIT: %v", err)
+				// }
 				utils.Log.Debug().Msg("bz - SIGQUIT")
 				close(idleConnsClosed)
 			default:
@@ -75,7 +78,6 @@ func (hook *ServiceEvents) Start() (err error) {
 			}
 		}
 	}()
-
 	<-idleConnsClosed
 
 	return nil
