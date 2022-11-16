@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="385,141" last-zoom="1.05" max-obj-count="9"
+<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="341,65" last-zoom="1.05" max-obj-count="9"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -90,7 +90,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="severity" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="events"/>
 	<role name="postgres"/>
-	<position x="820" y="200"/>
+	<position x="800" y="180"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -108,7 +108,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="status" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="events"/>
 	<role name="postgres"/>
-	<position x="1140" y="180"/>
+	<position x="1100" y="180"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>

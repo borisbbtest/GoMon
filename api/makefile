@@ -45,8 +45,8 @@ go/ServiceCmdb.pb.go: cmdb.proto
 
 
 go/ServiceEvents.pb.go: events.proto
-	mkdir -p ./events # make directory for go package
-	protoc $$PROTO_PATH --go_opt=paths=source_relative   --go-grpc_out=. --go_out=./events events.proto
+	mkdir -p ../internal/models/mgrevent # make directory for go package
+	protoc $$PROTO_PATH --go_opt=paths=source_relative   --go-grpc_out=../internal/models/ --go_out=../internal/models/mgrevent events.proto
 
 go/ServiceIdm.pb.go: idm.proto
 	mkdir -p ../internal/models/idm # make directory for go package
