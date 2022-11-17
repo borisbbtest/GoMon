@@ -38,7 +38,7 @@ func (suite *CmdbConfigSuite) SetupTest() {
 }
 
 func (suite *CmdbConfigSuite) TestYamlReadCorrect() {
-	err := suite.config.YamlRead("test_data/idm1.yaml")
+	err := suite.config.YamlRead("test_data/cmdb1.yaml")
 	suite.NoError(err)
 	suite.Equal("127.0.0.1:8080", suite.config.ServerAddressGRPC)
 	suite.Equal("postgres://pi:toor@192.168.1.69:5432/yandex", suite.config.DBDSN)
@@ -46,7 +46,7 @@ func (suite *CmdbConfigSuite) TestYamlReadCorrect() {
 }
 
 func (suite *CmdbConfigSuite) TestYamlReadWrongBool() {
-	err := suite.config.YamlRead("test_data/idm3.yaml")
+	err := suite.config.YamlRead("test_data/cmdb3.yaml")
 	suite.Error(err)
 }
 
@@ -89,7 +89,7 @@ func (suite *CmdbConfigSuite) TestLoadAppConfig() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	cfg, err := configs.LoadAppConfig("test_data/idm1.yaml")
+	cfg, err := configs.LoadAppConfig("test_data/cmdb1.yaml")
 	suite.NoError(err)
 	suite.Equal("common", cfg.DBDSN)
 }

@@ -1,0 +1,5 @@
+HTTPServerAddress: ":1443"
+IdmAddress: ":1081"
+CmdbAddress: ":1082"
+MetricsAddress: ":1083"
+EventsAddress: ":1084"

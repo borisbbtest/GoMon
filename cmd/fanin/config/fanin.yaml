@@ -1,0 +1,5 @@
+HTTPServerAddress: "127.0.0.1:443"
+IdmAddress: "127.0.0.1:8081"
+CmdbAddress: "127.0.0.1:8082"
+MetricsAddress: "127.0.0.1:8083"
+EventsAddress: "127.0.0.1:8084"
