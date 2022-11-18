@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/borisbbtest/GoMon/internal/idm/configs"
+	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -16,6 +17,7 @@ type IdmConfigSuite struct {
 }
 
 func (suite *IdmConfigSuite) SetupSuite() {
+	zerolog.SetGlobalLevel(zerolog.Disabled)
 	err := os.Setenv("DATABASE_DSN", "dbtest")
 	if err != nil {
 		log.Fatal(err)

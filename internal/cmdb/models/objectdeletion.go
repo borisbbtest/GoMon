@@ -16,7 +16,7 @@ func (w *ConfigWrapper) DeleteObject(ctx context.Context, name string) error {
 	return nil
 }
 
-// DeleteBatchObject - функция удаления КЕ из хранилища
+// DeleteBatchObject - функция удаления КЕ из хранилища пакетно
 func (w *ConfigWrapper) DeleteBatchObject(ctx context.Context, cis []string) error {
 	errflag := false
 	for _, ci := range cis {

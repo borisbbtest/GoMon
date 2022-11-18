@@ -9,7 +9,7 @@ import (
 	pb "github.com/borisbbtest/GoMon/internal/models/cmdb"
 )
 
-// Storager - интерфейс, описывающий работу с хранилищем idm.
+// Storager - интерфейс, описывающий работу с хранилищем с cmdb.
 type Storager interface {
 	CreateTables(context.Context, *configs.AppConfig) error                // создает таблицы при старте
 	CreateObject(context.Context, *configs.AppConfig, *pb.Ci) error        // создание новой КЕ

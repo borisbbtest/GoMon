@@ -46,19 +46,25 @@ func BuildApp() {
 		Dur("SessionTimeExpired", cfg.SessionTimeExpired).
 		Bool("ReInit", cfg.ReInit),
 	).Msg("Server config")
+
+	wg := &sync.WaitGroup{}
 	ctx := context.Background()
+
 	repo, err := database.NewDBStorage(ctx, cfg)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed initialize db connection")
 		return
 	}
+
 	cfgwrapper := &models.ConfigWrapper{
 		Cfg:  cfg,
 		Repo: repo,
 	}
+
 	grpcwrapper := handlers.GRPC{
 		App: cfgwrapper,
 	}
+
 	listen, err := net.Listen("tcp", grpcwrapper.App.Cfg.ServerAddressGRPC)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed initialize gRPC listener")
@@ -70,19 +76,26 @@ func BuildApp() {
 			log.Fatal().Err(err).Msg("failed initialize server")
 		}
 	}()
+
+	clearctx, clearcncl := context.WithCancel(ctx)
+	wg.Add(1)
+	go cfgwrapper.ClearExpiredWorker(clearctx, wg)
+
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGTERM, syscall.SIGINT, syscall.SIGQUIT)
+
 	<-sigChan
-	wg := &sync.WaitGroup{}
 	defer func() {
 		grpcwrapper.App.Repo.Close()
 	}()
+	clearcncl()
 	wg.Add(1)
 	go func() {
 		srv.GracefulStop()
 		log.Info().Msg("grpc stopped")
 		wg.Done()
 	}()
+	clearcncl()
 	wg.Wait()
 	log.Info().Msg("idm stopped")
 }

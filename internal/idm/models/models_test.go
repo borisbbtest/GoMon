@@ -12,6 +12,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/idm/service"
 	"github.com/borisbbtest/GoMon/internal/models/idm"
 	"github.com/golang/mock/gomock"
+	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -23,6 +24,7 @@ type ModelsTestSuite struct {
 }
 
 func (suite *ModelsTestSuite) SetupSuite() {
+	zerolog.SetGlobalLevel(zerolog.Disabled)
 	ctrl = gomock.NewController(suite.T())
 	db := mock_database.NewMockStorager(ctrl)
 	user := &idm.User{
@@ -44,13 +46,6 @@ func (suite *ModelsTestSuite) SetupSuite() {
 		Id:    "test_id2",
 		Login: "test_login2",
 	}
-	// user2 := &idm.User{
-	// 	Login:     "test2",
-	// 	Firstname: "testfirstname",
-	// 	Lastname:  "testlastname",
-	// 	Password:  "testpassword",
-	// 	Source:    "testsource",
-	// }
 	firstCallGetSession := db.EXPECT().GetSession(context.Background(), &configs.AppConfig{}, "test_login1", "test_id1").Return(session1, nil)
 	db.EXPECT().GetSession(context.Background(), &configs.AppConfig{}, "test_login1", "test_id2").Return(nil, service.ErrEmptySQLResult).After(firstCallGetSession)
 	firstCallGetAllSessions := db.EXPECT().GetAllSessions(context.Background(), &configs.AppConfig{}).Return([]*idm.Session{session1, session2}, nil)

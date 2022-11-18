@@ -39,3 +39,17 @@ func (r *IdmRepo) DeleteSession(ctx context.Context, cfg *configs.AppConfig, log
 	}
 	return nil
 }
+
+// ClearExpiredSessions - удаляет сессии с истекшим сроком expired
+func (r *IdmRepo) ClearExpiredSessions(ctx context.Context, cfg *configs.AppConfig) error {
+	sqlBytes, err := SQLDelete.ReadFile("migrations/delete/SQLDeleteExpiredSession.sql")
+	if err != nil {
+		return err
+	}
+	sqlQuery := string(sqlBytes)
+	_, err = r.Pool.Exec(ctx, sqlQuery)
+	if err != nil {
+		return err
+	}
+	return nil
+}
