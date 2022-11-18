@@ -3,9 +3,7 @@ package service
 import "errors"
 
 var (
-	ErrObjectExists   = errors.New("object already exist")             // Ошибка, информирующая о том, что создаваемый объект уже существует
-	ErrEmptySQLResult = errors.New("no result in sql")                 // Ошибка, информирующая о том, что запрашиваемый элемент отсутствует
-	ErrInsertObjects  = errors.New("one or more Cis was not created")  // Ошибка, информирующая о том, что есть КЕ в Batch, которые не создались в БД
-	ErrSelectObjects  = errors.New("one or more Cis was not selected") // Ошибка, информирующая о том, что есть КЕ в Batch, которые не были получены из БД, выборка не полная
-	ErrDeleteObjects  = errors.New("one or more Cis was not deleted")  // Ошибка, информирующая о том, что есть КЕ в Batch, которые не были удалены из БД
+	ErrEventWrongSeverity = errors.New("event have wrong severity, can't match") // Ошибка, информирующая о том, что у полученного события неизвестная критичность
+	ErrEventWrongStatus   = errors.New("event have wrong status, can't match")   // Ошибка, информирующая о том, что у полученного события неизвестный статус
+	ErrNoUserInContext    = errors.New("context don't have user information")    // Ошибка, информирующая о том, что контекст не содержит логин пользователя
 )

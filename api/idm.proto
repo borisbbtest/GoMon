@@ -98,5 +98,4 @@ message GetSessionResponse {
 }
 
 message CreationSessionRequest { user person = 1; }
-
 message CreationSessionResponse { string code = 1; }

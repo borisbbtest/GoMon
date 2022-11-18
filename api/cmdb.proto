@@ -13,7 +13,7 @@ service cmdb {
   rpc DeleteObject(DeleteObjectRequest) returns (DeleteObjectResponse) {}
   rpc PushBatchObject(PushBatchObjectsRequest) returns (PushBatchObjectsResponse) {}
   rpc GetBatchObject(GetBatchObjectsRequest) returns (GetBatchObjectsResponse) {}
-  rpc DeleteBatchObject(GetBatchObjectsRequest) returns (GetBatchObjectsResponse) {}
+  rpc DeleteBatchObject(DeleteBatchObjectsRequest) returns (DeleteBatchObjectsResponse) {}
 }
 
 message ci {

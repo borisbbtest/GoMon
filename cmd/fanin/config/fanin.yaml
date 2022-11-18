@@ -1,4 +1,4 @@
-HTTPServerAddress: "127.0.0.1:443"
+HTTPServerAddress: "127.0.0.1:8080"
 IdmAddress: "127.0.0.1:8081"
 CmdbAddress: "127.0.0.1:8082"
 MetricsAddress: "127.0.0.1:8083"

@@ -75,7 +75,7 @@ func (r *IdmRepo) GetSession(ctx context.Context, cfg *configs.AppConfig, login 
 		return nil, err
 	}
 	sqlQuery := string(sqlBytes)
-	row := r.Pool.QueryRow(ctx, sqlQuery, login)
+	row := r.Pool.QueryRow(ctx, sqlQuery, login, id)
 	var session PGSession
 	err = row.Scan(&session.Id, &session.Login, &session.Config, &session.Created, &session.Duration)
 	if err != nil {

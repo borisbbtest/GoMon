@@ -41,6 +41,7 @@ message event {
   string relarion_ci = 12;
   string created_by = 13;
   int32 count =14;
+  string id = 15;
 }
 
 message PushRequest {

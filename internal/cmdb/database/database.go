@@ -11,7 +11,9 @@ import (
 
 // Storager - интерфейс, описывающий работу с хранилищем с cmdb.
 type Storager interface {
-	CreateTables(context.Context, *configs.AppConfig) error                // создает таблицы при старте
+	CreateTables(context.Context, *configs.AppConfig) error   // создает таблицы при старте
+	TruncateTables(context.Context, *configs.AppConfig) error // очищает таблицы для реинициализации приложения
+
 	CreateObject(context.Context, *configs.AppConfig, *pb.Ci) error        // создание новой КЕ
 	GetObject(context.Context, *configs.AppConfig, string) (*pb.Ci, error) // получение существующей КЕ
 	DeleteObject(context.Context, *configs.AppConfig, string) error        // удаление существующей КЕ
@@ -29,6 +31,12 @@ func NewDBStorage(ctx context.Context, cfg *configs.AppConfig) (Storager, error)
 		err = repo.CreateTables(ctx, cfg)
 		if err != nil {
 			return nil, err
+		}
+		if cfg.ReInit {
+			err = repo.TruncateTables(ctx, cfg)
+			if err != nil {
+				return nil, err
+			}
 		}
 		return repo, nil
 	}
