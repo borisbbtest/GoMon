@@ -1,5 +1,7 @@
 package storagepg
 
-func (hook *StoreDBinPostgreSQL) GetSeverity(int32) (err error, res string) {
+import "context"
+
+func (hook *StoreDBinPostgreSQL) GetSeverity(ctx context.Context, code int32) (err error, res string) {
 	return
 }

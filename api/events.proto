@@ -23,7 +23,7 @@ message Event {
   google.protobuf.Timestamp update = 6;
   string key = 7;
   string key_close = 8;
-  string assigned = 9;
+  repeated string assigned = 9;
   string auto_runner = 10;
   int32 severity = 11;
   string relarion_ci = 12;

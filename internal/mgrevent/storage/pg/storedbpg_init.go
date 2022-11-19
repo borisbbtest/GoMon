@@ -14,7 +14,7 @@ type StoreDBinPostgreSQL struct {
 	connStr string
 }
 
-//go:embed migrations/init/*.sql
+//go:embed migrations/*/*.sql
 var SQLFileInit embed.FS
 
 func (hook *StoreDBinPostgreSQL) ExecSqlInitFiles(ctx context.Context, sqlfiles []string) (err error) {

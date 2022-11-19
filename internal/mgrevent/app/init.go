@@ -7,7 +7,6 @@ import (
 	"syscall"
 
 	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
-	"github.com/borisbbtest/GoMon/internal/mgrevent/models"
 	servergrpc "github.com/borisbbtest/GoMon/internal/mgrevent/server"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/storage"
 	storagepg "github.com/borisbbtest/GoMon/internal/mgrevent/storage/pg"
@@ -28,8 +27,6 @@ func printIntro() {
 	utils.Log.Debug().Msgf("Build date: ", buildDate)
 	utils.Log.Debug().Msgf("Build commit: ", buildCommit)
 }
-
-var x models.Event
 
 func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	res = &ServiceEvents{}

@@ -1,2 +1,2 @@
 INSERT INTO events.events (title,description,source,status,created,update,key,key_close,assigned,severity,auto_runner,relation_ci)
-VALUES (val2,val3,val4,val5,val6,val7,val8,val9,val10,val11,val12,val13);
+VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12);
