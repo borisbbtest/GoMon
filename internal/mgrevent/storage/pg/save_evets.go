@@ -6,7 +6,6 @@ import (
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 	"github.com/borisbbtest/GoMon/internal/models/mgrevent"
 	"github.com/jackc/pgx/v4"
-	"github.com/lib/pq"
 )
 
 func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent.Event) (err error, qerr error) {
@@ -27,7 +26,6 @@ func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent
 
 	b := &pgx.Batch{}
 	for _, v := range eve {
-		utils.Log.Info().Msgf("%s", pq.Array(v.Assigned))
 		b.Queue(string(query),
 			v.Title,
 			v.Description,
@@ -37,7 +35,7 @@ func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent
 			v.Update.AsTime(),
 			v.Key,
 			v.KeyClose,
-			pq.Array(v.Assigned),
+			v.Assigned,
 			v.Severity,
 			v.AutoRunner,
 			v.RelarionCi)
