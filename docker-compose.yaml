@@ -1,0 +1,77 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: "gomon"
+      POSTGRES_USER: "puser"
+      POSTGRES_PASSWORD: "ppaswd"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      TZ: "Europe/Moscow"
+    volumes:
+      - ./tmp/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U puser -d gomon" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  idm:
+    image: idm
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: idm
+    environment:
+      ADDRESS_GRPC: ":8081"
+      SESSION_TIME: "300s"
+      REINIT: true
+      DATABASE_DSN: "postgres://puser:ppaswd@postgres:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  cmdb:
+    image: cmdb
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: cmdb
+    environment:
+      ADDRESS_GRPC: ":8082"
+      REINIT: true
+      DATABASE_DSN: "postgres://puser:ppaswd@postgres:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  fanin:
+    image: fanin
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: fanin
+    environment:
+      HTTP_ADDRESS: ":443"
+      IDM_ADDRESS: "idm:8081"
+      CMDB_ADDRESS: "cmdb:8082"
+      METRICS_ADDRESS: ""
+      EVENTS_ADDRESS: ""
+      TZ: "Europe/Moscow"
+    ports:
+      - "443:443"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped

@@ -104,3 +104,17 @@ func (mr *MockStoragerMockRecorder) GetObject(arg0, arg1, arg2 interface{}) *gom
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetObject", reflect.TypeOf((*MockStorager)(nil).GetObject), arg0, arg1, arg2)
 }
+
+// TruncateTables mocks base method.
+func (m *MockStorager) TruncateTables(arg0 context.Context, arg1 *configs.AppConfig) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "TruncateTables", arg0, arg1)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// TruncateTables indicates an expected call of TruncateTables.
+func (mr *MockStoragerMockRecorder) TruncateTables(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TruncateTables", reflect.TypeOf((*MockStorager)(nil).TruncateTables), arg0, arg1)
+}

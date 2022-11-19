@@ -27,7 +27,7 @@ type CmdbClient interface {
 	DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error)
 	PushBatchObject(ctx context.Context, in *PushBatchObjectsRequest, opts ...grpc.CallOption) (*PushBatchObjectsResponse, error)
 	GetBatchObject(ctx context.Context, in *GetBatchObjectsRequest, opts ...grpc.CallOption) (*GetBatchObjectsResponse, error)
-	DeleteBatchObject(ctx context.Context, in *GetBatchObjectsRequest, opts ...grpc.CallOption) (*GetBatchObjectsResponse, error)
+	DeleteBatchObject(ctx context.Context, in *DeleteBatchObjectsRequest, opts ...grpc.CallOption) (*DeleteBatchObjectsResponse, error)
 }
 
 type cmdbClient struct {
@@ -83,8 +83,8 @@ func (c *cmdbClient) GetBatchObject(ctx context.Context, in *GetBatchObjectsRequ
 	return out, nil
 }
 
-func (c *cmdbClient) DeleteBatchObject(ctx context.Context, in *GetBatchObjectsRequest, opts ...grpc.CallOption) (*GetBatchObjectsResponse, error) {
-	out := new(GetBatchObjectsResponse)
+func (c *cmdbClient) DeleteBatchObject(ctx context.Context, in *DeleteBatchObjectsRequest, opts ...grpc.CallOption) (*DeleteBatchObjectsResponse, error) {
+	out := new(DeleteBatchObjectsResponse)
 	err := c.cc.Invoke(ctx, "/cmdbgrpc.cmdb/DeleteBatchObject", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,7 +101,7 @@ type CmdbServer interface {
 	DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error)
 	PushBatchObject(context.Context, *PushBatchObjectsRequest) (*PushBatchObjectsResponse, error)
 	GetBatchObject(context.Context, *GetBatchObjectsRequest) (*GetBatchObjectsResponse, error)
-	DeleteBatchObject(context.Context, *GetBatchObjectsRequest) (*GetBatchObjectsResponse, error)
+	DeleteBatchObject(context.Context, *DeleteBatchObjectsRequest) (*DeleteBatchObjectsResponse, error)
 	mustEmbedUnimplementedCmdbServer()
 }
 
@@ -124,7 +124,7 @@ func (UnimplementedCmdbServer) PushBatchObject(context.Context, *PushBatchObject
 func (UnimplementedCmdbServer) GetBatchObject(context.Context, *GetBatchObjectsRequest) (*GetBatchObjectsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBatchObject not implemented")
 }
-func (UnimplementedCmdbServer) DeleteBatchObject(context.Context, *GetBatchObjectsRequest) (*GetBatchObjectsResponse, error) {
+func (UnimplementedCmdbServer) DeleteBatchObject(context.Context, *DeleteBatchObjectsRequest) (*DeleteBatchObjectsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBatchObject not implemented")
 }
 func (UnimplementedCmdbServer) mustEmbedUnimplementedCmdbServer() {}
@@ -231,7 +231,7 @@ func _Cmdb_GetBatchObject_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _Cmdb_DeleteBatchObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBatchObjectsRequest)
+	in := new(DeleteBatchObjectsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -243,7 +243,7 @@ func _Cmdb_DeleteBatchObject_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/cmdbgrpc.cmdb/DeleteBatchObject",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CmdbServer).DeleteBatchObject(ctx, req.(*GetBatchObjectsRequest))
+		return srv.(CmdbServer).DeleteBatchObject(ctx, req.(*DeleteBatchObjectsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

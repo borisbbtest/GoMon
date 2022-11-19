@@ -29,7 +29,11 @@ message Event {
   repeated string relarion_ci = 12;
   string created_by = 13;
   int32 count =14;
+<<<<<<< HEAD
   string uuid = 15;
+=======
+  string id = 15;
+>>>>>>> adb6b0cd89819d102022486732b315a7cbd07ff7
 }
 
 message PushRequest {

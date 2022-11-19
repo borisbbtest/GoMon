@@ -25,3 +25,17 @@ func (r *CmdbRepo) DeleteObject(ctx context.Context, cfg *configs.AppConfig, nam
 	}
 	return nil
 }
+
+// TruncateTables - функция, удаляющая записи из таблиц для очистки хранилища
+func (r *CmdbRepo) TruncateTables(ctx context.Context, cfg *configs.AppConfig) error {
+	sqlBytes, err := SQLDelete.ReadFile("migrations/delete/SQLTruncateTables.sql")
+	if err != nil {
+		return err
+	}
+	sqlQuery := string(sqlBytes)
+	_, err = r.Pool.Exec(ctx, sqlQuery)
+	if err != nil {
+		return err
+	}
+	return nil
+}

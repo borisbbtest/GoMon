@@ -11,7 +11,8 @@ import (
 
 // Storager - интерфейс, описывающий работу с хранилищем idm.
 type Storager interface {
-	CreateTables(context.Context, *configs.AppConfig) error // создает таблицы при старте
+	CreateTables(context.Context, *configs.AppConfig) error   // создает таблицы при старте
+	TruncateTables(context.Context, *configs.AppConfig) error // очищает таблицы для реинициализации приложения
 
 	CreateSession(context.Context, *configs.AppConfig, *pb.Session) error                // создание новой сессиии
 	DeleteSession(context.Context, *configs.AppConfig, string, string) error             // удаление сессии
@@ -38,6 +39,12 @@ func NewDBStorage(ctx context.Context, cfg *configs.AppConfig) (Storager, error)
 		err = repo.CreateTables(ctx, cfg)
 		if err != nil {
 			return nil, err
+		}
+		if cfg.ReInit {
+			err = repo.TruncateTables(ctx, cfg)
+			if err != nil {
+				return nil, err
+			}
 		}
 		return repo, nil
 	}

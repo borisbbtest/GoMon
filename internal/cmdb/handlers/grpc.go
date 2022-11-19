@@ -77,8 +77,8 @@ func (grpc *GRPC) GetBatchObject(ctx context.Context, in *pb.GetBatchObjectsRequ
 }
 
 // DeleteBatchObject - gRPC метод удаления КЕ пакетно
-func (grpc *GRPC) DeleteBatchObject(ctx context.Context, in *pb.GetBatchObjectsRequest) (*pb.GetBatchObjectsResponse, error) {
-	var resp pb.GetBatchObjectsResponse
+func (grpc *GRPC) DeleteBatchObject(ctx context.Context, in *pb.DeleteBatchObjectsRequest) (*pb.DeleteBatchObjectsResponse, error) {
+	var resp pb.DeleteBatchObjectsResponse
 	err := grpc.App.DeleteBatchObject(ctx, in.Item)
 	if err != nil {
 		code, _ := ErrCodesMapping(err)
