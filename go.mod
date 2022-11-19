@@ -24,11 +24,7 @@ require (
 )
 
 require (
-<<<<<<< HEAD
 	github.com/gogo/status v1.1.1
-=======
-	github.com/go-chi/chi/v5 v5.0.7
->>>>>>> adb6b0cd89819d102022486732b315a7cbd07ff7
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/zerolog/v2 v2.0.0-rc.3
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.0.0-rc.3
