@@ -26,7 +26,7 @@ message Event {
   repeated string assigned = 9;
   string auto_runner = 10;
   int32 severity = 11;
-  string relarion_ci = 12;
+  repeated string relarion_ci = 12;
   string created_by = 13;
   int32 count =14;
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 	"github.com/borisbbtest/GoMon/internal/models/mgrevent"
 	"github.com/jackc/pgx/v4"
+	"github.com/lib/pq"
 )
 
 func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent.Event) (err error, qerr error) {
@@ -26,6 +27,7 @@ func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent
 
 	b := &pgx.Batch{}
 	for _, v := range eve {
+
 		b.Queue(string(query),
 			v.Title,
 			v.Description,
@@ -35,10 +37,10 @@ func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent
 			v.Update.AsTime(),
 			v.Key,
 			v.KeyClose,
-			v.Assigned,
+			pq.Array(v.Assigned),
 			v.Severity,
 			v.AutoRunner,
-			v.RelarionCi)
+			pq.Array(v.RelarionCi))
 	}
 
 	batchResults := tx.SendBatch(ctx, b)
@@ -46,7 +48,9 @@ func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent
 	var rows pgx.Rows
 	for qerr == nil {
 		rows, qerr = batchResults.Query()
-		utils.Log.Error().Msgf("Add %s", qerr)
+		if qerr != nil && qerr.Error() != "no result" {
+			utils.Log.Debug().Msgf("Add %s", qerr)
+		}
 		rows.Close()
 	}
 	tx.Commit(ctx)

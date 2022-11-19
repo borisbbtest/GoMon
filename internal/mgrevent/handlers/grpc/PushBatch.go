@@ -17,7 +17,7 @@ func (hook *WrapperHandlerRPC) PushBatch(ctx context.Context, ev *mgrevent.PushB
 	if err != nil {
 		return res, status.Error(codes.FailedPrecondition, "Opps OMG")
 	}
-	if err2 != nil {
+	if err2 != nil && err2.Error() != "no result" {
 		res.Code = err2.Error()
 		return res, status.Error(codes.InvalidArgument, err2.Error())
 	}
