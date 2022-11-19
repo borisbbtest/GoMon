@@ -6,7 +6,7 @@
 
 -- ddl-end --
 
-CREATE TABLE events.events (
+CREATE TABLE IF NOT EXISTS events.events (
 	id uuid NOT NULL DEFAULT uuid_generate_v4(),
 	title text,
 	description text,
@@ -23,6 +23,6 @@ CREATE TABLE events.events (
 	CONSTRAINT events_pkey PRIMARY KEY (id)
 );
 -- ddl-end --
-ALTER TABLE events.events OWNER TO postgres;
+
 -- ddl-end --
 

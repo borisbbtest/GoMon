@@ -12,6 +12,6 @@ CREATE TABLE events.severity (
 	CONSTRAINT severity_pkey PRIMARY KEY (id)
 );
 -- ddl-end --
-ALTER TABLE events.severity OWNER TO postgres;
+
 -- ddl-end --
 

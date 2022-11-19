@@ -4,7 +4,7 @@ import (
 	"net"
 
 	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
-	handler_grpc "github.com/borisbbtest/GoMon/internal/mgrevent/handlers/grpc"
+	handler "github.com/borisbbtest/GoMon/internal/mgrevent/handlers/grpc"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/storage"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 	"github.com/borisbbtest/GoMon/internal/models/mgrevent"
@@ -12,12 +12,12 @@ import (
 )
 
 type serviceRPCEventMgr struct {
-	wrapp handler_grpc.WrapperHandlerRPC
+	wrapp handler.WrapperHandlerRPC
 }
 
 func NewRPC(cfg *configs.MainConfig, st storage.Storage) *serviceRPCEventMgr {
 	return &serviceRPCEventMgr{
-		wrapp: handler_grpc.WrapperHandlerRPC{
+		wrapp: handler.WrapperHandlerRPC{
 			ServerConf: cfg,
 			Storage:    st,
 		},

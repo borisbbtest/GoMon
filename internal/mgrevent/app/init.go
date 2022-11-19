@@ -10,6 +10,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/mgrevent/models"
 	servergrpc "github.com/borisbbtest/GoMon/internal/mgrevent/server"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/storage"
+	storagepg "github.com/borisbbtest/GoMon/internal/mgrevent/storage/pg"
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 )
 
@@ -32,7 +33,7 @@ var x models.Event
 
 func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	res = &ServiceEvents{}
-	res.Storage, err = storage.NewPostgreSQLStorage(cfg)
+	res.Storage, err = storagepg.NewPostgreSQLStorage(cfg)
 	if err != nil {
 		utils.Log.Debug().Err(err)
 	}

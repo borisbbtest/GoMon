@@ -1,0 +1,2 @@
+INSERT INTO events.events (title,description,source,status,created,update,key,key_close,assigned,severity,auto_runner,relation_ci)
+VALUES (val2,val3,val4,val5,val6,val7,val8,val9,val10,val11,val12,val13);

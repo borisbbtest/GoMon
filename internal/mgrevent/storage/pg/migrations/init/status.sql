@@ -12,6 +12,6 @@ CREATE TABLE events.status (
 	CONSTRAINT status_pkey PRIMARY KEY (id)
 );
 -- ddl-end --
-ALTER TABLE events.status OWNER TO postgres;
+
 -- ddl-end --
 

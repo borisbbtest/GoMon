@@ -1,4 +1,4 @@
-package handler_grpc
+package grpc
 
 import (
 	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
