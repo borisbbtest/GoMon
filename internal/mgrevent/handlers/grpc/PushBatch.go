@@ -22,5 +22,5 @@ func (hook *WrapperHandlerRPC) PushBatch(ctx context.Context, ev *mgrevent.PushB
 		return res, status.Error(codes.InvalidArgument, err2.Error())
 	}
 
-	return &mgrevent.PushBatchResponse{Code: "PushBatch"}, status.Error(codes.OK, "It is good response")
+	return &mgrevent.PushBatchResponse{Code: "PushBatch"}, nil
 }

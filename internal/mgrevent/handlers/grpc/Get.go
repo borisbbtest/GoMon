@@ -12,7 +12,7 @@ import (
 func (hook *WrapperHandlerRPC) Get(ctx context.Context, ev *mgrevent.GetRequest) (res *mgrevent.GetResponse, err error) {
 	utils.Log.Info().Msg("Get start")
 	res = &mgrevent.GetResponse{
-		Code: "0",
+		Code: "Ok",
 	}
 	e := &mgrevent.Event{Uuid: ev.GetId()}
 
@@ -25,7 +25,7 @@ func (hook *WrapperHandlerRPC) Get(ctx context.Context, ev *mgrevent.GetRequest)
 
 	for _, v := range *buff {
 		res.Ev = v
-		return res, status.Error(codes.OK, "Ok")
+		return res, nil
 	}
 
 	return &mgrevent.GetResponse{Code: "Get"}, status.Error(codes.NotFound, "didn't find")

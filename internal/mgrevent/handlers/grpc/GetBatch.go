@@ -27,6 +27,6 @@ func (hook *WrapperHandlerRPC) GetBatch(ctx context.Context, eve *mgrevent.GetBa
 		res.Ev = append(res.Ev, v)
 	}
 
-	return res, status.Error(codes.OK, "didn't find")
+	return res, nil
 
 }

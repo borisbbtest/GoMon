@@ -13,7 +13,7 @@ func (hook *WrapperHandlerRPC) GetBatch(ctx context.Context, item *metrics.GetBa
 
 	utils.Log.Info().Msg("GetBatch start")
 	res = &metrics.GetBatchResponse{
-		Code: "0",
+		Code: "Ok",
 	}
 
 	err, tmpeve := hook.Storage.GetMetricsDuration(ctx, item.Start.AsTime(), item.End.AsTime())
@@ -27,6 +27,6 @@ func (hook *WrapperHandlerRPC) GetBatch(ctx context.Context, item *metrics.GetBa
 		res.Item = append(res.Item, v)
 	}
 
-	return res, status.Error(codes.OK, "didn't find")
+	return res, nil
 
 }

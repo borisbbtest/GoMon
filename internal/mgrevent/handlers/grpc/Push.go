@@ -27,5 +27,5 @@ func (hook *WrapperHandlerRPC) Push(ctx context.Context, ev *mgrevent.PushReques
 		return res, status.Error(codes.InvalidArgument, err2.Error())
 	}
 
-	return &mgrevent.PushResponse{Code: "Push"}, status.Error(codes.OK, "It is good response")
+	return &mgrevent.PushResponse{Code: "Push"}, nil
 }

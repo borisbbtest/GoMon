@@ -29,7 +29,7 @@ type Events struct {
 }
 
 // Конвертируем данные из текста массива в БД в массив строк
-func arrayTextToStringArray(v pgtype.TextArray) (res []string) {
+func ArrayTextToStringArray(v pgtype.TextArray) (res []string) {
 	for _, v := range v.Elements {
 		res = append(res, v.String)
 	}
@@ -52,9 +52,9 @@ func (hook *Events) ConvertTogRpcEvent() (ev *[]*mgrevent.Event) {
 				Update:      timestamppb.New(v.Update.Time),
 				Key:         v.Key.String,
 				KeyClose:    v.KeyClose.String,
-				Assigned:    arrayTextToStringArray(v.Assigned),
+				Assigned:    ArrayTextToStringArray(v.Assigned),
 				AutoRunner:  v.AutoRunner.String,
-				RelarionCi:  arrayTextToStringArray(v.RelarionCi),
+				RelarionCi:  ArrayTextToStringArray(v.RelarionCi),
 				CreatedBy:   "none",
 				Count:       0,
 			}
