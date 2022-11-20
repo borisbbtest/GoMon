@@ -5,23 +5,20 @@ import (
 	"fmt"
 
 	"github.com/borisbbtest/GoMon/internal/fanin/service"
-	pb "github.com/borisbbtest/GoMon/internal/models/events"
+	pb "github.com/borisbbtest/GoMon/internal/models/mgrevent"
 )
 
 // PushEvent - метод, отправляющий event в cmdb с конвертацией Event в protobuf Event
 func (cw *ConfigWrapper) PushEvent(ctx context.Context, event *Event) error {
 	var req pb.PushRequest
-	pbEvent, err := event.ToPB()
-	if err != nil {
-		return err
-	}
+	pbEvent := event.ToPB()
 	req.Ev = pbEvent
 	user := ctx.Value(FanInContextKey("login"))
 	if user == nil {
 		return service.ErrNoUserInContext
 	}
 	req.User = user.(string)
-	_, err = cw.Conns.Events.Push(ctx, &req)
+	_, err := cw.Conns.Events.Push(ctx, &req)
 	if err != nil {
 		return err
 	}
@@ -33,10 +30,7 @@ func (cw *ConfigWrapper) PushBatchEvents(ctx context.Context, events []Event) er
 	var req pb.PushBatchRequest
 	var pbevents []*pb.Event
 	for _, event := range events {
-		pbevent, err := event.ToPB()
-		if err != nil {
-			return err
-		}
+		pbevent := event.ToPB()
 		pbevents = append(pbevents, pbevent)
 	}
 	req.Ev = pbevents

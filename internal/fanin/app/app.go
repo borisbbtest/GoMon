@@ -40,7 +40,6 @@ func HTTPServer(ctx context.Context, cfg *configs.AppConfig) (*http.Server, *Con
 		r.Post("/ci/push/batch", h.PushBatchCiHandler)
 		r.Post("/ci/delete", h.DeleteCiHandler)
 		r.Post("/ci/delete/batch", h.DeleteBatchCiHandler)
-		r.Post("/metric/push", h.PushMetricHandler)
 		r.Post("/metric/push/batch", h.PushBatchMetricHandler)
 		r.Post("/event/push", h.PushEventHandler)
 		r.Post("/event/push/batch", h.PushBatchEventHandler)

@@ -8,28 +8,6 @@ import (
 	"github.com/borisbbtest/GoMon/internal/fanin/models"
 )
 
-// PushMetricHandler - хендлер, описывающий получение метрики и сохранение ее в metrics
-//
-// POST [/api/metric/push]
-// Входные данные: models.Metric
-func (h *HTTP) PushMetricHandler(rw http.ResponseWriter, r *http.Request) {
-	var metric models.Metric
-	if err := json.NewDecoder(r.Body).Decode(&metric); err != nil {
-		log.Error().Err(err).Msg("failed decode metric")
-		http.Error(rw, "can't decode metric", http.StatusBadRequest)
-		return
-	}
-	err := h.App.PushMetrics(r.Context(), &metric)
-	if err != nil {
-		log.Error().Err(err).Msg("failed store metric")
-		http.Error(rw, "can't store metric", http.StatusInternalServerError)
-		return
-	}
-	rw.Header().Set("Content-Type", "text/plain")
-	rw.WriteHeader(http.StatusOK)
-	fmt.Fprint(rw, "metric saved successfully")
-}
-
 // PushBatchMetricHandler - хендлер, описывающий получение метрик пакетно и сохранение их в metrics
 //
 // POST [/api/metric/push/batch]

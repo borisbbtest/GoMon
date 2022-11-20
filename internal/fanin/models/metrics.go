@@ -7,23 +7,15 @@ import (
 	pb "github.com/borisbbtest/GoMon/internal/models/metrics"
 )
 
-// PushMetrics - метод, отправляющий metric в cmdb с конвертацией Metric в protobuf Metric
-func (cw *ConfigWrapper) PushMetrics(ctx context.Context, metric *Metric) error {
-	var req pb.PushRequest
-	req.Item = metric.ToPB()
-	_, err := cw.Conns.Metrics.Push(ctx, &req)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
 // PushBatchMetrics - метод, отправляющий metric в cmdb с конвертацией Metric в protobuf Metric
 func (cw *ConfigWrapper) PushBatchMetrics(ctx context.Context, metrics []Metric) error {
 	var req pb.PushBatchRequest
 	var pbmetrics []*pb.Metric
 	for _, metric := range metrics {
-		pbmetric := metric.ToPB()
+		pbmetric, err := metric.ToPB()
+		if err != nil {
+			return err
+		}
 		pbmetrics = append(pbmetrics, pbmetric)
 	}
 	req.Item = pbmetrics
