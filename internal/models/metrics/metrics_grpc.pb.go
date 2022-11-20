@@ -22,8 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MetricsClient interface {
-	Push(ctx context.Context, in *PushRequest, opts ...grpc.CallOption) (*PushResponse, error)
-	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	PushBatch(ctx context.Context, in *PushBatchRequest, opts ...grpc.CallOption) (*PushBatchResponse, error)
 	GetBatch(ctx context.Context, in *GetBatchRequest, opts ...grpc.CallOption) (*GetBatchResponse, error)
 }
@@ -34,24 +32,6 @@ type metricsClient struct {
 
 func NewMetricsClient(cc grpc.ClientConnInterface) MetricsClient {
 	return &metricsClient{cc}
-}
-
-func (c *metricsClient) Push(ctx context.Context, in *PushRequest, opts ...grpc.CallOption) (*PushResponse, error) {
-	out := new(PushResponse)
-	err := c.cc.Invoke(ctx, "/metricsgrpc.metrics/Push", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *metricsClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
-	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/metricsgrpc.metrics/Get", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *metricsClient) PushBatch(ctx context.Context, in *PushBatchRequest, opts ...grpc.CallOption) (*PushBatchResponse, error) {
@@ -76,8 +56,6 @@ func (c *metricsClient) GetBatch(ctx context.Context, in *GetBatchRequest, opts 
 // All implementations must embed UnimplementedMetricsServer
 // for forward compatibility
 type MetricsServer interface {
-	Push(context.Context, *PushRequest) (*PushResponse, error)
-	Get(context.Context, *GetRequest) (*GetResponse, error)
 	PushBatch(context.Context, *PushBatchRequest) (*PushBatchResponse, error)
 	GetBatch(context.Context, *GetBatchRequest) (*GetBatchResponse, error)
 	mustEmbedUnimplementedMetricsServer()
@@ -87,12 +65,6 @@ type MetricsServer interface {
 type UnimplementedMetricsServer struct {
 }
 
-func (UnimplementedMetricsServer) Push(context.Context, *PushRequest) (*PushResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Push not implemented")
-}
-func (UnimplementedMetricsServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
 func (UnimplementedMetricsServer) PushBatch(context.Context, *PushBatchRequest) (*PushBatchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PushBatch not implemented")
 }
@@ -110,42 +82,6 @@ type UnsafeMetricsServer interface {
 
 func RegisterMetricsServer(s grpc.ServiceRegistrar, srv MetricsServer) {
 	s.RegisterService(&Metrics_ServiceDesc, srv)
-}
-
-func _Metrics_Push_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PushRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MetricsServer).Push(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/metricsgrpc.metrics/Push",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetricsServer).Push(ctx, req.(*PushRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Metrics_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MetricsServer).Get(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/metricsgrpc.metrics/Get",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetricsServer).Get(ctx, req.(*GetRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Metrics_PushBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -191,14 +127,6 @@ var Metrics_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "metricsgrpc.metrics",
 	HandlerType: (*MetricsServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Push",
-			Handler:    _Metrics_Push_Handler,
-		},
-		{
-			MethodName: "Get",
-			Handler:    _Metrics_Get_Handler,
-		},
 		{
 			MethodName: "PushBatch",
 			Handler:    _Metrics_PushBatch_Handler,
