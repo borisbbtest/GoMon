@@ -54,7 +54,6 @@ func NewPostgreSQLStorage(connStr *configs.MainConfig) (res *StoreDBinPostgreSQL
 		"migrations/init/ext.sql",
 		"migrations/init/schema.sql",
 		"migrations/init/metrics.sql",
-		"migrations/init/severity.sql",
 		"migrations/init/alter.sql"}
 
 	res.ExecSqlInitFiles(connStr.Ctx, filesSql)

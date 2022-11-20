@@ -11,6 +11,13 @@ service metrics {
   rpc GetBatch(GetBatchRequest) returns (GetBatchResponse) {}
 }
 
+enum Types {
+  T_STR = 0;
+  T_INT =1;
+  T_JSON=2;
+  T_XML=3;
+}
+
 message metric {
   string name = 1;
   bytes value = 2;
@@ -19,6 +26,7 @@ message metric {
   string source_from_systems = 5;
   string relation_ci = 6;
   string uuid = 7;
+  Types tp =8;
 }
 
 message PushBatchRequest { repeated metric item = 1; }

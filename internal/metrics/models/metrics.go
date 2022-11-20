@@ -17,6 +17,7 @@ type PGMetric struct {
 	LoadTime   pgtype.Timestamp
 	SourceTime pgtype.Timestamp
 	RelarionCi pgtype.Text
+	Type       int32
 }
 type Metrics struct {
 	EventsPG []*PGMetric
@@ -43,6 +44,7 @@ func (hook *Metrics) ConvertTogRpcEvent() (ev *[]*metrics.Metric) {
 				Localtime:         timestamppb.New(v.LoadTime.Time),
 				RelationCi:        v.RelarionCi.String,
 				SourceTime:        timestamppb.New(v.SourceTime.Time),
+				Tp:                metrics.Types(v.Type),
 			}
 			buff = append(buff, tmpeve)
 		}

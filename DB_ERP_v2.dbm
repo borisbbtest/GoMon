@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="342,141" last-zoom="1.15" max-obj-count="9"
+<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="340,649" last-zoom="1.15" max-obj-count="9"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -242,7 +242,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="item_metrics" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+<table name="item_metrics" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="metrics"/>
 	<role name="postgres"/>
 	<position x="1080" y="640"/>
@@ -253,7 +253,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="text" length="0"/>
 	</column>
 	<column name="value" not-null="true">
-		<type name="bit" length="0"/>
+		<type name="bytea" length="0"/>
 	</column>
 	<column name="loadtime" not-null="true">
 		<type name="timestamp" length="0"/>
@@ -266,6 +266,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="source_time" not-null="true">
 		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="numeric" length="0"/>
 	</column>
 	<constraint name="item_metrics_pk" type="pk-constr" table="metrics.item_metrics">
 		<columns names="id,source_time" ref-type="src-columns"/>

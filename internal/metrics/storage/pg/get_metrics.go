@@ -11,7 +11,7 @@ import (
 // Получаем один из одну запись по uuid. В будущем  будет релизов сервис виде воркера который будет возвращать данные из БД
 
 func (hook *StoreDBinPostgreSQL) GetMetricsDuration(ctx context.Context, startTime time.Time, endTime time.Time) (err error, res *models.Metrics) {
-	query, err := SQLFileInit.ReadFile("migrations/core/select_events_duration.sql")
+	query, err := SQLFileInit.ReadFile("migrations/core/select_metrics_duration.sql")
 	if err != nil {
 		utils.Log.Error().Msgf("Get Events", err)
 		return err, nil
@@ -39,6 +39,7 @@ func (hook *StoreDBinPostgreSQL) GetMetricsDuration(ctx context.Context, startTi
 			&k.Source,
 			&k.RelarionCi,
 			&k.SourceTime,
+			&k.Type,
 		)
 
 		if err != nil {

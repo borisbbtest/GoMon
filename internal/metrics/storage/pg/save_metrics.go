@@ -36,6 +36,7 @@ func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*metrics.
 			v.SourceFromSystems,
 			v.RelationCi,
 			v.SourceTime.AsTime(),
+			metrics.Types(v.Tp),
 		)
 	}
 
