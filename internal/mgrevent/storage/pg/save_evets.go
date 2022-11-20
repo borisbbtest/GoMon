@@ -9,6 +9,7 @@ import (
 	"github.com/lib/pq"
 )
 
+// Записываем  массив данных в БД
 func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*mgrevent.Event) (err error, qerr error) {
 
 	conn, err := hook.pgp.NewConn()

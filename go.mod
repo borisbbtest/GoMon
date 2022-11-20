@@ -24,8 +24,10 @@ require (
 )
 
 require (
+	github.com/go-chi/chi/v5 v5.0.7
 	github.com/gogo/status v1.1.1
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/zerolog/v2 v2.0.0-rc.3
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.0.0-rc.3
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect

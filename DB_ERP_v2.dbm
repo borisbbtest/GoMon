@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="1319,3" last-zoom="1.15" max-obj-count="9"
+<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="342,141" last-zoom="1.15" max-obj-count="9"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -43,7 +43,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="events"/>
 	<role name="postgres"/>
 	<position x="480" y="180"/>
-	<column name="id" not-null="true">
+	<column name="id" not-null="true" default-value="uuid_generate_v4()">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="title">
@@ -246,7 +246,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="metrics"/>
 	<role name="postgres"/>
 	<position x="1080" y="640"/>
-	<column name="id" not-null="true">
+	<column name="id" not-null="true" default-value="uuid_generate_v4()">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="name" not-null="true">

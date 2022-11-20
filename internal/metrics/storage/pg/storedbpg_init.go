@@ -4,9 +4,9 @@ import (
 	"context"
 	"embed"
 
-	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
-	"github.com/borisbbtest/GoMon/internal/mgrevent/database/postgres"
-	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
+	"github.com/borisbbtest/GoMon/internal/metrics/configs"
+	"github.com/borisbbtest/GoMon/internal/metrics/database/postgres"
+	"github.com/borisbbtest/GoMon/internal/metrics/utils"
 )
 
 type StoreDBinPostgreSQL struct {
@@ -53,11 +53,9 @@ func NewPostgreSQLStorage(connStr *configs.MainConfig) (res *StoreDBinPostgreSQL
 	filesSql := []string{
 		"migrations/init/ext.sql",
 		"migrations/init/schema.sql",
-		"migrations/init/events.sql",
+		"migrations/init/metrics.sql",
 		"migrations/init/severity.sql",
-		"migrations/init/status.sql",
-		"migrations/init/alter.sql",
-		"migrations/init/data.sql"}
+		"migrations/init/alter.sql"}
 
 	res.ExecSqlInitFiles(connStr.Ctx, filesSql)
 	return

@@ -3,11 +3,11 @@ package servergrpc
 import (
 	"net"
 
-	"github.com/borisbbtest/GoMon/internal/mgrevent/configs"
-	handler "github.com/borisbbtest/GoMon/internal/mgrevent/handlers/grpc"
-	"github.com/borisbbtest/GoMon/internal/mgrevent/storage"
-	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
-	"github.com/borisbbtest/GoMon/internal/models/mgrevent"
+	"github.com/borisbbtest/GoMon/internal/metrics/configs"
+	handler "github.com/borisbbtest/GoMon/internal/metrics/handlers/grpc"
+	"github.com/borisbbtest/GoMon/internal/metrics/storage"
+	"github.com/borisbbtest/GoMon/internal/metrics/utils"
+	"github.com/borisbbtest/GoMon/internal/models/metrics"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpczerolog "github.com/grpc-ecosystem/go-grpc-middleware/providers/zerolog/v2"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -15,12 +15,12 @@ import (
 	"google.golang.org/grpc"
 )
 
-type serviceRPCEventMgr struct {
+type serviceRPCMetricMgr struct {
 	wrapp handler.WrapperHandlerRPC
 }
 
-func NewRPC(cfg *configs.MainConfig, st storage.Storage) *serviceRPCEventMgr {
-	return &serviceRPCEventMgr{
+func NewRPC(cfg *configs.MainConfig, st storage.Storage) *serviceRPCMetricMgr {
+	return &serviceRPCMetricMgr{
 		wrapp: handler.WrapperHandlerRPC{
 			ServerConf: cfg,
 			Storage:    st,
@@ -28,7 +28,7 @@ func NewRPC(cfg *configs.MainConfig, st storage.Storage) *serviceRPCEventMgr {
 	}
 }
 
-func (hook *serviceRPCEventMgr) Start() (err error) {
+func (hook *serviceRPCMetricMgr) Start() (err error) {
 
 	listen, err := net.Listen("tcp", hook.wrapp.ServerConf.RunAddress)
 	if err != nil {
@@ -57,7 +57,7 @@ func (hook *serviceRPCEventMgr) Start() (err error) {
 	)
 
 	// регистрируем сервис
-	mgrevent.RegisterEventsServer(s, &hook.wrapp)
+	metrics.RegisterMetricsServer(s, &hook.wrapp)
 	utils.Log.Info().Msgf("Server gRPC is running ")
 
 	// получаем запрос gRPC

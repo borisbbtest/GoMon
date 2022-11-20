@@ -23,6 +23,5 @@ CREATE TABLE IF NOT EXISTS events.events (
 	CONSTRAINT events_pkey PRIMARY KEY (id)
 );
 -- ddl-end --
-
 -- ddl-end --
 

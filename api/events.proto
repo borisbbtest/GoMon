@@ -6,7 +6,6 @@ package eventsgrpc;
 
 option go_package = "/mgrevent";
 
-
 service events {
   rpc Push(PushRequest) returns (PushResponse) {}
   rpc Get(GetRequest) returns (GetResponse) {}
@@ -28,12 +27,8 @@ message Event {
   int32 severity = 11;
   repeated string relarion_ci = 12;
   string created_by = 13;
-  int32 count =14;
-<<<<<<< HEAD
+  int32 count = 14;
   string uuid = 15;
-=======
-  string id = 15;
->>>>>>> adb6b0cd89819d102022486732b315a7cbd07ff7
 }
 
 message PushRequest {
@@ -57,16 +52,14 @@ message PushBatchRequest {
   repeated Event ev = 2;
 }
 
-message PushBatchResponse {
-  string code = 1;
-}
+message PushBatchResponse { string code = 1; }
 
 message GetBatchRequest {
- repeated  Event ev = 1;
+  google.protobuf.Timestamp start = 1;
+  google.protobuf.Timestamp end  = 2;
 }
 
 message GetBatchResponse {
   string code = 1;
   repeated Event ev = 2;
 }
-

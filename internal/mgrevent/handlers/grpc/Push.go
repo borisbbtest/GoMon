@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 
-	"github.com/borisbbtest/GoMon/internal/metrics/utils"
+	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 	"github.com/borisbbtest/GoMon/internal/models/mgrevent"
 	"github.com/gogo/status"
 	"google.golang.org/grpc/codes"

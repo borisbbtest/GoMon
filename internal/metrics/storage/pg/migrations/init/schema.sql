@@ -1,0 +1,2 @@
+-- DROP SCHEMA IF EXISTS metrics CASCADE;
+CREATE SCHEMA metrics;
