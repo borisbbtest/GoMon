@@ -55,6 +55,38 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  metrics:
+    image: metrics
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: metrics
+    environment:
+      RUN_ADDRESS_RPC: ":8083"
+      DATABASE_URI: "postgres://puser:ppaswd@postgres:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mgrevent:
+    image: mgrevent
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: mgrevent
+    environment:
+      RUN_ADDRESS_RPC: ":8084"
+      DATABASE_URI: "postgres://puser:ppaswd@postgres:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
   fanin:
     image: fanin
     build:
@@ -66,8 +98,8 @@ services:
       HTTP_ADDRESS: ":443"
       IDM_ADDRESS: "idm:8081"
       CMDB_ADDRESS: "cmdb:8082"
-      METRICS_ADDRESS: ""
-      EVENTS_ADDRESS: ""
+      METRICS_ADDRESS: "metrics:8083"
+      EVENTS_ADDRESS: "mgrevent:8084"
       TZ: "Europe/Moscow"
     ports:
       - "443:443"

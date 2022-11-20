@@ -2,76 +2,66 @@ package models
 
 import (
 	"encoding/json"
-	"strconv"
 	"time"
 
-	"github.com/borisbbtest/GoMon/internal/fanin/service"
-	pb "github.com/borisbbtest/GoMon/internal/models/events"
+	pb "github.com/borisbbtest/GoMon/internal/models/mgrevent"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // textToSeverity - парсинг string в protobuf Severity
-func textToSeverity(severity string) (pb.Severity, error) {
-	if v, ok := pb.Severity_value[severity]; ok {
-		pbsev := pb.Severity(v)
-		return pbsev, nil
-	}
-	intsev, err := strconv.ParseInt(severity, 10, 32)
-	if err != nil {
-		return pb.Severity(0), err
-	}
-	if _, ok := pb.Severity_name[int32(intsev)]; ok {
-		pbsev := pb.Severity(int32(intsev))
-		return pbsev, nil
-	}
-	return pb.Severity(0), service.ErrEventWrongSeverity
-}
+// func textToSeverity(severity string) (pb.Severity, error) {
+// 	if v, ok := pb.Severity_value[severity]; ok {
+// 		pbsev := pb.Severity(v)
+// 		return pbsev, nil
+// 	}
+// 	intsev, err := strconv.ParseInt(severity, 10, 32)
+// 	if err != nil {
+// 		return pb.Severity(0), err
+// 	}
+// 	if _, ok := pb.Severity_name[int32(intsev)]; ok {
+// 		pbsev := pb.Severity(int32(intsev))
+// 		return pbsev, nil
+// 	}
+// 	return pb.Severity(0), service.ErrEventWrongSeverity
+// }
 
 // textToStatus - парсинг string в protobuf Status
-func textToStatus(status string) (pb.Status, error) {
-	if v, ok := pb.Status_value[status]; ok {
-		pbstatus := pb.Status(v)
-		return pbstatus, nil
-	}
-	intstatus, err := strconv.ParseInt(status, 10, 32)
-	if err != nil {
-		return pb.Status(0), err
-	}
-	if _, ok := pb.Status_name[int32(intstatus)]; ok {
-		pbstatus := pb.Status(int32(intstatus))
-		return pbstatus, nil
-	}
-	return pb.Status(0), service.ErrEventWrongStatus
-}
+// func textToStatus(status string) (pb.Status, error) {
+// 	if v, ok := pb.Status_value[status]; ok {
+// 		pbstatus := pb.Status(v)
+// 		return pbstatus, nil
+// 	}
+// 	intstatus, err := strconv.ParseInt(status, 10, 32)
+// 	if err != nil {
+// 		return pb.Status(0), err
+// 	}
+// 	if _, ok := pb.Status_name[int32(intstatus)]; ok {
+// 		pbstatus := pb.Status(int32(intstatus))
+// 		return pbstatus, nil
+// 	}
+// 	return pb.Status(0), service.ErrEventWrongStatus
+// }
 
 // ToPB - конвертация типа Ci в protobuf  Ci.
 // Возвращает ошибку в случае, когда Severity или Status не имеют совпадений с protobuf
-func (e *Event) ToPB() (*pb.Event, error) {
-	status, err := textToStatus(e.Status)
-	if err != nil && e.Status != "" {
-		return nil, err
-	}
-	severity, err := textToSeverity(e.Severity)
-	if err != nil && e.Severity != "" {
-		return nil, err
-	}
+func (e *Event) ToPB() *pb.Event {
 	return &pb.Event{
 		Title:       e.Title,
 		Description: e.Description,
 		Source:      e.Source,
-		Status:      status,
+		Status:      e.Status,
 		Created:     timestamppb.New(e.Created),
 		Update:      timestamppb.New(e.Update),
 		Key:         e.Key,
 		KeyClose:    e.KeyClose,
 		Assigned:    e.Assigned,
 		AutoRunner:  e.AutoRunner,
-		Severity:    severity,
+		Severity:    e.Severity,
 		RelarionCi:  e.RelarionCi,
 		CreatedBy:   e.CreatedBy,
 		Count:       e.Count,
-		Id:          e.Id,
-	}, nil
+		Uuid:        e.Uuid,
+	}
 }
 
 // UnmarshalJSON - функция переопределяющия правила анмаршалера для timestamp в Event

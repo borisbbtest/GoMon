@@ -5,9 +5,9 @@ import (
 	"github.com/borisbbtest/GoMon/internal/fanin/handlers"
 	"github.com/borisbbtest/GoMon/internal/fanin/models"
 	"github.com/borisbbtest/GoMon/internal/models/cmdb"
-	"github.com/borisbbtest/GoMon/internal/models/events"
 	"github.com/borisbbtest/GoMon/internal/models/idm"
 	"github.com/borisbbtest/GoMon/internal/models/metrics"
+	events "github.com/borisbbtest/GoMon/internal/models/mgrevent"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
