@@ -1,0 +1,3 @@
+ServerAddressGRPC: "localhost:50056"
+ReInit: true
+DBDSN: postgres://postgres:boris123@localhost:5432/mgrevent?sslmode=disable

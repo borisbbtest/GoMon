@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="385,141" last-zoom="1.05" max-obj-count="9"
+<dbmodel pgmodeler-ver="1.0.0-beta" use-changelog="false" last-position="0,0" last-zoom="0.9" max-obj-count="9"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -42,8 +42,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="events" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
 	<schema name="events"/>
 	<role name="postgres"/>
-	<position x="480" y="180"/>
-	<column name="id" not-null="true">
+	<prepended-sql> <![CDATA[CREATE EXTENSION "uuid-ossp";
+]]> </prepended-sql>
+	<position x="160" y="240"/>
+	<column name="id" not-null="true" default-value="uuid_generate_v4()">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="title">
@@ -90,8 +92,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="severity" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="events"/>
 	<role name="postgres"/>
-	<position x="820" y="200"/>
-	<column name="id" not-null="true">
+	<prepended-sql> <![CDATA[CREATE EXTENSION "uuid-ossp";
+]]> </prepended-sql>
+	<position x="480" y="240"/>
+	<column name="id" not-null="true" default-value="uuid_generate_v4()">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="name" not-null="true">
@@ -108,8 +112,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="status" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="events"/>
 	<role name="postgres"/>
-	<position x="1140" y="180"/>
-	<column name="id" not-null="true">
+	<prepended-sql> <![CDATA[CREATE EXTENSION "uuid-ossp";
+]]> </prepended-sql>
+	<position x="780" y="240"/>
+	<column name="id" not-null="true" default-value="uuid_generate_v4()">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="name" not-null="true">
@@ -180,7 +186,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<comment> <![CDATA[Базовый класс для создание таблиц. Связи
 ]]> </comment>
 	<position x="520" y="680"/>
-	<column name="id" not-null="true">
+	<column name="id" not-null="true" default-value="uuid_generate_v4()">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="name">
@@ -262,6 +268,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
+
+<extension name="uuid-ossp">
+	<schema name="events"/>
+	<appended-sql> <![CDATA[CREATE EXTENSION "uuid-ossp";
+]]> </appended-sql>
+</extension>
 
 <permission>
 	<object name="public" type="schema"/>
