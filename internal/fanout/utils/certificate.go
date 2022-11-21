@@ -14,6 +14,7 @@ import (
 	"time"
 )
 
+// CertGeg - утилита по генерации ключей
 func CertGeg() (certPEM bytes.Buffer, privateKeyPEM bytes.Buffer, err error) {
 	// создаём шаблон сертификата
 	cert := &x509.Certificate{
@@ -65,6 +66,7 @@ func CertGeg() (certPEM bytes.Buffer, privateKeyPEM bytes.Buffer, err error) {
 	return
 }
 
+// WriteCertFile - запись в файл
 func WriteCertFile(name string, body bytes.Buffer) {
 	f, err := os.Create(name)
 	if err != nil {

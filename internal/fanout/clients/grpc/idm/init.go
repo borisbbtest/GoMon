@@ -8,6 +8,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+// NewConnIdm - конструктор класс
 func NewConnIdm(cfg config.MainConfig) *ServiceWrapperIdm {
 
 	conn, err := grpc.Dial(cfg.ServiceGRpcIDM, grpc.WithTransportCredentials(insecure.NewCredentials()))

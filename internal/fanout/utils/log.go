@@ -11,6 +11,7 @@ import (
 
 var Log = zerolog.New(LogConfig()).With().Timestamp().Caller().Logger()
 
+// LogConfig - Функция для настройки zerolog
 func LogConfig() zerolog.ConsoleWriter {
 	output := zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339}
 	output.FormatLevel = func(i interface{}) string {

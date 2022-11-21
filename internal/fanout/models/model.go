@@ -1,3 +1,4 @@
+// Package описывает модель приложения http
 package models
 
 import (
@@ -8,6 +9,7 @@ import (
 	config "github.com/borisbbtest/GoMon/internal/fanout/configs"
 )
 
+// ClientPool структора пула содинения к сервисам
 type ClientPool struct {
 	Idm      *integrationidm.ServiceWrapperIdm         // клиент для модуля idm (управление пользователями)
 	Cmdb     *integrationcmdb.ServiceWrapperCmdb       // клиент для модуля cmdb (управление КЕ)

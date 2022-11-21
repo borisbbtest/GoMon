@@ -10,6 +10,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
+// GetGetEvent - получаем одно событие оп uuid
 func (hook *WrapperHandler) GetGetEvent(w http.ResponseWriter, r *http.Request) {
 	utils.Log.Info().Msg("GetGetEvent")
 	w.Header().Add("Content-Type", "application/json")

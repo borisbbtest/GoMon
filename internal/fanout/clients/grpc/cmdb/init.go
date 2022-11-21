@@ -8,6 +8,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+// NewConnCmd Конструктор клиента к сервису CMDB
 func NewConnCmd(cfg config.MainConfig) *ServiceWrapperCmdb {
 
 	conn, err := grpc.Dial(cfg.ServiceGRpcCMD, grpc.WithTransportCredentials(insecure.NewCredentials()))

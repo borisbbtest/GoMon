@@ -22,7 +22,7 @@ type ResponseGetEvent struct {
 	Root *integrationevents.Event
 }
 
-// ParseRequest - функция переопределяющия правила анмаршалера для timestamp в Metric
+// ParseRequestDuration - функция переопределяющия правила анмаршалера для timestamp в Metric
 func (hook *RequestGetEvent) ParseRequestDuration(data []byte) error {
 	Req := &struct {
 		StartTime string `json:"start"`

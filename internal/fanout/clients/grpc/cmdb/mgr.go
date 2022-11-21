@@ -1,3 +1,4 @@
+// Package пакет по работе с сервисом CMDB
 package integrationcmdb
 
 import (
@@ -6,6 +7,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/models/cmdb"
 )
 
+// pbCiMapCi - функция размапа обертки
 func pbCiMapCi(v *cmdb.Ci) *Ci {
 	return &Ci{
 		Name:        v.Name,
@@ -16,6 +18,8 @@ func pbCiMapCi(v *cmdb.Ci) *Ci {
 		Type:        v.Type,
 	}
 }
+
+// GetBachListItem - получает список КЕ по имени
 func (hook *ServiceWrapperCmdb) GetBachListItem(ctx context.Context, items *[]string) (resp *[]*Ci, err error) {
 
 	req := cmdb.GetBatchObjectsRequest{
@@ -34,6 +38,7 @@ func (hook *ServiceWrapperCmdb) GetBachListItem(ctx context.Context, items *[]st
 	return resp, nil
 }
 
+// GetItem - получает одно ке
 func (hook *ServiceWrapperCmdb) GetItem(ctx context.Context, items *string) (resp *Ci, err error) {
 
 	req := cmdb.GetObjectRequest{

@@ -1,3 +1,4 @@
+// Package пакет по работе с сервисом event manager
 package integrationevents
 
 import (
@@ -28,7 +29,7 @@ func pbEventMapEvent(v *mgrevent.Event) *Event {
 	}
 }
 
-// GetEventDuration - получаем меткри от сервиса в временном интервали
+// GetEventDuration - получаем меткри от сервиса во временном интервали
 func (hook *ServiceWrapperEvents) GetEventsDuration(ctx context.Context, start time.Time, end time.Time) (resp *[]*Event, err error) {
 	req := mgrevent.GetBatchRequest{
 		Start: timestamppb.New(start),
@@ -48,6 +49,7 @@ func (hook *ServiceWrapperEvents) GetEventsDuration(ctx context.Context, start t
 	return resp, nil
 }
 
+// GetEvent - получает одни евен по uuid
 func (hook *ServiceWrapperEvents) GetEvent(ctx context.Context, uuid string) (resp *Event, err error) {
 	req := mgrevent.GetRequest{
 		Id: uuid,

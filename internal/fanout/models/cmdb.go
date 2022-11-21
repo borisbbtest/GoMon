@@ -7,14 +7,17 @@ import (
 	"github.com/borisbbtest/GoMon/internal/fanout/utils"
 )
 
+// RequestGetCis структура  для запроса HTTP для массива КЕ
 type RequestGetCis struct {
 	Item *[]string
 }
 
+// ResponseGetCis  структура  для ответа HTTP для Массива КЕ
 type ResponseGetCis struct {
 	Root *[]*integrationcmdb.Ci
 }
 
+// ResponseGetCi  структура  для ответа HTTP для одного КЕ
 type ResponseGetCi struct {
 	Root *integrationcmdb.Ci
 }
