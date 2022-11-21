@@ -1,0 +1,46 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Binaries
+cmd/cmdb/main
+cmd/cmdb/cmdb
+cmd/fanin/main
+cmd/fanin/fanin
+cmd/fanout/main
+cmd/fanout/fanout
+cmd/idm/main
+cmd/idm/idm
+cmd/matrics/main
+cmd/matrics/matrics
+cmd/mgrevent/main
+cmd/mgrevent/mgrevent
+cmd/statictest/main
+cmd/statictest/statictest
+
+# Dependency directories (remove the comment below to include it)
+vendor/
+
+# IDEs directories
+.idea
+.vscode
+
+#Mac DS_Store
+.DS_Store
+
+#_test.go
+#*test.go
+
+#db ignore
+internal/idm/tasks
+tmp/
+go.mod
