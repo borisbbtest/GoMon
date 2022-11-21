@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  postgres:
+  postgressrv:
     image: postgres
     environment:
       POSTGRES_DB: "gomon"
@@ -31,10 +31,10 @@ services:
       ADDRESS_GRPC: ":8081"
       SESSION_TIME: "300s"
       REINIT: true
-      DATABASE_DSN: "postgres://puser:ppaswd@postgres:5432/gomon"
+      DATABASE_DSN: "postgres://puser:ppaswd@postgressrv:5432/gomon"
       TZ: "Europe/Moscow"
     depends_on:
-      postgres:
+      postgressrv:
         condition: service_healthy
     restart: unless-stopped
 
@@ -48,10 +48,10 @@ services:
     environment:
       ADDRESS_GRPC: ":8082"
       REINIT: true
-      DATABASE_DSN: "postgres://puser:ppaswd@postgres:5432/gomon"
+      DATABASE_DSN: "postgres://puser:ppaswd@postgressrv:5432/gomon"
       TZ: "Europe/Moscow"
     depends_on:
-      postgres:
+      postgressrv:
         condition: service_healthy
     restart: unless-stopped
 
@@ -64,10 +64,10 @@ services:
         COMPONENT: metrics
     environment:
       RUN_ADDRESS_RPC: ":8083"
-      DATABASE_URI: "postgres://puser:ppaswd@postgres:5432/gomon"
+      DATABASE_URI: "postgres://puser:ppaswd@postgressrv:5432/gomon"
       TZ: "Europe/Moscow"
     depends_on:
-      postgres:
+      postgressrv:
         condition: service_healthy
     restart: unless-stopped
 
@@ -80,10 +80,10 @@ services:
         COMPONENT: mgrevent
     environment:
       RUN_ADDRESS_RPC: ":8084"
-      DATABASE_URI: "postgres://puser:ppaswd@postgres:5432/gomon"
+      DATABASE_URI: "postgres://puser:ppaswd@postgressrv:5432/gomon"
       TZ: "Europe/Moscow"
     depends_on:
-      postgres:
+      postgressrv:
         condition: service_healthy
     restart: unless-stopped
 
@@ -104,6 +104,6 @@ services:
     ports:
       - "443:443"
     depends_on:
-      postgres:
+      postgressrv:
         condition: service_healthy
     restart: unless-stopped

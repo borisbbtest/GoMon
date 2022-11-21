@@ -49,5 +49,5 @@ func (h *HTTP) PushBatchEventHandler(rw http.ResponseWriter, r *http.Request) {
 	}
 	rw.Header().Set("Content-Type", "text/plain")
 	rw.WriteHeader(http.StatusOK)
-	fmt.Fprint(rw, "cis saved successfully")
+	fmt.Fprint(rw, "events saved successfully")
 }
