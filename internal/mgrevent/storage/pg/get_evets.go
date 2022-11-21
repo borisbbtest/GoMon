@@ -9,7 +9,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/models/mgrevent"
 )
 
-// Получаем один из одну запись по uuid. В будущем  будет релизов сервис виде воркера который будет возвращать данные из БД
+// GetEvent - Получаем один из одну запись по uuid. В будущем  будет релизов сервис виде воркера который будет возвращать данные из БД
 func (hook *StoreDBinPostgreSQL) GetEvent(ctx context.Context, eve *mgrevent.Event) (err error, res *models.Events) {
 	query, err := SQLFileInit.ReadFile("migrations/core/select_event.sql")
 	if err != nil {
@@ -48,6 +48,7 @@ func (hook *StoreDBinPostgreSQL) GetEvent(ctx context.Context, eve *mgrevent.Eve
 	return
 }
 
+// GetEventDuration - получает список событий в промежуток времени
 func (hook *StoreDBinPostgreSQL) GetEventDuration(ctx context.Context, startTime time.Time, endTime time.Time) (err error, res *models.Events) {
 	query, err := SQLFileInit.ReadFile("migrations/core/select_events_duration.sql")
 	if err != nil {

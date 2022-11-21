@@ -17,7 +17,7 @@ type StoreDBinPostgreSQL struct {
 //go:embed migrations/*/*.sql
 var SQLFileInit embed.FS
 
-// Создает БД
+// ExecSqlInitFiles - Создает БД
 func (hook *StoreDBinPostgreSQL) ExecSqlInitFiles(ctx context.Context, sqlfiles []string) (err error) {
 
 	var query []byte
@@ -44,7 +44,7 @@ func (hook *StoreDBinPostgreSQL) ExecSqlInitFiles(ctx context.Context, sqlfiles 
 	return
 }
 
-// Конструктор стореджа в СУБД Postgres
+// NewPostgreSQLStorage - Конструктор стореджа в СУБД Postgres
 func NewPostgreSQLStorage(connStr *configs.MainConfig) (res *StoreDBinPostgreSQL, err error) {
 	res = &StoreDBinPostgreSQL{}
 	res.connStr = connStr.DatabaseURI

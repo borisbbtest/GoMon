@@ -4,6 +4,7 @@ import (
 	"github.com/jackc/pgx/pgtype"
 )
 
+// Severity определяет критичность события
 type Severity struct {
 	id   pgtype.UUID
 	name pgtype.Text

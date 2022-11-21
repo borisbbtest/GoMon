@@ -1,3 +1,4 @@
+// Package пакет по управлению обработчиков
 package grpc
 
 import (
@@ -9,6 +10,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+// Get - получения одного события
 func (hook *WrapperHandlerRPC) Get(ctx context.Context, ev *mgrevent.GetRequest) (res *mgrevent.GetResponse, err error) {
 	utils.Log.Info().Msg("Get start")
 	res = &mgrevent.GetResponse{

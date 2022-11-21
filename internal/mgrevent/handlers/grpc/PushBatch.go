@@ -8,6 +8,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+// PushBatch отправка нескольких событий
 func (hook *WrapperHandlerRPC) PushBatch(ctx context.Context, ev *mgrevent.PushBatchRequest) (res *mgrevent.PushBatchResponse, err error) {
 	res = &mgrevent.PushBatchResponse{
 		Code: "Ok",

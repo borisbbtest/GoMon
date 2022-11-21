@@ -9,6 +9,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+// Push отправка одного события
 func (hook *WrapperHandlerRPC) Push(ctx context.Context, ev *mgrevent.PushRequest) (res *mgrevent.PushResponse, err error) {
 
 	utils.Log.Debug().Msg("Psuh")
