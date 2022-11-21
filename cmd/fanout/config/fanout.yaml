@@ -1,4 +1,5 @@
-RUN_ADDRESS:  "localhost:8080"
+ACCRUAL_SYSTEM_ADDRESS: "http://localhost:8089"
+RUN_ADDRESS:  "localhost:8089"
 DATABASE_URI: "postgres://postgres:boris123@localhost:5432/mgrevent?sslmode=disable"
 TRUSTED_SUBNET: "127.0.0.0/24"
 ENABLE_HTTPS: True

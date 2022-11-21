@@ -3,10 +3,12 @@ package config
 
 import (
 	goflag "flag"
+	"io/ioutil"
 
 	"github.com/borisbbtest/GoMon/internal/fanout/utils"
 	"github.com/caarlos0/env"
 	flag "github.com/spf13/pflag"
+	"gopkg.in/yaml.v2"
 )
 
 // MainConfig - конфиг приложения
@@ -30,21 +32,32 @@ type ServerConfig interface {
 // GetConfig - чтение конфигурации из файла переменных флагов
 func GetConfig() (config *MainConfig, err error) {
 	config = &MainConfig{}
-
+	var configFileName string
 	flag.StringVarP(&config.AccrualSystemAddress, "accrual_system_adders", "r", config.AccrualSystemAddress, "Accrual system address")
 	flag.StringVarP(&config.DatabaseURI, "database_uri", "d", config.DatabaseURI, "Base URL")
 	flag.StringVarP(&config.RunAddress, "run_server", "a", config.RunAddress, "Run server")
 	flag.BoolVarP(&config.EnableHTTPS, "tls", "s", false, "In HTTP server is Enable TLS")
 	flag.StringVarP(&config.TrustedSubnet, "trusted_subnet", "t", config.RunAddress, "Trust subnet")
+	flag.StringVarP(&configFileName, "config", "c", "./config/fanout.yaml", "path to the configuration file")
 	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 	flag.Parse()
 
 	err = env.Parse(config)
 	if err != nil {
-		utils.Log.Error().Msgf("can't start the listening thread: %s", err)
+		utils.Log.Error().Discard().Msgf("can't start the listening thread: %s", err)
 		return
 	}
 
+	configFile, err := ioutil.ReadFile(configFileName)
+	if err != nil {
+		utils.Log.Error().Msgf("can't open the config file: %s", err)
+
+	}
+
+	err = yaml.Unmarshal(configFile, &config)
+	if err != nil {
+		utils.Log.Error().Msgf("YAML can't read the config file: %s", err)
+	}
 	//***postgres:5432/praktikum?sslmode=disable
 	utils.Log.Info().Msgf("Configuration loaded")
 	return

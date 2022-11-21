@@ -1,4 +1,4 @@
-ServerAddressGRPC: "127.0.0.1:8081"
+ServerAddressGRPC: "localhost:50055"
 SessionTimeExpired: 300s
-ReInit: false
-DBDSN: "postgres://pi:toor@192.168.1.69:5432/yandex"
+ReInit: true
+DBDSN: "postgres://postgres:boris123@localhost:5432/mgrevent?sslmode=disable"

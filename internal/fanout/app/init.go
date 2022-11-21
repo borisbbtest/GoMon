@@ -7,19 +7,19 @@ import (
 )
 
 // ServiceShortURL- Сервис приложения
-type ServiceShortURL struct {
+type ServiceFanIn struct {
 	ServerConf *config.MainConfig // Конфиг сервера и приложения
 }
 
 // Init- конструктор приложения
-func Init(cfg *config.MainConfig) (res *ServiceShortURL, err error) {
-	res = &ServiceShortURL{}
+func Init(cfg *config.MainConfig) (res *ServiceFanIn, err error) {
+	res = &ServiceFanIn{}
 	res.ServerConf = cfg
 	return
 }
 
 // Start- запуск приложения
-func (hook *ServiceShortURL) Start() (err error) {
+func (hook *ServiceFanIn) Start() (err error) {
 
 	// log.Info("Start RPC")
 	// go NewRPC(hook.ServerConf, hook.Storage).Start()

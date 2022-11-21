@@ -61,8 +61,6 @@ func (hook *serviceHTTPFanOut) Start() (err error) {
 	log.Println("Initializing HTTP server")
 	r := chi.NewRouter()
 
-	//	defer hook.wrapp.Storage.Close()
-
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
@@ -96,7 +94,7 @@ func (hook *serviceHTTPFanOut) Start() (err error) {
 	serviceLogic.Post("/api/get_metrics", hook.wrapp.PostGetMetrics)
 
 	server := &http.Server{
-		Addr:         hook.wrapp.ServerConf.AccrualSystemAddress,
+		Addr:         hook.wrapp.ServerConf.RunAddress,
 		Handler:      r,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 40 * time.Second,
