@@ -60,7 +60,7 @@ func (hook *WrapperHandler) AuthorizeHandler(rw http.ResponseWriter, r *http.Req
 		http.Error(rw, "can't decode user", http.StatusBadRequest)
 		return
 	}
-	session, err := hook.SessionApp.Idm.AuthorizeUser(r.Context(), &user)
+	session, err := hook.ServicePool.Idm.AuthorizeUser(r.Context(), &user)
 	if err != nil {
 		utils.Log.Error().Err(err).Msg("failed authorize user")
 		http.Error(rw, "failed authorize user", http.StatusInternalServerError)
