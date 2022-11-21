@@ -2,6 +2,6 @@ package handlers_http
 
 import "net/http"
 
-func (hook *WrapperHandler) postGetEvens(w http.ResponseWriter, r *http.Request) {
+func (hook *WrapperHandler) PostGetEvens(w http.ResponseWriter, r *http.Request) {
 
 }

@@ -14,8 +14,7 @@ import (
 	config "github.com/borisbbtest/GoMon/internal/fanout/configs"
 	handlers_http "github.com/borisbbtest/GoMon/internal/fanout/handlers/http"
 	midd "github.com/borisbbtest/GoMon/internal/fanout/middleware"
-	model "github.com/borisbbtest/GoMon/internal/fanout/models"
-	"github.com/borisbbtest/GoMon/internal/fanout/storage"
+	"github.com/borisbbtest/GoMon/internal/fanout/models"
 	"github.com/borisbbtest/GoMon/internal/fanout/utils"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
@@ -28,16 +27,16 @@ type serviceHTTPFanOut struct {
 }
 
 // NewHTTP конструктор класс serviceHTTPFanOut
-func NewHTTP(cfg *config.MainConfig, st storage.Storage) *serviceHTTPFanOut {
-	sessionHTTP := &storage.SessionHTTP{DBSession: map[string]model.DataUser{}}
+func NewHTTP(cfg *config.MainConfig) *serviceHTTPFanOut {
+
+	init := &models.ServicePoolWrapper{}
+	_ = init
+
 	return &serviceHTTPFanOut{
 		wrapp: handlers_http.WrapperHandler{
 			ServerConf: cfg,
-			Storage:    st,
 		},
-		middle: midd.WrapperMiddleware{
-			Session: sessionHTTP,
-		},
+		middle: midd.WrapperMiddleware{},
 	}
 }
 
@@ -78,16 +77,20 @@ func (hook *serviceHTTPFanOut) Start() (err error) {
 	r.Handle("/pprof/block", pprof.Handler("block"))
 	r.Handle("/pprof/allocs", pprof.Handler("allocs"))
 
+	r.Get("/", hook.wrapp.PingHandler)
+	r.Post("/api/register", hook.wrapp.RegisterHandler)
+	r.Post("/api/authorize", hook.wrapp.AuthorizeHandler)
+
 	serviceLogic := r.Group(nil)
 	serviceLogic.Use(hook.middle.MiddleSetSessionCookie)
 	// CMD
-	serviceLogic.Get("/api/get_ci/{name}", hook.wrapp.getGetCi)
-	serviceLogic.Post("/api/get_ci", hook.wrapp.postGetCis)
+	serviceLogic.Get("/api/get_ci/{name}", hook.wrapp.GetGetCi)
+	serviceLogic.Post("/api/get_ci", hook.wrapp.PostGetCis)
 	//Events
-	serviceLogic.Get("/api/get_event/{id}", hook.wrapp.getGetEvent)
-	serviceLogic.Post("/api/get_events", hook.wrapp.postGetEvens)
+	serviceLogic.Get("/api/get_event/{id}", hook.wrapp.GetGetEvent)
+	serviceLogic.Post("/api/get_events", hook.wrapp.PostGetEvens)
 	//Metric
-	serviceLogic.Post("/api/get_metrics", hook.wrapp.postGetMetrics)
+	serviceLogic.Post("/api/get_metrics", hook.wrapp.PostGetMetrics)
 
 	server := &http.Server{
 		Addr:         hook.wrapp.ServerConf.AccrualSystemAddress,
@@ -169,7 +172,6 @@ func (hook *serviceHTTPFanOut) Start() (err error) {
 	// здесь можно освобождать ресурсы перед выходом,
 	// например закрыть соединение с базой данных,
 	// закрыть открытые файлы
-	hook.wrapp.Storage.Close()
 
 	utils.Log.Debug().Msgf("Server Shutdown gracefully")
 

@@ -2,12 +2,11 @@ package handlers_http
 
 import (
 	config "github.com/borisbbtest/GoMon/internal/fanout/configs"
-	"github.com/borisbbtest/GoMon/internal/fanout/storage"
+	"github.com/borisbbtest/GoMon/internal/fanout/models"
 )
 
 // WrapperHandler - класс хедлеров
 type WrapperHandler struct {
-	ServerConf *config.MainConfig   // Конфигурация приложения
-	Storage    storage.Storage      // Ссылка на конект к бд
-	Session    *storage.SessionHTTP // Сессия пользователя
+	ServerConf *config.MainConfig    // Конфигурация приложения
+	SessionApp *models.ConfigWrapper // Сессия пользователя
 }
