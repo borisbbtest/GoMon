@@ -21,7 +21,7 @@ type MainConfig struct {
 	ServiceGRpcEvents    string `yaml:"CLIENT_ADDRESS_EVENT" env:"CLIENT_ADDRESS_EVENT"`     // Адрес подключения к менеджеру событий
 	ServiceGRpcMetric    string `yaml:"CLIENT_ADDRESS_METRIC" env:"CLIENT_ADDRESS_METRIC"`   // Адрес подключения к менеджеру метрик
 	ServiceGRpcIDM       string `yaml:"CLIENT_ADDRESS_IDM" env:"CLIENT_ADDRESS_IDM"`         // Адрес подключения к менеджеру IDM
-	ServiceGRpcCMD       string `yaml:"CLIENT_ADDRESS_CMD" env:"CLIENT_ADDRESS_CMD"`         // Адрес подключения к менеджеру CMD
+	ServiceGRpcCMD       string `yaml:"CLIENT_ADDRESS_CMD" env:"CLIENT_ADDRESS_CMDB"`        // Адрес подключения к менеджеру CMD
 }
 
 // ServerConfig интерфейс который должен соблюдаться
@@ -38,7 +38,7 @@ func GetConfig() (config *MainConfig, err error) {
 	flag.StringVarP(&config.RunAddress, "run_server", "a", config.RunAddress, "Run server")
 	flag.BoolVarP(&config.EnableHTTPS, "tls", "s", false, "In HTTP server is Enable TLS")
 	flag.StringVarP(&config.TrustedSubnet, "trusted_subnet", "t", config.RunAddress, "Trust subnet")
-	flag.StringVarP(&configFileName, "config", "c", "./config/fanout.yaml", "path to the configuration file")
+	flag.StringVarP(&configFileName, "config", "c", "", "path to the configuration file")
 	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 	flag.Parse()
 

@@ -95,11 +95,33 @@ services:
       args:
         COMPONENT: fanin
     environment:
-      HTTP_ADDRESS: ":443"
+      HTTP_ADDRESS: ":8443"
       IDM_ADDRESS: "idm:8081"
       CMDB_ADDRESS: "cmdb:8082"
       METRICS_ADDRESS: "metrics:8083"
       EVENTS_ADDRESS: "mgrevent:8084"
+      TZ: "Europe/Moscow"
+    ports:
+      - "8443:8443"
+    depends_on:
+      postgressrv:
+        condition: service_healthy
+    restart: unless-stopped
+
+  fanout:
+    image: fanout
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: fanout
+    environment:
+      RUN_ADDRESS: ":443"
+      ENABLE_HTTPS: true
+      CLIENT_ADDRESS_IDM: "idm:8081"
+      CLIENT_ADDRESS_CMDB: "cmdb:8082"
+      CLIENT_ADDRESS_METRIC: "metrics:8083"
+      CLIENT_ADDRESS_EVENT: "mgrevent:8084"
       TZ: "Europe/Moscow"
     ports:
       - "443:443"
