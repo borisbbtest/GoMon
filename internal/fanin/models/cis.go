@@ -3,6 +3,7 @@ package models
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	pb "github.com/borisbbtest/GoMon/internal/models/cmdb"
 )
@@ -32,7 +33,7 @@ func (cw *ConfigWrapper) PushBatchCis(ctx context.Context, cis []Ci) error {
 		return err
 	}
 	// Так как gRPC возвращает либо response либо err, проверяется дополнительно внутренний код ответа приложения при пакетной загрузке
-	if resp.Code != "OK" {
+	if strings.ToLower(resp.Code) != "ok" {
 		return fmt.Errorf("cmdb return code: %s", resp.Code)
 	}
 	return nil
@@ -58,7 +59,7 @@ func (cw *ConfigWrapper) DeleteBatchCis(ctx context.Context, cis []string) error
 		return err
 	}
 	// Так как gRPC возвращает либо response либо err, проверяется дополнительно внутренний код ответа приложения при пакетной загрузке
-	if resp.Code != "OK" {
+	if strings.ToLower(resp.Code) != "ok" {
 		return fmt.Errorf("cmdb return code: %s", resp.Code)
 	}
 	return nil

@@ -3,6 +3,7 @@ package models
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	pb "github.com/borisbbtest/GoMon/internal/models/metrics"
 )
@@ -24,7 +25,7 @@ func (cw *ConfigWrapper) PushBatchMetrics(ctx context.Context, metrics []Metric)
 		return err
 	}
 	// Так как gRPC возвращает либо response либо err, проверяется дополнительно внутренний код ответа приложения при пакетной загрузке
-	if resp.Code != "OK" {
+	if strings.ToLower(resp.Code) != "ok" {
 		return fmt.Errorf("metrics return code: %s", resp.Code)
 	}
 	return nil
