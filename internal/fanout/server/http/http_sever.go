@@ -84,6 +84,8 @@ func (hook *serviceHTTPFanOut) Start() (err error) {
 
 	serviceLogic := r.Group(nil)
 	serviceLogic.Use(hook.middle.MiddleSetSessionCookie)
+	//Ping API
+	serviceLogic.Get("/api/ping", hook.wrapp.PingHandler)
 	// CMD
 	serviceLogic.Get("/api/get_ci/{name}", hook.wrapp.GetGetCi)
 	serviceLogic.Post("/api/get_ci", hook.wrapp.PostGetCis)

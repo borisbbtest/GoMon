@@ -1,3 +1,3 @@
-ServerAddressGRPC: "127.0.0.1:8082"
-ReInit: false
-DBDSN: "postgres://pi:toor@192.168.1.69:5432/yandex"
+ServerAddressGRPC: "localhost:50056"
+ReInit: true
+DBDSN: postgres://postgres:boris123@localhost:5432/mgrevent?sslmode=disable

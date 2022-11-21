@@ -23,28 +23,28 @@ func (hook *WrapperMiddleware) MiddleSetSessionCookie(next http.Handler) http.Ha
 		cookiess, err := r.Cookie("session_token")
 		if err != nil {
 			if errors.Is(err, http.ErrNoCookie) {
-				http.Error(rw, "no cookies session", http.StatusUnauthorized)
+				http.Error(rw, "You didn't login authorize", http.StatusUnauthorized)
 				return
 			}
 			utils.Log.Error().Err(err).Msg("internal error")
-			http.Error(rw, "internal errors", http.StatusInternalServerError)
+			http.Error(rw, "Internal errors", http.StatusInternalServerError)
 			return
 		}
 		cookieu, err := r.Cookie("login")
 		if err != nil {
 			if errors.Is(err, http.ErrNoCookie) {
-				http.Error(rw, "no cookies login", http.StatusUnauthorized)
+				http.Error(rw, "You didn't login authorize", http.StatusUnauthorized)
 				return
 			}
 			utils.Log.Error().Err(err).Msg("internal error")
-			http.Error(rw, "internal errors", http.StatusInternalServerError)
+			http.Error(rw, "Internal errors", http.StatusInternalServerError)
 			return
 		}
 		sessionToken := cookiess.Value
 		login := cookieu.Value
 		ok := hook.ServicePool.Idm.CheckAuthorized(r.Context(), login, sessionToken)
 		if !ok {
-			http.Error(rw, "no session with this session token or session expired", http.StatusUnauthorized)
+			http.Error(rw, "Token session is missing or expiring", http.StatusUnauthorized)
 			return
 		}
 		ctx := context.WithValue(r.Context(), models.FanInContextKey("login"), login)
