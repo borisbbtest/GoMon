@@ -1,3 +1,4 @@
+// Package по работе с сервисом IDM
 package integrationidm
 
 import (

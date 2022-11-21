@@ -1,3 +1,4 @@
+// Package по настройки и запуском сервером grpc
 package servergrpc
 
 import (
@@ -15,10 +16,12 @@ import (
 	"google.golang.org/grpc"
 )
 
+// serviceRPCEventMgr класс  сервера по обработки событий
 type serviceRPCEventMgr struct {
 	wrapp handler.WrapperHandlerRPC
 }
 
+// NewRPC - конструктор по создаю grp  сервера
 func NewRPC(cfg *configs.MainConfig, st storage.Storage) *serviceRPCEventMgr {
 	return &serviceRPCEventMgr{
 		wrapp: handler.WrapperHandlerRPC{

@@ -1,3 +1,4 @@
+// Package пакет по работе сервером grpc
 package servergrpc
 
 import (
@@ -19,6 +20,7 @@ type serviceRPCMetricMgr struct {
 	wrapp handler.WrapperHandlerRPC
 }
 
+// NewRPC конструктор  севера grpgc
 func NewRPC(cfg *configs.MainConfig, st storage.Storage) *serviceRPCMetricMgr {
 	return &serviceRPCMetricMgr{
 		wrapp: handler.WrapperHandlerRPC{

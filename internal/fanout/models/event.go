@@ -1,22 +1,52 @@
 package models
 
-import "time"
+import (
+	"encoding/json"
+	"time"
 
-// Event - внутренний тип события для данного модуля, используется при Unmarshall из входных данных HTTP
-type Event struct {
-	Title       string    `json:"title"`                 // краткий заголовок события
-	Description string    `json:"description,omitempty"` // подробное описание события
-	Source      string    `json:"source,omitempty"`      // источник события
-	Status      int32     `json:"status"`                // статус события
-	Created     time.Time `json:"created,omitempty"`     // дата создания события
-	Update      time.Time `json:"update,omitempty"`      // дата обновления события
-	Key         string    `json:"key,omitempty"`         // ключ события для корреляции
-	KeyClose    string    `json:"key_close,omitempty"`   // паттерн ключа, который закроет данное событие
-	Assigned    []string  `json:"assigned,omitempty"`    // на кого назначено событие
-	AutoRunner  string    `json:"auto_runner,omitempty"` // описание автоматического действия по событию
-	Severity    int32     `json:"severity"`              // критичность события
-	RelarionCi  []string  `json:"relarion_ci"`           // к какое КЕ относится это событие
-	CreatedBy   string    `json:"created_by,omitempty"`  // кем создано событие
-	Count       int32     `json:"count,omitempty"`       // количество пришедших одинаковых событий (количество дублей)
-	Uuid        string    `json:"uuid,omitempty"`        // айди события
+	integrationevents "github.com/borisbbtest/GoMon/internal/fanout/clients/grpc/events"
+	"github.com/borisbbtest/GoMon/internal/fanout/utils"
+)
+
+type RequestGetEvent struct {
+	StartTime time.Time
+	EndTime   time.Time
+	Uuid      string
+}
+
+type ResponseGetEventDuration struct {
+	Root *[]*integrationevents.Event
+}
+
+type ResponseGetEvent struct {
+	Root *integrationevents.Event
+}
+
+// ParseRequestDuration - функция переопределяющия правила анмаршалера для timestamp в Metric
+func (hook *RequestGetEvent) ParseRequestDuration(data []byte) error {
+	Req := &struct {
+		StartTime string `json:"start"`
+		EndTime   string `json:"end"`
+	}{}
+	if err := json.Unmarshal(data, Req); err != nil {
+		utils.Log.Error().Err(err).Msg("failed unmarshall json")
+		return err
+	}
+	if Req.StartTime != "" {
+		res, err := time.Parse(time.RFC3339, Req.StartTime)
+		if err != nil {
+			utils.Log.Error().Err(err).Msg("failed unmarshall Localtime")
+			return err
+		}
+		hook.StartTime = res
+	}
+	if Req.EndTime != "" {
+		res, err := time.Parse(time.RFC3339, Req.EndTime)
+		if err != nil {
+			utils.Log.Error().Err(err).Msg("failed unmarshall SourceTime")
+			return err
+		}
+		hook.EndTime = res
+	}
+	return nil
 }

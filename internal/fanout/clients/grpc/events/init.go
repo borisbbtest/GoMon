@@ -8,9 +8,10 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func NewConnIdm(cfg config.MainConfig) *ServiceWrapperEvents {
+// NewConnMgrEvent Конструктор клиента к ement менеджеру
+func NewConnMgrEvent(cfg config.MainConfig) *ServiceWrapperEvents {
 
-	conn, err := grpc.Dial(cfg.ServiceGRpcCMD, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial(cfg.ServiceGRpcEvents, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		utils.Log.Fatal().Err(err).Msg("failed initialize connection")
 	}

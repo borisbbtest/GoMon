@@ -9,6 +9,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+// GetBatch получает список метрик
 func (hook *WrapperHandlerRPC) GetBatch(ctx context.Context, item *metrics.GetBatchRequest) (res *metrics.GetBatchResponse, err error) {
 
 	utils.Log.Info().Msg("GetBatch start")

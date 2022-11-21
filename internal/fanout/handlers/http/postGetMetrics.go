@@ -18,7 +18,6 @@ func (hook *WrapperHandler) PostGetMetrics(w http.ResponseWriter, r *http.Reques
 
 	bytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		log.Fatalln(err)
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return
@@ -31,7 +30,6 @@ func (hook *WrapperHandler) PostGetMetrics(w http.ResponseWriter, r *http.Reques
 	resgrpc, err := hook.ServicePool.Metrics.GetMetricDuration(r.Context(), req.StartTime, req.EndTime)
 	//utils.Log.Debug().Msgf(" ---   %s", test)
 	if err != nil {
-		log.Fatalln(err)
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request"))
 		return

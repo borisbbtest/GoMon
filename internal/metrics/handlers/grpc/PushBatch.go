@@ -8,6 +8,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+// PushBatch  отправляет  массив КЕ
 func (hook *WrapperHandlerRPC) PushBatch(ctx context.Context, ev *metrics.PushBatchRequest) (res *metrics.PushBatchResponse, err error) {
 	res = &metrics.PushBatchResponse{
 		Code: "0",

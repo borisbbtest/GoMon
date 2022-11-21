@@ -26,6 +26,7 @@ func (p *Plugin) Stop() {
 	p.connMgr = nil
 }
 
+// NewConn - конструктор соединения
 func (p *Plugin) NewConn() (conn *postgresConn, err error) {
 
 	conn, err = p.connMgr.GetPostgresConnection(p.dsn)

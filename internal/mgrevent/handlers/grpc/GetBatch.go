@@ -9,6 +9,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+// GetBatch - получения массива событий
 func (hook *WrapperHandlerRPC) GetBatch(ctx context.Context, eve *mgrevent.GetBatchRequest) (res *mgrevent.GetBatchResponse, err error) {
 
 	utils.Log.Info().Msg("GetBatch start")

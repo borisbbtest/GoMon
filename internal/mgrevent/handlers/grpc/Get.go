@@ -1,3 +1,4 @@
+// Package пакет по управлению обработчиков
 package grpc
 
 import (
@@ -9,6 +10,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+// Get - получения одного события
 func (hook *WrapperHandlerRPC) Get(ctx context.Context, ev *mgrevent.GetRequest) (res *mgrevent.GetResponse, err error) {
 	utils.Log.Info().Msg("Get start")
 	res = &mgrevent.GetResponse{
@@ -19,7 +21,7 @@ func (hook *WrapperHandlerRPC) Get(ctx context.Context, ev *mgrevent.GetRequest)
 	err, tmpeve := hook.Storage.GetEvent(ctx, e)
 	if err != nil {
 		utils.Log.Error().Msgf(err.Error())
-		return res, status.Error(codes.FailedPrecondition, "Opps OMG")
+		return nil, status.Error(codes.NotFound, " Get Opps OMG")
 	}
 	buff := tmpeve.ConvertTogRpcEvent()
 

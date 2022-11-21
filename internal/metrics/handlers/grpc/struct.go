@@ -6,6 +6,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/models/metrics"
 )
 
+// WrapperHandlerRPC класс конфигурации хендлера
 type WrapperHandlerRPC struct {
 	ServerConf *configs.MainConfig
 	Storage    storage.Storage

@@ -1,3 +1,4 @@
+// Package пакет конфигурации
 package configs
 
 import (
@@ -12,15 +13,17 @@ import (
 	flag "github.com/spf13/pflag"
 )
 
+// MainConfig структура с параметрами запуска сервиса
 type MainConfig struct {
-	DatabaseURI string `yaml:"DATABASE_URI" env:"DATABASE_URI"`
-	RunAddress  string `yaml:"RUN_ADDRESS_RPC" env:"RUN_ADDRESS_RPC"`
+	DatabaseURI string `yaml:"DATABASE_URI" env:"DATABASE_URI"`       // адрес к БД
+	RunAddress  string `yaml:"RUN_ADDRESS_RPC" env:"RUN_ADDRESS_RPC"` // адрес и порт к примеру localhost:8080
 	Ctx         context.Context
 }
 type ServerConfig interface {
 	GetConfig() (config *MainConfig, err error)
 }
 
+// GetConfig функция получения конфигураций из различных источников
 func GetConfig() (config *MainConfig, err error) {
 	config = &MainConfig{}
 	var configFileName string

@@ -8,7 +8,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/metrics/utils"
 )
 
-// Получаем один из одну запись по uuid. В будущем  будет релизов сервис виде воркера который будет возвращать данные из БД
+//GetMetricsDuration Получаем один из одну запись по uuid. В будущем  будет релизов сервис виде воркера который будет возвращать данные из БД
 
 func (hook *StoreDBinPostgreSQL) GetMetricsDuration(ctx context.Context, startTime time.Time, endTime time.Time) (err error, res *models.Metrics) {
 	query, err := SQLFileInit.ReadFile("migrations/core/select_metrics_duration.sql")

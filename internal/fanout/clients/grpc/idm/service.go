@@ -5,7 +5,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/models/idm"
 )
 
-// ConfigWrapper - структура конфигурации приложения
+// ServiceWrapperIdm - класс по работе с сервисом IDM
 type ServiceWrapperIdm struct {
 	Idm idm.IdmClient //соединений gRPC IDM
 }
