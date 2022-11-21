@@ -1,8 +1,9 @@
-package app
+package http
 
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"net/http/pprof"
 	"os"
@@ -10,27 +11,34 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/borisbbtest/go_home_work/internal/config"
-	handlershttp "github.com/borisbbtest/go_home_work/internal/handlers/handlers_http"
-	"github.com/borisbbtest/go_home_work/internal/storage"
-	"github.com/borisbbtest/go_home_work/internal/tools"
+	config "github.com/borisbbtest/GoMon/internal/fanout/configs"
+	handlers_http "github.com/borisbbtest/GoMon/internal/fanout/handlers/http"
+	midd "github.com/borisbbtest/GoMon/internal/fanout/middleware"
+	"github.com/borisbbtest/GoMon/internal/fanout/models"
+	"github.com/borisbbtest/GoMon/internal/fanout/utils"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
-	"github.com/sirupsen/logrus"
 )
 
-var log = logrus.WithField("context", "service_short_url")
-
-type serviceHTTPShortURL struct {
-	wrapp handlershttp.WrapperHandler
+// serviceHTTPFanOut Класс сервера htttp
+type serviceHTTPFanOut struct {
+	wrapp  handlers_http.WrapperHandler
+	middle midd.WrapperMiddleware
 }
 
-// Структура так так
-func NewHTTP(cfg *config.ServiceShortURLConfig, st storage.Storage) *serviceHTTPShortURL {
-	return &serviceHTTPShortURL{
-		wrapp: handlershttp.WrapperHandler{
-			ServerConf: cfg,
-			Storage:    st,
+// NewHTTP конструктор класс serviceHTTPFanOut
+func NewHTTP(cfg *config.MainConfig) *serviceHTTPFanOut {
+
+	//Создаем  Пул коннектов в grps
+	ps := models.NewPoolService(*cfg)
+	return &serviceHTTPFanOut{
+		wrapp: handlers_http.WrapperHandler{
+			ServerConf:  cfg,
+			ServicePool: ps,
+		},
+		middle: midd.WrapperMiddleware{
+			ServerConf:  cfg,
+			ServicePool: ps,
 		},
 	}
 }
@@ -40,27 +48,24 @@ var buildDate = "N/A"
 var buildCommit = "N/A"
 
 func printIntro() {
-	log.Info("Build version: ", buildVersion)
-	log.Info("Build date: ", buildDate)
-	log.Info("Build commit: ", buildCommit)
+	utils.Log.Debug().Msgf("Build version: ", buildVersion)
+	utils.Log.Debug().Msgf("Build date: ", buildDate)
+	utils.Log.Debug().Msgf("Build commit: ", buildCommit)
 }
-func (hook *serviceHTTPShortURL) Start() (err error) {
+
+// Start Запускает сервер http
+func (hook *serviceHTTPFanOut) Start() (err error) {
 
 	printIntro()
 	// Launch the listening thread
 	log.Println("Initializing HTTP server")
 	r := chi.NewRouter()
 
-	//	defer hook.wrapp.Storage.Close()
-
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
-	r.Use(hook.wrapp.GzipHandle)
-	r.Use(hook.wrapp.MidSetCookie)
-	//r.Use(middleware.Compress(5, "gzip"))
+	r.Use(midd.GzipHandle)
 	r.Use(middleware.Recoverer)
-	//yes
 	r.HandleFunc("/pprof/*", pprof.Index)
 	r.HandleFunc("/pprof/cmdline", pprof.Cmdline)
 	r.HandleFunc("/pprof/profile", pprof.Profile)
@@ -73,18 +78,25 @@ func (hook *serviceHTTPShortURL) Start() (err error) {
 	r.Handle("/pprof/block", pprof.Handler("block"))
 	r.Handle("/pprof/allocs", pprof.Handler("allocs"))
 
-	r.Get("/api/user/urls", hook.wrapp.GetHandlerCooke)
-	r.Get("/", hook.wrapp.GetHandler)
-	r.Get("/ping", hook.wrapp.GetHandlerPing)
-	r.Get("/{id}", hook.wrapp.GetHandler)
-	r.Post("/", hook.wrapp.PostHandler)
-	r.Post("/api/shorten", hook.wrapp.PostJSONHandler)
-	r.Post("/api/shorten/batch", hook.wrapp.PostJSONHandlerBatch)
-	r.Delete("/api/user/urls", hook.wrapp.DeleteURLHandlers)
-	r.Get("/api/internal/stats", hook.wrapp.GetHandlerStats)
+	r.Get("/", hook.wrapp.PingHandler)
+	r.Post("/api/register", hook.wrapp.RegisterHandler)
+	r.Post("/api/authorize", hook.wrapp.AuthorizeHandler)
+
+	serviceLogic := r.Group(nil)
+	serviceLogic.Use(hook.middle.MiddleSetSessionCookie)
+	//Ping API
+	serviceLogic.Get("/api/ping", hook.wrapp.PingHandler)
+	// CMD
+	serviceLogic.Get("/api/get_ci/{name}", hook.wrapp.GetGetCi)
+	serviceLogic.Post("/api/get_ci", hook.wrapp.PostGetCis)
+	//Events
+	serviceLogic.Get("/api/get_event/{id}", hook.wrapp.GetGetEvent)
+	serviceLogic.Post("/api/get_events", hook.wrapp.PostGetEvens)
+	//Metric
+	serviceLogic.Post("/api/get_metrics", hook.wrapp.PostGetMetrics)
 
 	server := &http.Server{
-		Addr:         hook.wrapp.ServerConf.ServerAddress,
+		Addr:         hook.wrapp.ServerConf.RunAddress,
 		Handler:      r,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 40 * time.Second,
@@ -111,21 +123,21 @@ func (hook *serviceHTTPShortURL) Start() (err error) {
 					// ошибки закрытия Listener
 					log.Printf("HTTP server Shutdown SIGINT:  %v", err)
 				}
-				log.Info("bz -SIGINT")
+				utils.Log.Debug().Msgf("bz -SIGINT")
 				close(idleConnsClosed)
 			case syscall.SIGTERM:
 				if err := server.Shutdown(context.Background()); err != nil {
 					// ошибки закрытия Listener
-					log.Printf("HTTP server Shutdown SIGTERM: %v", err)
+					utils.Log.Debug().Msgf("HTTP server Shutdown SIGTERM: %v", err)
 				}
-				log.Info("bz - SIGTERM")
+				utils.Log.Debug().Msgf("bz - SIGTERM")
 				close(idleConnsClosed)
 			case syscall.SIGQUIT:
 				if err := server.Shutdown(context.Background()); err != nil {
 					// ошибки закрытия Listener
-					log.Printf("HTTP server Shutdown SIGQUIT: %v", err)
+					utils.Log.Debug().Msgf("HTTP server Shutdown SIGQUIT: %v", err)
 				}
-				log.Info("bz - SIGQUIT")
+				utils.Log.Debug().Msgf("bz - SIGQUIT")
 				close(idleConnsClosed)
 			default:
 				fmt.Println("Unknown signal.")
@@ -136,13 +148,13 @@ func (hook *serviceHTTPShortURL) Start() (err error) {
 	defer server.Close()
 	if hook.wrapp.ServerConf.EnableHTTPS {
 
-		cert, key, err := tools.CertGeg()
+		cert, key, err := utils.CertGeg()
 		if err != nil {
 			return fmt.Errorf("BZ Certificate and key wasn't generation: %s", err)
 		}
 
-		tools.WriteCertFile("cert.pem", cert)
-		tools.WriteCertFile("key.pem", key)
+		utils.WriteCertFile("cert.pem", cert)
+		utils.WriteCertFile("key.pem", key)
 		err = server.ListenAndServeTLS("cert.pem", "key.pem")
 
 		if err != http.ErrServerClosed {
@@ -163,10 +175,9 @@ func (hook *serviceHTTPShortURL) Start() (err error) {
 	// здесь можно освобождать ресурсы перед выходом,
 	// например закрыть соединение с базой данных,
 	// закрыть открытые файлы
-	hook.wrapp.Storage.Close()
 
-	log.Info("Server Shutdown gracefully")
+	utils.Log.Debug().Msgf("Server Shutdown gracefully")
 
-	log.Info("Exiting")
+	utils.Log.Debug().Msgf("Exiting")
 	return nil
 }

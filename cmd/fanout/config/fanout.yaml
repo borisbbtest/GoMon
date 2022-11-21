@@ -1,0 +1,9 @@
+ACCRUAL_SYSTEM_ADDRESS: "http://localhost:8089"
+RUN_ADDRESS:  "localhost:8089"
+DATABASE_URI: "postgres://postgres:boris123@localhost:5432/mgrevent?sslmode=disable"
+TRUSTED_SUBNET: "127.0.0.0/24"
+ENABLE_HTTPS: True
+CLIENT_ADDRESS_EVENT: "localhost:50053"
+CLIENT_ADDRESS_METRIC: "localhost:50054"
+CLIENT_ADDRESS_IDM: "localhost:50055"
+CLIENT_ADDRESS_CMD:  "localhost:50056"
