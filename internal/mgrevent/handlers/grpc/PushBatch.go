@@ -10,7 +10,7 @@ import (
 
 func (hook *WrapperHandlerRPC) PushBatch(ctx context.Context, ev *mgrevent.PushBatchRequest) (res *mgrevent.PushBatchResponse, err error) {
 	res = &mgrevent.PushBatchResponse{
-		Code: "0",
+		Code: "Ok",
 	}
 	e := ev.GetEv()
 	err, err2 := hook.Storage.SaveEvents(ctx, e)

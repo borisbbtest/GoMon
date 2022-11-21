@@ -1,8 +1,2 @@
-<<<<<<< HEAD
 RUN_ADDRESS_RPC:  "localhost:50053"
-DATABASE_URI: "postgres://postgres:boris123@localhost:5432/mgrevent?sslmode=disable"
-=======
-RUN_ADDRESS_RPC: "localhost:50052"
-#DATABASE_URI: "postgres://postgres:boris123@localhost:5432/mgrevent?sslmode=disable"
-DATABASE_URI: "postgres://pi:toor@192.168.1.69:5432/yandex"
->>>>>>> 992eab8e28cd7a1af563f522198982cc0be585b6
+DATABASE_URI: "postgres://postgres:postgres@localhost:5432/mgrevent?sslmode=disable"
