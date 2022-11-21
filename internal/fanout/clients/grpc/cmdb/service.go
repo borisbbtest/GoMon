@@ -1,9 +1,9 @@
-package integrationcmd
+package integrationcmdb
 
 import (
-	"github.com/borisbbtest/GoMon/internal/models/mgrevent"
+	"github.com/borisbbtest/GoMon/internal/models/cmdb"
 )
 
-type ServiceWrapperEvents struct {
-	Events mgrevent.EventsClient //соединений gRPC Events
+type ServiceWrapperCmdb struct {
+	Ci cmdb.CmdbClient //соединений gRPC Events
 }

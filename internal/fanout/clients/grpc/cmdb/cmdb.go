@@ -1,4 +1,4 @@
-package integrationcmd
+package integrationcmdb
 
 import "time"
 

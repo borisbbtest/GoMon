@@ -87,7 +87,7 @@ func (hook *serviceHTTPFanOut) Start() (err error) {
 	//Ping API
 	serviceLogic.Get("/api/ping", hook.wrapp.PingHandler)
 	// CMD
-	serviceLogic.Get("/api/getci/{uuid}", hook.wrapp.GetGetCi)
+	serviceLogic.Get("/api/get_ci/{name}", hook.wrapp.GetGetCi)
 	serviceLogic.Post("/api/get_cis", hook.wrapp.PostGetCis)
 	//Events
 	serviceLogic.Get("/api/get_event/{uuid}", hook.wrapp.GetGetEvent)
