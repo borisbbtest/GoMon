@@ -1,3 +1,4 @@
+// Package паект по чтению конфигурации
 package configs
 
 import (
@@ -21,6 +22,7 @@ type ServerConfig interface {
 	GetConfig() (config *MainConfig, err error)
 }
 
+// GetConfig - получения конфигураций из источников типа локальных переменные OS, файлов конфигураций, флагов
 func GetConfig() (config *MainConfig, err error) {
 	config = &MainConfig{}
 	var configFileName string

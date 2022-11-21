@@ -1,3 +1,4 @@
+// Package  пакет по созданию стордже на основе СУБД Postgres
 package storagepg
 
 import (

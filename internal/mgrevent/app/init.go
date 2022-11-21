@@ -1,3 +1,4 @@
+// Package пакет по созданию приложения
 package app
 
 import (
@@ -13,6 +14,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 )
 
+// ServiceEvents класс приложения
 type ServiceEvents struct {
 	ServerConf *configs.MainConfig
 	Storage    storage.Storage
@@ -28,6 +30,7 @@ func printIntro() {
 	utils.Log.Debug().Msgf("Build commit: ", buildCommit)
 }
 
+// Init - иницилизация  приложения
 func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	res = &ServiceEvents{}
 	res.Storage, err = storagepg.NewPostgreSQLStorage(cfg)
@@ -38,6 +41,7 @@ func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	return
 }
 
+// Start - запуск приложения
 func (hook *ServiceEvents) Start() (err error) {
 	utils.Log.Debug().Msg("Start Application events managers")
 

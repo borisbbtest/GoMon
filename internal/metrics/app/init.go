@@ -13,6 +13,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/metrics/utils"
 )
 
+// ServiceEvents Класс сервиса
 type ServiceEvents struct {
 	ServerConf *configs.MainConfig
 	Storage    storage.Storage
@@ -28,6 +29,7 @@ func printIntro() {
 	utils.Log.Debug().Msgf("Build commit: ", buildCommit)
 }
 
+// Init - иницелизация сервиса
 func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	res = &ServiceEvents{}
 	res.Storage, err = storagepg.NewPostgreSQLStorage(cfg)
@@ -38,6 +40,7 @@ func Init(cfg *configs.MainConfig) (res *ServiceEvents, err error) {
 	return
 }
 
+// Start - старт приложения
 func (hook *ServiceEvents) Start() (err error) {
 	utils.Log.Debug().Msg("Start Application Metrics managers")
 

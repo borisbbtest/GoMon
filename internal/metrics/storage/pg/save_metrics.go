@@ -9,7 +9,7 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
-// Записываем  массив данных в БД
+// SaveEvents Записываем  массив данных в БД
 func (hook *StoreDBinPostgreSQL) SaveEvents(ctx context.Context, eve []*metrics.Metric) (err error, qerr error) {
 
 	conn, err := hook.pgp.NewConn()
