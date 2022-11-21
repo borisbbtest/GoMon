@@ -9,6 +9,7 @@ type Error string
 
 func (e Error) Error() string { return string(e) }
 
+// sanitizeError собственный серилизатор подключений
 func sanitizeError(errText, connString string) (err error) {
 	var (
 		originSchema, sanitizedErrorString string

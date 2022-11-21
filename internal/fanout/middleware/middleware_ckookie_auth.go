@@ -3,12 +3,8 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/borisbbtest/ya-dr/internal/handlers"
-	"github.com/borisbbtest/ya-dr/internal/storage"
-	"github.com/sirupsen/logrus"
+	"github.com/borisbbtest/GoMon/internal/fanout/storage"
 )
-
-var log = logrus.WithField("context", "service_system_loyalty")
 
 type WrapperMiddleware struct {
 	Session *storage.SessionHTTP
@@ -16,7 +12,7 @@ type WrapperMiddleware struct {
 
 func (hook *WrapperMiddleware) MiddleSetSessionCookie(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if handlers.IsUserAuthed(r, hook.Session) {
+		if true {
 			next.ServeHTTP(w, r)
 			return
 		}

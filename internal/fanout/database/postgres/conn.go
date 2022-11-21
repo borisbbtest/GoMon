@@ -27,6 +27,7 @@ func (p *postgresConn) updateAccessTime() {
 	p.lastTimeAccess = time.Now()
 }
 
+// NewConnManager init class
 func (p *Plugin) NewConnManager(keepAlive, timeout time.Duration) *connManager {
 	connMgr := &connManager{
 		connections: make(map[string]*postgresConn),

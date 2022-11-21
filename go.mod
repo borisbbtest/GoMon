@@ -24,6 +24,7 @@ require (
 )
 
 require (
+	github.com/go-chi/chi v1.5.4
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/gogo/status v1.1.1
 	github.com/golang/protobuf v1.5.2 // indirect

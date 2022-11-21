@@ -1,3 +1,4 @@
+// Package менеджер подключений к БД postgres
 package postgres
 
 import (
@@ -6,6 +7,7 @@ import (
 	"github.com/borisbbtest/GoMon/internal/mgrevent/utils"
 )
 
+// Plugin класс объекта менеджера подключения
 type Plugin struct {
 	connMgr *connManager
 	dsn     string
@@ -13,6 +15,7 @@ type Plugin struct {
 
 type requestHandler func(conn *postgresConn, key string, params []interface{}) (res interface{}, err error)
 
+// Start запускает иницилизацию к БД
 func (p *Plugin) Start(dsn string) {
 	p.dsn = dsn
 	p.connMgr = p.NewConnManager(
@@ -21,11 +24,13 @@ func (p *Plugin) Start(dsn string) {
 	)
 }
 
+// Sop останавливает коннект к БД
 func (p *Plugin) Stop() {
 	p.connMgr.stop()
 	p.connMgr = nil
 }
 
+// NewConn - создает создает отдельное содинение к БД
 func (p *Plugin) NewConn() (conn *postgresConn, err error) {
 
 	conn, err = p.connMgr.GetPostgresConnection(p.dsn)
