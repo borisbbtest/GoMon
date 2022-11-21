@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/borisbbtest/GoMon/internal/fanout/models"
+	integrationidm "github.com/borisbbtest/GoMon/internal/fanout/clients/grpc/idm"
 	"github.com/borisbbtest/GoMon/internal/fanout/utils"
 )
 
@@ -15,13 +15,13 @@ import (
 // POST [/api/register]
 // Входные данные: models.User
 func (hook *WrapperHandler) RegisterHandler(rw http.ResponseWriter, r *http.Request) {
-	var user models.User
+	var user integrationidm.User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
 		utils.Log.Error().Err(err).Msg("failed decode user")
 		http.Error(rw, "can't decode user", http.StatusBadRequest)
 		return
 	}
-	session, err := hook.SessionApp.RegisterUser(r.Context(), &user)
+	session, err := hook.ServicePool.Idm.RegisterUser(r.Context(), &user)
 	if err != nil {
 		utils.Log.Error().Err(err).Msg("failed register user")
 		http.Error(rw, "failed register user", http.StatusInternalServerError)
@@ -54,13 +54,13 @@ func (hook *WrapperHandler) RegisterHandler(rw http.ResponseWriter, r *http.Requ
 //		"password": "password"
 //	}
 func (hook *WrapperHandler) AuthorizeHandler(rw http.ResponseWriter, r *http.Request) {
-	var user models.User
+	var user integrationidm.User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
 		utils.Log.Error().Err(err).Msg("failed decode user")
 		http.Error(rw, "can't decode user", http.StatusBadRequest)
 		return
 	}
-	session, err := hook.SessionApp.AuthorizeUser(r.Context(), &user)
+	session, err := hook.SessionApp.Idm.AuthorizeUser(r.Context(), &user)
 	if err != nil {
 		utils.Log.Error().Err(err).Msg("failed authorize user")
 		http.Error(rw, "failed authorize user", http.StatusInternalServerError)

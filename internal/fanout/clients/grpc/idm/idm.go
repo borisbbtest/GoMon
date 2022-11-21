@@ -1,4 +1,4 @@
-package integration_idm
+package integrationidm
 
 import (
 	"context"

@@ -29,14 +29,17 @@ type serviceHTTPFanOut struct {
 // NewHTTP конструктор класс serviceHTTPFanOut
 func NewHTTP(cfg *config.MainConfig) *serviceHTTPFanOut {
 
-	init := &models.ServicePoolWrapper{}
-	_ = init
-
+	//Создаем  Пул коннектов в grps
+	ps := models.NewPoolService(*cfg)
 	return &serviceHTTPFanOut{
 		wrapp: handlers_http.WrapperHandler{
-			ServerConf: cfg,
+			ServerConf:  cfg,
+			ServicePool: ps,
 		},
-		middle: midd.WrapperMiddleware{},
+		middle: midd.WrapperMiddleware{
+			ServerConf:  cfg,
+			ServicePool: ps,
+		},
 	}
 }
 

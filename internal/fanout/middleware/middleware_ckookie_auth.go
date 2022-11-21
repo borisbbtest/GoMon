@@ -5,12 +5,14 @@ import (
 	"errors"
 	"net/http"
 
+	config "github.com/borisbbtest/GoMon/internal/fanout/configs"
 	"github.com/borisbbtest/GoMon/internal/fanout/models"
 	"github.com/borisbbtest/GoMon/internal/fanout/utils"
 )
 
 type WrapperMiddleware struct {
-	App *models.ConfigWrapper // структура, хранящая пул подключений и конфиг приложения
+	ServerConf  *config.MainConfig // Конфигурация приложения
+	ServicePool *models.ClientPool // Сессия пользователя
 }
 
 // CheckAuthorized - middleware для проверки авторизованно ли подключения.
@@ -40,7 +42,7 @@ func (hook *WrapperMiddleware) MiddleSetSessionCookie(next http.Handler) http.Ha
 		}
 		sessionToken := cookiess.Value
 		login := cookieu.Value
-		ok := hook.App.CheckAuthorized(r.Context(), login, sessionToken)
+		ok := hook.ServicePool.Idm.CheckAuthorized(r.Context(), login, sessionToken)
 		if !ok {
 			http.Error(rw, "no session with this session token or session expired", http.StatusUnauthorized)
 			return

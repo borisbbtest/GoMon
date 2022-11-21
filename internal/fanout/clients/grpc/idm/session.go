@@ -1,4 +1,4 @@
-package models
+package integrationidm
 
 import (
 	"encoding/json"

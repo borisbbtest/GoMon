@@ -7,6 +7,6 @@ import (
 
 // WrapperHandler - класс хедлеров
 type WrapperHandler struct {
-	ServerConf *config.MainConfig    // Конфигурация приложения
-	SessionApp *models.ConfigWrapper // Сессия пользователя
+	ServerConf  *config.MainConfig // Конфигурация приложения
+	ServicePool *models.ClientPool // Сессия пользователя
 }
