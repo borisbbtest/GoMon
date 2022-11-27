@@ -2,7 +2,6 @@ package models
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	pb "github.com/borisbbtest/GoMon/internal/models/idm"
@@ -19,6 +18,5 @@ func (cw *ConfigWrapper) CheckAuthorized(ctx context.Context, login string, id s
 		return false
 	}
 	ss := resp.Ss
-	fmt.Println(ss.Duration)
 	return time.Now().Before(ss.Duration.AsTime())
 }

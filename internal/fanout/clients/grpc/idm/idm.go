@@ -3,7 +3,6 @@ package integrationidm
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	pb "github.com/borisbbtest/GoMon/internal/models/idm"
@@ -47,6 +46,5 @@ func (hook *ServiceWrapperIdm) CheckAuthorized(ctx context.Context, login string
 		return false
 	}
 	ss := resp.Ss
-	fmt.Println(ss.Duration)
 	return time.Now().Before(ss.Duration.AsTime())
 }
