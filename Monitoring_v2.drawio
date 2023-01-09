@@ -1,22 +1,82 @@
-<mxfile host="app.diagrams.net" modified="2023-01-09T12:25:42.908Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15" version="20.8.3" etag="Dg6kkmyKHBxvWdHAXEPP" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-09T13:30:34.386Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15" version="20.8.3" etag="HlWHr65zfU4-GQRffFok" type="github">
   <diagram id="__Fv3QXLvg91oAIrcusl" name="Страница 1">
     <mxGraphModel dx="1242" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="HkMawc83CwHoPKeMZnea-1" value="Event" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="50" y="60" width="160" height="188" as="geometry">
+        <mxCell id="HkMawc83CwHoPKeMZnea-1" value="Event" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="240" height="360" as="geometry">
             <mxRectangle x="50" y="60" width="70" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HkMawc83CwHoPKeMZnea-2" value="id: UUID&#xa;create_time: timestamp&#xa;update_time: timestamp&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="HkMawc83CwHoPKeMZnea-1">
-          <mxGeometry y="26" width="160" height="84" as="geometry" />
+        <mxCell id="HkMawc83CwHoPKeMZnea-2" value="id: UUID&#xa;create_time: timestamp&#xa;update_time: timestamp&#xa;last_received_time: timestamp&#xa;title: text&#xa;description: text&#xa;source: text&#xa;status: status&#xa;key: text&#xa;key_close: text&#xa;severity: severity&#xa;duplicate_count: int&#xa;assigned: user&#xa;assigned_group: group&#xa;relation_ci: ci&#xa;ci_hint: text&#xa;annotations: []annotation&#xa;custom_attributes: []custom_attribute&#xa;&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;fontColor=default;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="HkMawc83CwHoPKeMZnea-1">
+          <mxGeometry y="26" width="240" height="254" as="geometry" />
         </mxCell>
         <mxCell id="HkMawc83CwHoPKeMZnea-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="HkMawc83CwHoPKeMZnea-1">
+          <mxGeometry y="280" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-4" value="SaveEvent(event)status&#xa;UpdateEvent(event)status&#xa;GetEvent(id)event&#xa;FindEvents(condition)[]event" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;" vertex="1" parent="HkMawc83CwHoPKeMZnea-1">
+          <mxGeometry y="288" width="240" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-5" value=" Severity" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="80" height="78" as="geometry">
+            <mxRectangle x="50" y="60" width="70" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-6" value="id: int&#xa;value: text" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="HkMawc83CwHoPKeMZnea-5">
+          <mxGeometry y="26" width="80" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="HkMawc83CwHoPKeMZnea-5">
+          <mxGeometry y="70" width="80" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-9" value="Status" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;rounded=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="480" y="40" width="80" height="78" as="geometry">
+            <mxRectangle x="50" y="60" width="70" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-10" value="id: int&#xa;value: text" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="HkMawc83CwHoPKeMZnea-9">
+          <mxGeometry y="26" width="80" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="HkMawc83CwHoPKeMZnea-9">
+          <mxGeometry y="70" width="80" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-12" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFF66;strokeColor=#d6b656;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;rounded=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="600" y="40" width="80" height="34" as="geometry">
+            <mxRectangle x="50" y="60" width="70" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-14" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="HkMawc83CwHoPKeMZnea-12">
+          <mxGeometry y="26" width="80" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-16" value="Ci" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFFF66;strokeColor=#d6b656;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;rounded=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="720" y="40" width="80" height="34" as="geometry">
+            <mxRectangle x="50" y="60" width="70" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-17" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="HkMawc83CwHoPKeMZnea-16">
+          <mxGeometry y="26" width="80" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-18" value="Annotation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontFamily=Handlee;sketch=1;curveFitting=1;jiggle=2;rounded=1;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="1">
+          <mxGeometry x="360" y="160" width="160" height="118" as="geometry">
+            <mxRectangle x="50" y="60" width="70" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-19" value="event_id: UUID&#xa;author: user&#xa;create_time: timestamp&#xa;update_time: timestamp&#xa;value: text&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Handlee;sketch=1;curveFitting=1;jiggle=2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="HkMawc83CwHoPKeMZnea-18">
+          <mxGeometry y="26" width="160" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-20" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="HkMawc83CwHoPKeMZnea-18">
           <mxGeometry y="110" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="HkMawc83CwHoPKeMZnea-4" value="SaveEvent(event)status&#xa;UpdateEvent(event)status&#xa;GetEvent(id)event&#xa;FindEvents(condition)[]event" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="HkMawc83CwHoPKeMZnea-1">
-          <mxGeometry y="118" width="160" height="70" as="geometry" />
+        <mxCell id="HkMawc83CwHoPKeMZnea-21" value="Custom Attribute" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneLine=1;rounded=1;sketch=1;curveFitting=1;jiggle=2;glass=0;shadow=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="1">
+          <mxGeometry x="560" y="160" width="120" height="118" as="geometry">
+            <mxRectangle x="560" y="160" width="70" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-22" value="event_id: UUID&#xa;name: text&#xa;value: text&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="HkMawc83CwHoPKeMZnea-21">
+          <mxGeometry y="26" width="120" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="HkMawc83CwHoPKeMZnea-23" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="HkMawc83CwHoPKeMZnea-21">
+          <mxGeometry y="110" width="120" height="8" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
