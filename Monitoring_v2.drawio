@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-09T15:20:35.053Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15" version="20.8.3" etag="iQ5NS23yq24R9hmKwjHW" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-01-09T15:55:40.474Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15" version="20.8.3" etag="8QqKvFj0bqFUC3PiPxqv" type="github" pages="2">
   <diagram id="__Fv3QXLvg91oAIrcusl" name="Объекты">
     <mxGraphModel dx="1242" dy="1971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -85,10 +85,30 @@
     </mxGraphModel>
   </diagram>
   <diagram id="6bxLuDseUKxeSSaYbd44" name="Общая схема">
-    <mxGraphModel dx="1242" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1461" dy="944" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="JsA5xg-02KLNwLMhZryo-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;endArrow=none;endFill=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1" source="JsA5xg-02KLNwLMhZryo-1" target="JsA5xg-02KLNwLMhZryo-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JsA5xg-02KLNwLMhZryo-10" value="gRPC ProcessEvent(Event)result" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontFamily=Handlee;fontColor=#000000;" vertex="1" connectable="0" parent="JsA5xg-02KLNwLMhZryo-9">
+          <mxGeometry x="0.3499" y="-2" relative="1" as="geometry">
+            <mxPoint x="-36" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JsA5xg-02KLNwLMhZryo-1" value="&lt;h1&gt;API Service&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="170" y="200" width="400" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="JsA5xg-02KLNwLMhZryo-5" value="&lt;span style=&quot;background-color: rgb(255, 255, 102);&quot;&gt;HTTP /api/ping&lt;/span&gt;" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="80" y="214" width="90" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="JsA5xg-02KLNwLMhZryo-6" value="&lt;span style=&quot;background-color: rgb(255, 255, 102);&quot;&gt;HTTP /api/event/push&lt;/span&gt;" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="80" y="294" width="90" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="JsA5xg-02KLNwLMhZryo-8" value="&lt;h1&gt;Event&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="40" width="400" height="320" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
