@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-02-08T11:45:02.222Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="5DwQ53jhXIZwo9GpesHw" version="20.8.18" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-02-08T11:48:04.608Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="1hqBoYxJLRLFxsu3IJaL" version="20.8.18" type="github" pages="5">
   <diagram id="__Fv3QXLvg91oAIrcusl" name="Объекты">
     <mxGraphModel dx="1242" dy="1897" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -85,7 +85,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="6bxLuDseUKxeSSaYbd44" name="Общая схема">
-    <mxGraphModel dx="1242" dy="1897" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1461" dy="2025" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -137,7 +137,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="ig-lH_8mQ4cR_sLJA4tj" name="Модуль События">
+  <diagram id="ig-lH_8mQ4cR_sLJA4tj" name="Event">
     <mxGraphModel dx="1242" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -223,7 +223,15 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="8Q89VZnDujj4MpnndkKI" name="Модуль КЕ">
+  <diagram id="8Q89VZnDujj4MpnndkKI" name="CMDB">
+    <mxGraphModel dx="1242" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ajHrSg6KbcIKmX19m8KZ" name="Storm">
     <mxGraphModel dx="1242" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
