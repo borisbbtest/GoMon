@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-02-27T09:04:35.407Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="7utQeNlSoaIfLP4Q5H-w" version="20.8.20" type="github" pages="11">
+<mxfile host="app.diagrams.net" modified="2023-02-27T09:39:10.566Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="UpbwyKBanGCxcGTw7JhE" version="20.8.20" type="github" pages="11">
   <diagram id="__Fv3QXLvg91oAIrcusl" name="Объекты">
     <mxGraphModel dx="849" dy="1814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -96,7 +96,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="6bxLuDseUKxeSSaYbd44" name="Общая схема">
-    <mxGraphModel dx="1140" dy="1969" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="892" dy="1795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -223,16 +223,19 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1300" y="153" as="sourcePoint" />
             <mxPoint x="1390" y="200" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1470" y="120" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="RnIaXNlD9R3AP4UB_n53-2" value="gRPC GetEvent(id)event&lt;br&gt;gRPC&amp;nbsp;UpdateEvent(Event)&lt;span style=&quot;border-color: var(--border-color); font-family: Handlee; font-size: 12px;&quot;&gt;result&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="RnIaXNlD9R3AP4UB_n53-1">
+        <mxCell id="RnIaXNlD9R3AP4UB_n53-2" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Handlee&quot; face=&quot;Handlee&quot;&gt;gRPC GetEvent(id)event&lt;br&gt;gRPC&amp;nbsp;UpdateEvent(Event)&lt;/font&gt;&lt;span style=&quot;border-color: var(--border-color); font-size: 12px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Handlee&quot; face=&quot;Handlee&quot;&gt;result&lt;br&gt;gRPC GetEventsByFilter(filter)[]event&lt;/font&gt;&lt;br&gt;&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="RnIaXNlD9R3AP4UB_n53-1">
           <mxGeometry x="0.2069" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <UserObject label="&lt;h1&gt;Web interface&lt;/h1&gt;" id="dsVCk58IRSPMrdmdfbeZ-1">
           <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" vertex="1" parent="1">
-            <mxGeometry x="2400" y="40" width="170" height="320" as="geometry" />
+            <mxGeometry x="2441" y="40" width="170" height="320" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="dsVCk58IRSPMrdmdfbeZ-2" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;endArrow=none;endFill=0;endSize=18;startArrow=oval;startFill=1;startSize=18;" edge="1" parent="1" source="INAU1fi4az4m9mjiACkR-2" target="dsVCk58IRSPMrdmdfbeZ-1">
@@ -241,7 +244,21 @@
             <mxPoint x="2090" y="50" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dsVCk58IRSPMrdmdfbeZ-3" value="gRPC GetEvent(id)event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="dsVCk58IRSPMrdmdfbeZ-2">
+        <mxCell id="dsVCk58IRSPMrdmdfbeZ-3" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Handlee&quot; face=&quot;Handlee&quot;&gt;gRPC GetEvent(id)event&lt;br&gt;gRPC&amp;nbsp;UpdateEvent(Event)result&lt;br&gt;gRPCStream GetListEventsByFilter(filter)[]event&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="dsVCk58IRSPMrdmdfbeZ-2">
+          <mxGeometry x="0.2069" y="1" relative="1" as="geometry">
+            <mxPoint x="-15" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3Rn7nG-k30Af2wympWN_-1" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;endArrow=none;endFill=0;endSize=18;startArrow=oval;startFill=1;startSize=18;" edge="1" parent="1" source="INAU1fi4az4m9mjiACkR-2" target="JsA5xg-02KLNwLMhZryo-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1360" y="530" as="sourcePoint" />
+            <mxPoint x="1920" y="530" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1480" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3Rn7nG-k30Af2wympWN_-2" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 12px;&quot;&gt;&lt;font face=&quot;Handlee&quot;&gt;gRPC NewEvent(event)resposne&lt;/font&gt;&lt;br&gt;&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="3Rn7nG-k30Af2wympWN_-1">
           <mxGeometry x="0.2069" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -399,7 +416,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="core" id="BPbGr9v_RNOEZEzh_gDR">
-    <mxGraphModel dx="1026" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1853" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0Yush-6HWkCazHgQO-MR-0" />
         <mxCell id="0Yush-6HWkCazHgQO-MR-1" parent="0Yush-6HWkCazHgQO-MR-0" />
@@ -489,11 +506,112 @@
             <mxGeometry x="650" y="203" width="78" height="78" as="geometry" />
           </mxCell>
         </UserObject>
+        <mxCell id="esYrSipRCwlAluubdA-e-0" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;startArrow=none;startFill=0;endArrow=classic;endFill=1;startSize=18;endSize=6;sourcePerimeterSpacing=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="esYrSipRCwlAluubdA-e-1" target="esYrSipRCwlAluubdA-e-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="270" y="401.5689655172414" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_URzV6I8XUruSjAF60Nq-0" value="filter" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="esYrSipRCwlAluubdA-e-0">
+          <mxGeometry x="-0.211" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="esYrSipRCwlAluubdA-e-1" value="gRPCStream GetListEventsByFilter(filter)[]event" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+          <mxGeometry x="60" y="383" width="90" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="esYrSipRCwlAluubdA-e-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;startArrow=none;startFill=0;endArrow=classic;endFill=1;startSize=18;endSize=6;sourcePerimeterSpacing=1;curved=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="esYrSipRCwlAluubdA-e-4" target="esYrSipRCwlAluubdA-e-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="363" />
+              <mxPoint x="570" y="402" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="esYrSipRCwlAluubdA-e-3" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;filter&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=24;fontFamily=Handlee;" vertex="1" connectable="0" parent="esYrSipRCwlAluubdA-e-2">
+          <mxGeometry x="0.4045" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_URzV6I8XUruSjAF60Nq-2" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="esYrSipRCwlAluubdA-e-4" target="_URzV6I8XUruSjAF60Nq-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hMZQiTT9TwWafanWDAGP-6" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.333;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="esYrSipRCwlAluubdA-e-4" target="esYrSipRCwlAluubdA-e-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hMZQiTT9TwWafanWDAGP-7" value="list events" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Handlee;" vertex="1" connectable="0" parent="hMZQiTT9TwWafanWDAGP-6">
+          <mxGeometry x="0.0427" y="5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hMZQiTT9TwWafanWDAGP-9" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="esYrSipRCwlAluubdA-e-4" target="hMZQiTT9TwWafanWDAGP-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="esYrSipRCwlAluubdA-e-4" value="&lt;span style=&quot;&quot;&gt;GetListEvent&lt;br&gt;Get current list of events&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+          <mxGeometry x="260" y="350" width="250" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="esYrSipRCwlAluubdA-e-5" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;startArrow=none;startFill=0;endArrow=classic;endFill=1;startSize=18;endSize=6;sourcePerimeterSpacing=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="esYrSipRCwlAluubdA-e-7" target="esYrSipRCwlAluubdA-e-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="689" y="443" />
+              <mxPoint x="570" y="443" />
+              <mxPoint x="570" y="401" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="esYrSipRCwlAluubdA-e-6" value="[]event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontFamily=Handlee;" vertex="1" connectable="0" parent="esYrSipRCwlAluubdA-e-5">
+          <mxGeometry x="0.1622" y="-9" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Event&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;GetEventsByFilter(filter)[]event" id="esYrSipRCwlAluubdA-e-7">
+          <mxCell style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#4D27AA;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+            <mxGeometry x="650" y="363" width="78" height="78" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="_URzV6I8XUruSjAF60Nq-1" value="&lt;span style=&quot;&quot;&gt;CreateWorker&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+          <mxGeometry x="430" y="510" width="250" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="hMZQiTT9TwWafanWDAGP-4" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;startArrow=none;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="VcFg7QbNTvu0lEuC--gi-21" target="esYrSipRCwlAluubdA-e-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="164" y="721" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="645" y="770" />
+              <mxPoint x="105" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hMZQiTT9TwWafanWDAGP-5" value="new events" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Handlee;" vertex="1" connectable="0" parent="hMZQiTT9TwWafanWDAGP-4">
+          <mxGeometry x="0.6089" y="-11" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hMZQiTT9TwWafanWDAGP-8" value="&lt;span style=&quot;&quot;&gt;CreateSubscriber&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+          <mxGeometry x="164" y="510" width="250" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="lo9id-yA-6Hz_UPvAFw_-1" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;endArrow=classic;endFill=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="VcFg7QbNTvu0lEuC--gi-2" target="VcFg7QbNTvu0lEuC--gi-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VcFg7QbNTvu0lEuC--gi-2" value="gRPC NewEvent(event)resposne" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+          <mxGeometry x="60" y="843" width="90" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="lo9id-yA-6Hz_UPvAFw_-2" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;endArrow=classic;endFill=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="VcFg7QbNTvu0lEuC--gi-18" target="VcFg7QbNTvu0lEuC--gi-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VcFg7QbNTvu0lEuC--gi-18" value="&lt;span style=&quot;&quot;&gt;FindSubscribers&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+          <mxGeometry x="210" y="818" width="250" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VcFg7QbNTvu0lEuC--gi-21" value="&lt;span style=&quot;&quot;&gt;NorifySubscribers&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+          <mxGeometry x="520" y="818" width="250" height="102" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="ig-lH_8mQ4cR_sLJA4tj" name="event">
-    <mxGraphModel dx="1578" dy="2277" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1283" dy="2069" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -675,9 +793,9 @@
         <mxCell id="1a2Fht_TBFerT0glfg3l-1" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;endArrow=classic;endFill=1;endSize=6;" parent="1" source="OPGyr3FMJKYAl-307ak8-15" target="qQjd0ZYHYFnFmdSfjjSc-6" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1205" y="900" />
-              <mxPoint x="830" y="900" />
-              <mxPoint x="830" y="1151" />
+              <mxPoint x="1205" y="960" />
+              <mxPoint x="1110" y="960" />
+              <mxPoint x="1110" y="1151" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -793,6 +911,9 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="mT3Ax9t3Anq4ybmATfLN-5" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="1" source="1a2Fht_TBFerT0glfg3l-9" target="mT3Ax9t3Anq4ybmATfLN-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="1a2Fht_TBFerT0glfg3l-9" value="&lt;span style=&quot;&quot;&gt;TopologyCorrelation&lt;br&gt;Find related events&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="577" y="784.5" width="250" height="102" as="geometry" />
         </mxCell>
@@ -844,6 +965,9 @@
           <mxGeometry x="-0.294" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="mT3Ax9t3Anq4ybmATfLN-4" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="1" source="qQjd0ZYHYFnFmdSfjjSc-6" target="mT3Ax9t3Anq4ybmATfLN-3">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="qQjd0ZYHYFnFmdSfjjSc-6" value="&lt;span style=&quot;&quot;&gt;UpdateEvent&lt;br&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="300" y="1100" width="250" height="102" as="geometry" />
@@ -948,6 +1072,112 @@
             <mxPoint x="50" y="1" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-1" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="1" source="InnwsFXrKlhg4yrWmrzF-6" target="DlPjFtt3TFWNCu-UzVRx-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;endArrow=classic;endFill=1;curved=1;" edge="1" parent="1" source="_2erJvpbW1urfTsXc23A-4" target="_2erJvpbW1urfTsXc23A-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="1760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-3" value="filter" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontFamily=Handlee;fontColor=#000000;" vertex="1" connectable="0" parent="_2erJvpbW1urfTsXc23A-2">
+          <mxGeometry x="0.3846" y="-1" relative="1" as="geometry">
+            <mxPoint x="-20" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-4" value="&lt;span style=&quot;caret-color: rgb(35, 47, 62); color: rgb(35, 47, 62);&quot;&gt;GetEventsByFilter(filter)[]event&lt;/span&gt;" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1713" width="90" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-5" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2erJvpbW1urfTsXc23A-6" target="_2erJvpbW1urfTsXc23A-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-6" value="&lt;span style=&quot;&quot;&gt;GetEventsByFilter&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1680" width="250" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-7" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;endArrow=classic;endFill=1;endSize=6;" edge="1" parent="1" source="_2erJvpbW1urfTsXc23A-12" target="_2erJvpbW1urfTsXc23A-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="1979" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-8" value="sql" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Handlee;" vertex="1" connectable="0" parent="_2erJvpbW1urfTsXc23A-7">
+          <mxGeometry x="-0.0881" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-9" value="Event Storager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1680" width="240" height="160" as="geometry">
+            <mxRectangle x="50" y="60" width="70" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-10" value="..." style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Handlee;" vertex="1" parent="_2erJvpbW1urfTsXc23A-9">
+          <mxGeometry y="26" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="_2erJvpbW1urfTsXc23A-9">
+          <mxGeometry y="56" width="240" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-12" value="UpdateEvent(event)response&#xa;SaveEvent(event)response&#xa;WriteHistory(event)response&#xa;GetEvent(id)event&#xa;GetEvents(filter)[]event" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;" vertex="1" parent="_2erJvpbW1urfTsXc23A-9">
+          <mxGeometry y="70" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-13" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;endArrow=classic;endFill=1;endSize=6;" edge="1" parent="1" source="_2erJvpbW1urfTsXc23A-15" target="_2erJvpbW1urfTsXc23A-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="1979" />
+            </Array>
+            <mxPoint x="810" y="1680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-14" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Handlee&quot; face=&quot;Handlee&quot;&gt;response&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="_2erJvpbW1urfTsXc23A-13">
+          <mxGeometry x="-0.1508" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-15" value="eventdb" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#4D27AA;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="1">
+          <mxGeometry x="715" y="1940" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;endArrow=classic;endFill=1;curved=1;" edge="1" parent="1" source="_2erJvpbW1urfTsXc23A-6" target="_2erJvpbW1urfTsXc23A-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="1900" as="sourcePoint" />
+            <mxPoint x="310" y="1900" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="125" y="1700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-17" value="[]event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontFamily=Handlee;fontColor=#000000;" vertex="1" connectable="0" parent="_2erJvpbW1urfTsXc23A-16">
+          <mxGeometry x="0.3846" y="-1" relative="1" as="geometry">
+            <mxPoint x="50" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2erJvpbW1urfTsXc23A-18" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="1" source="_2erJvpbW1urfTsXc23A-12" target="_2erJvpbW1urfTsXc23A-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mT3Ax9t3Anq4ybmATfLN-7" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="1" source="mT3Ax9t3Anq4ybmATfLN-3" target="mT3Ax9t3Anq4ybmATfLN-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="900" />
+              <mxPoint x="1049" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mT3Ax9t3Anq4ybmATfLN-3" value="&lt;span style=&quot;&quot;&gt;SendNewEventsToCore&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;curveFitting=1;jiggle=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="785" y="920" width="250" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="mT3Ax9t3Anq4ybmATfLN-8" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" edge="1" parent="1" source="mT3Ax9t3Anq4ybmATfLN-6" target="mT3Ax9t3Anq4ybmATfLN-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="core" id="mT3Ax9t3Anq4ybmATfLN-6">
+          <mxCell style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#4D27AA;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;" vertex="1" parent="1">
+            <mxGeometry x="1010" y="790" width="78" height="78" as="geometry" />
+          </mxCell>
+        </UserObject>
       </root>
     </mxGraphModel>
   </diagram>
