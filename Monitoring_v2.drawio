@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-02-27T09:01:41.509Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="YL4T5q8HDit5YPHjyzsW" version="20.8.20" type="github" pages="11">
+<mxfile host="app.diagrams.net" modified="2023-02-27T09:04:35.407Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="7utQeNlSoaIfLP4Q5H-w" version="20.8.20" type="github" pages="11">
   <diagram id="__Fv3QXLvg91oAIrcusl" name="Объекты">
     <mxGraphModel dx="849" dy="1814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -96,7 +96,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="6bxLuDseUKxeSSaYbd44" name="Общая схема">
-    <mxGraphModel dx="789" dy="1723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1140" dy="1969" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -219,9 +219,6 @@
             <mxGeometry x="1760" y="40" width="400" height="320" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="INAU1fi4az4m9mjiACkR-3" value="&lt;span style=&quot;background-color: rgb(255, 255, 102);&quot;&gt;FUNC getEvent&lt;/span&gt;" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;flipH=1;" vertex="1" parent="1">
-          <mxGeometry x="2160" y="40" width="90" height="36" as="geometry" />
-        </mxCell>
         <mxCell id="RnIaXNlD9R3AP4UB_n53-1" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;endArrow=none;endFill=0;endSize=18;startArrow=oval;startFill=1;startSize=18;" edge="1" parent="1" source="JsA5xg-02KLNwLMhZryo-8" target="INAU1fi4az4m9mjiACkR-2">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1300" y="153" as="sourcePoint" />
@@ -229,6 +226,22 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="RnIaXNlD9R3AP4UB_n53-2" value="gRPC GetEvent(id)event&lt;br&gt;gRPC&amp;nbsp;UpdateEvent(Event)&lt;span style=&quot;border-color: var(--border-color); font-family: Handlee; font-size: 12px;&quot;&gt;result&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="RnIaXNlD9R3AP4UB_n53-1">
+          <mxGeometry x="0.2069" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="&lt;h1&gt;Web interface&lt;/h1&gt;" id="dsVCk58IRSPMrdmdfbeZ-1">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="2400" y="40" width="170" height="320" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="dsVCk58IRSPMrdmdfbeZ-2" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;endArrow=none;endFill=0;endSize=18;startArrow=oval;startFill=1;startSize=18;" edge="1" parent="1" source="INAU1fi4az4m9mjiACkR-2" target="dsVCk58IRSPMrdmdfbeZ-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2290" y="210" as="sourcePoint" />
+            <mxPoint x="2090" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dsVCk58IRSPMrdmdfbeZ-3" value="gRPC GetEvent(id)event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="dsVCk58IRSPMrdmdfbeZ-2">
           <mxGeometry x="0.2069" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -395,7 +408,7 @@
             <mxPoint x="270" y="78.5689655172414" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="FTIHgqdK0VfzUS8J5sEJ-1" value="FUNC GetEvent" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+        <mxCell id="FTIHgqdK0VfzUS8J5sEJ-1" value="gRPC GetEvent" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
           <mxGeometry x="60" y="60" width="90" height="36" as="geometry" />
         </mxCell>
         <mxCell id="FTIHgqdK0VfzUS8J5sEJ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;startArrow=none;startFill=0;endArrow=classic;endFill=1;startSize=18;endSize=6;sourcePerimeterSpacing=1;curved=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="FTIHgqdK0VfzUS8J5sEJ-4" target="FTIHgqdK0VfzUS8J5sEJ-7">
@@ -438,7 +451,7 @@
             <mxPoint x="270" y="241.5689655172414" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3Fo0jqclb4oTtSe2pBQE-1" value="FUNC UpdateEvent" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
+        <mxCell id="3Fo0jqclb4oTtSe2pBQE-1" value="gRPC UpdateEvent" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rounded=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=0;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;" vertex="1" parent="0Yush-6HWkCazHgQO-MR-1">
           <mxGeometry x="60" y="223" width="90" height="36" as="geometry" />
         </mxCell>
         <mxCell id="3Fo0jqclb4oTtSe2pBQE-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=24;startArrow=none;startFill=0;endArrow=classic;endFill=1;startSize=18;endSize=6;sourcePerimeterSpacing=1;curved=1;" edge="1" parent="0Yush-6HWkCazHgQO-MR-1" source="3Fo0jqclb4oTtSe2pBQE-4" target="3Fo0jqclb4oTtSe2pBQE-7">
@@ -939,7 +952,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="8Q89VZnDujj4MpnndkKI" name="cmdb">
-    <mxGraphModel dx="1242" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1026" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -947,7 +960,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="ajHrSg6KbcIKmX19m8KZ" name="storm">
-    <mxGraphModel dx="1242" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1026" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -955,7 +968,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="ur90xpgi5LphEO1ts69M" name="epe">
-    <mxGraphModel dx="1242" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1026" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -963,7 +976,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="7AYZZipKMUmRLz9c3YQn" name="evcor">
-    <mxGraphModel dx="1242" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1026" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
