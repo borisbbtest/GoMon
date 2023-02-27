@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-02-27T09:39:10.566Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="UpbwyKBanGCxcGTw7JhE" version="20.8.20" type="github" pages="11">
+<mxfile host="app.diagrams.net" modified="2023-02-27T09:51:37.882Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15" etag="pbLOKN-hdOocrMFVxQoh" version="20.8.20" type="github" pages="11">
   <diagram id="__Fv3QXLvg91oAIrcusl" name="Объекты">
     <mxGraphModel dx="849" dy="1814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -96,7 +96,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="6bxLuDseUKxeSSaYbd44" name="Общая схема">
-    <mxGraphModel dx="892" dy="1795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2565" dy="2969" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -170,22 +170,22 @@
           </mxCell>
         </UserObject>
         <UserObject label="&lt;h1&gt;Storm&lt;/h1&gt;" link="data:page/id,ajHrSg6KbcIKmX19m8KZ" id="dE0sLRyhmBGSUjrveanc-1">
-          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fillColor=#e51400;verticalAlign=middle;strokeColor=#B20000;fontColor=#000000;" parent="1" vertex="1">
             <mxGeometry y="-200" width="400" height="70" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;h1&gt;Event Process Engine (epe)&lt;/h1&gt;" link="data:page/id,ur90xpgi5LphEO1ts69M" id="7flI709Bz5AMeiuoUtBj-1">
-          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;verticalAlign=middle;" parent="1" vertex="1">
             <mxGeometry x="440" y="-200" width="400" height="70" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;h1&gt;Event correlation (evcor)&lt;/h1&gt;" link="data:page/id,7AYZZipKMUmRLz9c3YQn" id="BTSRZa8yFeK_sxHHGQRw-1">
-          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fillColor=#e51400;verticalAlign=middle;strokeColor=#B20000;fontColor=#000000;" parent="1" vertex="1">
             <mxGeometry x="880" y="-200" width="400" height="70" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;h1&gt;Topology based event correlation (topcor)&lt;/h1&gt;" link="data:page/id,Q5cP_Xy-rqmorO3bZpvh" id="6_5dPMdkjWj_lUA1b9pE-1">
-          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fontColor=#000000;fillColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;labelBackgroundColor=none;sketch=1;fontFamily=Handlee;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DHandlee;fontSize=12;fillColor=#e51400;verticalAlign=middle;strokeColor=#B20000;fontColor=#000000;" parent="1" vertex="1">
             <mxGeometry x="1320" y="-200" width="400" height="70" as="geometry" />
           </mxCell>
         </UserObject>
@@ -611,7 +611,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="ig-lH_8mQ4cR_sLJA4tj" name="event">
-    <mxGraphModel dx="1283" dy="2069" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1865" dy="2478" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
