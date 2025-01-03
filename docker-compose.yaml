@@ -1,0 +1,131 @@
+version: "3.9"
+services:
+  postgressrv:
+    image: postgres
+    environment:
+      POSTGRES_DB: "gomon"
+      POSTGRES_USER: "puser"
+      POSTGRES_PASSWORD: "ppaswd"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      TZ: "Europe/Moscow"
+    volumes:
+      - ./tmp/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U puser -d gomon" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  idm:
+    image: idm
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: idm
+    environment:
+      ADDRESS_GRPC: ":8081"
+      SESSION_TIME: "300s"
+      REINIT: true
+      DATABASE_DSN: "postgres://puser:ppaswd@postgressrv:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgressrv:
+        condition: service_healthy
+    restart: unless-stopped
+
+  cmdb:
+    image: cmdb
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: cmdb
+    environment:
+      ADDRESS_GRPC: ":8082"
+      REINIT: true
+      DATABASE_DSN: "postgres://puser:ppaswd@postgressrv:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgressrv:
+        condition: service_healthy
+    restart: unless-stopped
+
+  metrics:
+    image: metrics
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: metrics
+    environment:
+      RUN_ADDRESS_RPC: ":8083"
+      DATABASE_URI: "postgres://puser:ppaswd@postgressrv:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgressrv:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mgrevent:
+    image: mgrevent
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: mgrevent
+    environment:
+      RUN_ADDRESS_RPC: ":8084"
+      DATABASE_URI: "postgres://puser:ppaswd@postgressrv:5432/gomon"
+      TZ: "Europe/Moscow"
+    depends_on:
+      postgressrv:
+        condition: service_healthy
+    restart: unless-stopped
+
+  fanin:
+    image: fanin
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: fanin
+    environment:
+      HTTP_ADDRESS: ":8443"
+      IDM_ADDRESS: "idm:8081"
+      CMDB_ADDRESS: "cmdb:8082"
+      METRICS_ADDRESS: "metrics:8083"
+      EVENTS_ADDRESS: "mgrevent:8084"
+      TZ: "Europe/Moscow"
+    ports:
+      - "8443:8443"
+    depends_on:
+      postgressrv:
+        condition: service_healthy
+    restart: unless-stopped
+
+  fanout:
+    image: fanout
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        COMPONENT: fanout
+    environment:
+      RUN_ADDRESS: ":443"
+      ENABLE_HTTPS: true
+      CLIENT_ADDRESS_IDM: "idm:8081"
+      CLIENT_ADDRESS_CMDB: "cmdb:8082"
+      CLIENT_ADDRESS_METRIC: "metrics:8083"
+      CLIENT_ADDRESS_EVENT: "mgrevent:8084"
+      TZ: "Europe/Moscow"
+    ports:
+      - "443:443"
+    depends_on:
+      postgressrv:
+        condition: service_healthy
+    restart: unless-stopped
